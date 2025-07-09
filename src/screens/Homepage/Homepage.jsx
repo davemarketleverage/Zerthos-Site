@@ -297,6 +297,9 @@ export const Homepage = () => {
     let wheelTimeout;
     let touchStartY = 0;
     let touchEndY = 0;
+    let scrollAccumulator = 0;
+    const SCROLL_THRESHOLD = 15; // Very low threshold for instant scrolling
+    const SCROLL_DEBOUNCE = 15; // Almost instant response
     
     // Set scrolled state based on current section
     setIsScrolled(currentSection > 0);
@@ -310,23 +313,41 @@ export const Homepage = () => {
       if (isScrolling) return;
       
       const delta = e.deltaY;
+      scrollAccumulator += delta;
       
-      // Scene 5: Feature-by-feature scroll
-      if (currentSection === 5) {
-        if (isFeatureScrolling) return;
-        if (featuresListHovered) {
-          // Only allow scene scroll if at last/first feature
-          if (Math.abs(delta) > 10) {
-            if (delta > 0 && activeFeature === featuresCount - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (delta < 0 && activeFeature === 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
+      // Clear existing timeout
+      if (wheelTimeout) {
+        clearTimeout(wheelTimeout);
+      }
+      
+      // Debounce scroll events
+      wheelTimeout = setTimeout(() => {
+        // Only proceed if accumulated scroll exceeds threshold
+        if (Math.abs(scrollAccumulator) < SCROLL_THRESHOLD) {
+          scrollAccumulator = 0;
           return;
         }
-        if (Math.abs(delta) > 10) {
-          if (delta > 0) {
+        
+        const shouldScrollDown = scrollAccumulator > 0;
+        const shouldScrollUp = scrollAccumulator < 0;
+        
+        // Reset accumulator
+        scrollAccumulator = 0;
+        
+        // Scene 5: Feature-by-feature scroll
+        if (currentSection === 5) {
+          if (isFeatureScrolling) return;
+          if (featuresListHovered) {
+            // Only allow scene scroll if at last/first feature
+            if (shouldScrollDown && activeFeature === featuresCount - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (shouldScrollUp && activeFeature === 0) {
+              scrollToSection(currentSection - 1);
+            }
+            return;
+          }
+          
+          if (shouldScrollDown) {
             // Scroll down
             if (activeFeature < featuresCount - 1) {
               setActiveFeature((prev) => prev + 1);
@@ -335,7 +356,7 @@ export const Homepage = () => {
             } else {
               scrollToSection(currentSection + 1);
             }
-          } else if (delta < 0) {
+          } else if (shouldScrollUp) {
             // Scroll up
             if (activeFeature > 0) {
               setActiveFeature((prev) => prev - 1);
@@ -345,19 +366,18 @@ export const Homepage = () => {
               scrollToSection(currentSection - 1);
             }
           }
+          return;
         }
-        return;
-      }
-      // Default scroll for other scenes
-      if (Math.abs(delta) > 10) {
-        if (delta > 0 && currentSection < sections.length - 1) {
+        
+        // Default scroll for other scenes
+        if (shouldScrollDown && currentSection < sections.length - 1) {
           // Scroll down
           scrollToSection(currentSection + 1);
-        } else if (delta < 0 && currentSection > 0) {
+        } else if (shouldScrollUp && currentSection > 0) {
           // Scroll up
           scrollToSection(currentSection - 1);
         }
-      }
+      }, SCROLL_DEBOUNCE);
     };
 
     const handleKeyDown = (e) => {
@@ -386,7 +406,7 @@ export const Homepage = () => {
       touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
       
-      if (Math.abs(deltaY) > 50) { // Threshold for touch sensitivity
+      if (Math.abs(deltaY) > 60) { // Reduced threshold for easier touch scrolling
         if (deltaY > 0 && currentSection < sections.length - 1) {
           // Swipe up (scroll down)
           scrollToSection(currentSection + 1);

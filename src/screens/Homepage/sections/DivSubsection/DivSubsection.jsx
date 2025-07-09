@@ -47,8 +47,8 @@ export const DivSubsection = () => {
                 support from our expert team.
               </p>
 
-              <Button className="px-9 py-4 h-auto rounded-xl bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] hover:bg-[linear-gradient(90deg,rgba(229,108,21,0.9)_0%,rgba(238,85,34,0.9)_100%)]">
-                <span className="font-semibold text-white text-base">
+              <Button className="px-9 py-4 h-auto rounded-xl bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] hover:bg-[linear-gradient(90deg,rgba(229,108,21,0.9)_0%,rgba(238,85,34,0.9)_100%)] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95 hover:-translate-y-1">
+                <span className="font-semibold text-white text-base transition-all duration-300 ease-in-out">
                   Contact out team
                 </span>
               </Button>
