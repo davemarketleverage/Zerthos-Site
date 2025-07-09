@@ -1,5 +1,5 @@
 import { PlayIcon } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import {
@@ -32,6 +32,14 @@ export const Homepage = () => {
   const [showHeroCard, setShowHeroCard] = useState(false);
   const [showHeroImage, setShowHeroImage] = useState(false);
   const [delayedBrainBg, setDelayedBrainBg] = useState(false);
+  const [delayedStatsBg, setDelayedStatsBg] = useState(false);
+  
+  // Immediate scroll blocking using ref to prevent multiple rapid scrolls
+  const scrollBlockedRef = useRef(false);
+  
+  // Track last scroll time to detect momentum/multiple events from same physical scroll
+  const lastScrollTimeRef = useRef(0);
+  const scrollMomentumThreshold = 1000; // 1 second to detect momentum scrolling
 
   // Log initial component state
   useEffect(() => {
@@ -77,13 +85,20 @@ export const Homepage = () => {
 
   // Delay yellow background for brain image
   useEffect(() => {
-    let timeout;
     if ((yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'transitioning-to-square') && currentSection === 1) {
-      timeout = setTimeout(() => setDelayedBrainBg(true), 100); // Reduced from 200ms to 100ms
+      setDelayedBrainBg(true); // Instant transition - no delay
     } else {
       setDelayedBrainBg(false);
     }
-    return () => clearTimeout(timeout);
+  }, [yellowBgAnimation.phase, currentSection]);
+
+  // Delay yellow background for stats section
+  useEffect(() => {
+    if ((yellowBgAnimation.phase === 'stats' || yellowBgAnimation.phase === 'transitioning-to-stats' || yellowBgAnimation.phase === 'transitioning-to-stats-from-partners') && currentSection === 2) {
+      setDelayedStatsBg(true); // Instant transition - no delay
+    } else {
+      setDelayedStatsBg(false);
+    }
   }, [yellowBgAnimation.phase, currentSection]);
 
   const sections = [
@@ -103,23 +118,29 @@ export const Homepage = () => {
   const scrollToSection = (sectionIndex) => {
     if (isScrolling || sectionIndex < 0 || sectionIndex >= sections.length) return;
     
+    // IMMEDIATE blocking - prevents rapid scroll events
+    scrollBlockedRef.current = true;
+    const direction = sectionIndex > currentSection ? 'DOWN' : 'UP';
+    console.log('🔒 SCROLL BLOCKED SET - Direction:', direction, 'Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
+    
     setIsScrolling(true);
     let animationDuration = 400; // Reduced from 700 to 400 for faster transitions
+    let extendedBlockingDuration = 1200; // Extended blocking to handle scroll momentum
 
     // Handle yellow background animation during transitions
     if (currentSection === 0 && sectionIndex === 1) {
       // Going from section 1 to section 2 - smooth transition
       console.log('Starting Section 1 → Section 2 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
-      setCurrentSection(sectionIndex);
-      
-      // Removed 50ms delay for immediate animation start
+      // Set animation state FIRST to prevent race condition
       console.log('State: transitioning-to-square | Start Position: right: 0px, bottom: 0px, size: 720x720px');
       setYellowBgAnimation({
         isAnimating: true,
         phase: 'transitioning-to-square'
       });
+      
+      // Then set the current section to start main section transition
+      setCurrentSection(sectionIndex);
       
       // Log intermediate positions during animation
       setTimeout(() => console.log('5% (35ms): 705x707px, right: calc(0.05 * (100vw - 48px - 432px)), bottom: calc(0.05 * (50vh - 230px)), radius: 4px'), 35);
@@ -156,15 +177,15 @@ export const Homepage = () => {
       // Going from section 2 back to section 1 - smooth reverse transition
       console.log('Starting Section 2 → Section 1 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
-      setCurrentSection(sectionIndex);
-      
-      // Removed 50ms delay for immediate animation start
+      // Set animation state FIRST to prevent race condition
       console.log('State: transitioning-to-circle | Start Position: left: 48px, top: 50vh, size: 432x460px');
       setYellowBgAnimation({
         isAnimating: true,
         phase: 'transitioning-to-circle'
       });
+      
+      // Then set the current section to start main section transition
+      setCurrentSection(sectionIndex);
       
       // Log intermediate positions during reverse animation
       setTimeout(() => console.log('5% (35ms): 446x473px, right: calc(0.95 * (100vw - 48px - 432px)), bottom: calc(0.95 * (50vh - 230px)), radius: 25px'), 35);
@@ -200,15 +221,15 @@ export const Homepage = () => {
       // Going from section 2 to section 3 - transition to stats
       console.log('Starting Section 2 → Section 3 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
-      setCurrentSection(sectionIndex);
-      
-      // Removed 50ms delay for immediate animation start
+      // Set animation state FIRST to prevent race condition
       console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 432x460px');
       setYellowBgAnimation({
         isAnimating: true,
         phase: 'transitioning-to-stats'
       });
+      
+      // Then set the current section to start main section transition
+      setCurrentSection(sectionIndex);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -222,7 +243,14 @@ export const Homepage = () => {
       // Going from section 3 back to section 2 - reverse transition
       console.log('Starting Section 3 → Section 2 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
+      // Set animation state FIRST to prevent race condition
+      console.log('State: transitioning-to-square | Start Position: center: 50%, top: 50vh, size: 320x500px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-square-from-stats'
+      });
+      
+      // Then set the current section to start main section transition
       setCurrentSection(sectionIndex);
       
       // Removed 50ms delay for immediate animation start
@@ -244,15 +272,15 @@ export const Homepage = () => {
       // Going from section 3 to section 4 - transition to partners
       console.log('Starting Section 3 → Section 4 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
-      setCurrentSection(sectionIndex);
-      
-      // Removed 50ms delay for immediate animation start
+      // Set animation state FIRST to prevent race condition
       console.log('State: transitioning-to-partners | Start Position: center: 50%, top: 50vh, size: 320x500px');
       setYellowBgAnimation({
         isAnimating: true,
         phase: 'transitioning-to-partners'
       });
+      
+      // Then set the current section to start main section transition
+      setCurrentSection(sectionIndex);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -266,15 +294,15 @@ export const Homepage = () => {
       // Going from section 4 back to section 3 - reverse transition
       console.log('Starting Section 4 → Section 3 transition at', new Date().toLocaleTimeString());
       
-      // Set the current section immediately to start main section transition
-      setCurrentSection(sectionIndex);
-      
-      // Removed 50ms delay for immediate animation start
+      // Set animation state FIRST to prevent race condition
       console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 8x200px');
       setYellowBgAnimation({
         isAnimating: true,
         phase: 'transitioning-to-stats-from-partners'
       });
+      
+      // Then set the current section to start main section transition
+      setCurrentSection(sectionIndex);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -289,22 +317,33 @@ export const Homepage = () => {
       setCurrentSection(sectionIndex);
     }
     
-    // Reset scrolling and animation states after animation
+    // Reset visual animation state after animation completes
     setTimeout(() => {
       setIsScrolling(false);
       setYellowBgAnimation(prev => ({
         ...prev,
         isAnimating: false
       }));
-    }, animationDuration); // match animation duration to prevent skipping
+    }, animationDuration); // match animation duration for visual state
+    
+    // Extended blocking to handle scroll momentum - unblock after longer duration
+    setTimeout(() => {
+      scrollBlockedRef.current = false;
+      console.log('🔓 SCROLL UNBLOCKED (Extended) - Direction:', direction, 'Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
+    }, extendedBlockingDuration); // Extended blocking to prevent momentum scrolling
+    
+    // Safety timeout to ensure blocking never gets stuck
+    setTimeout(() => {
+      setIsScrolling(false);
+      scrollBlockedRef.current = false;
+      console.log('🔓 SAFETY UNBLOCK - Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
+    }, 2000); // 2 second safety net
   };
 
   useEffect(() => {
     let touchStartY = 0;
     let touchEndY = 0;
-    let scrollCooldown = false;
-    const SCROLL_THRESHOLD = 50; // Increased threshold to require more intentional scrolling
-    const COOLDOWN_DURATION = 100; // Short cooldown to prevent rapid firing
+    const SCROLL_THRESHOLD = 10; // Much lower threshold for better responsiveness
     
     // Set scrolled state based on current section
     setIsScrolled(currentSection > 0);
@@ -315,22 +354,41 @@ export const Homepage = () => {
     const handleWheel = (e) => {
       e.preventDefault();
       
-      // Block all scroll events during animation or cooldown
-      if (isScrolling || scrollCooldown) return;
+      const currentTime = Date.now();
+      const timeSinceLastScroll = currentTime - lastScrollTimeRef.current;
+      
+      console.log('🎯 WHEEL EVENT - Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds(), 'BlockedRef:', scrollBlockedRef.current, 'isScrolling:', isScrolling, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
+      
+      // IMMEDIATE check - prevents rapid scroll events before state updates
+      if (scrollBlockedRef.current || isScrolling) {
+        console.log('❌ WHEEL BLOCKED - Reason:', scrollBlockedRef.current ? 'scrollBlockedRef' : 'isScrolling');
+        return;
+      }
       
       const delta = e.deltaY;
       
-      // Check if scroll exceeds threshold
-      if (Math.abs(delta) < SCROLL_THRESHOLD) return;
+      // Check if scroll exceeds minimal threshold
+      if (Math.abs(delta) < SCROLL_THRESHOLD) {
+        console.log('❌ WHEEL THRESHOLD NOT MET - Delta:', delta, 'Threshold:', SCROLL_THRESHOLD);
+        return;
+      }
       
-      // Set cooldown immediately to prevent rapid firing
-      scrollCooldown = true;
-      setTimeout(() => {
-        scrollCooldown = false;
-      }, COOLDOWN_DURATION);
+      // Additional momentum detection - if very recent scroll, require higher threshold
+      if (timeSinceLastScroll < scrollMomentumThreshold) {
+        const momentumThreshold = SCROLL_THRESHOLD * 3; // 3x higher threshold for momentum
+        if (Math.abs(delta) < momentumThreshold) {
+          console.log('❌ MOMENTUM THRESHOLD NOT MET - Delta:', delta, 'MomentumThreshold:', momentumThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
+          return;
+        }
+      }
+      
+      // Update last scroll time
+      lastScrollTimeRef.current = currentTime;
       
       const shouldScrollDown = delta > 0;
       const shouldScrollUp = delta < 0;
+      
+      console.log('✅ WHEEL PROCESSED - Delta:', delta, 'Direction:', delta > 0 ? 'Down' : 'Up', 'TimeSinceLast:', timeSinceLastScroll + 'ms');
       
       // Scene 5: Feature-by-feature scroll
       if (currentSection === 5) {
@@ -338,8 +396,10 @@ export const Homepage = () => {
         if (featuresListHovered) {
           // Only allow scene scroll if at last/first feature
           if (shouldScrollDown && activeFeature === featuresCount - 1) {
+            console.log('📱 FEATURE SCROLL DOWN - Section:', currentSection, '→', currentSection + 1, '(Last Feature)');
             scrollToSection(currentSection + 1);
           } else if (shouldScrollUp && activeFeature === 0) {
+            console.log('📱 FEATURE SCROLL UP - Section:', currentSection, '→', currentSection - 1, '(First Feature)');
             scrollToSection(currentSection - 1);
           }
           return;
@@ -348,43 +408,54 @@ export const Homepage = () => {
         if (shouldScrollDown) {
           // Scroll down
           if (activeFeature < featuresCount - 1) {
+            console.log('📱 FEATURE SCROLL - Feature:', activeFeature, '→', activeFeature + 1);
             setActiveFeature((prev) => prev + 1);
             setIsFeatureScrolling(true);
             setTimeout(() => setIsFeatureScrolling(false), 400);
           } else {
+            console.log('📱 FEATURE SCROLL DOWN - Section:', currentSection, '→', currentSection + 1, '(Last Feature)');
             scrollToSection(currentSection + 1);
           }
         } else if (shouldScrollUp) {
           // Scroll up
           if (activeFeature > 0) {
+            console.log('📱 FEATURE SCROLL - Feature:', activeFeature, '→', activeFeature - 1);
             setActiveFeature((prev) => prev - 1);
             setIsFeatureScrolling(true);
             setTimeout(() => setIsFeatureScrolling(false), 400);
           } else {
+            console.log('📱 FEATURE SCROLL UP - Section:', currentSection, '→', currentSection - 1, '(First Feature)');
             scrollToSection(currentSection - 1);
           }
         }
         return;
       }
       
-      // Default scroll for other scenes - ONE SECTION AT A TIME
+      // GUARANTEED single-section movement for all other scenes
       if (shouldScrollDown && currentSection < sections.length - 1) {
-        // Scroll down to next section only
+        console.log('🎯 WHEEL SCROLL DOWN - Section:', currentSection, '→', currentSection + 1);
         scrollToSection(currentSection + 1);
       } else if (shouldScrollUp && currentSection > 0) {
-        // Scroll up to previous section only
+        console.log('🎯 WHEEL SCROLL UP - Section:', currentSection, '→', currentSection - 1);
         scrollToSection(currentSection - 1);
       }
     };
 
     const handleKeyDown = (e) => {
-      if (isScrolling) return;
+      if (scrollBlockedRef.current || isScrolling) return;
+      
+      const currentTime = Date.now();
+      const timeSinceLastScroll = currentTime - lastScrollTimeRef.current;
       
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
+        lastScrollTimeRef.current = currentTime;
+        console.log('⌨️ KEYBOARD DOWN - Section:', currentSection, '→', currentSection + 1, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
         scrollToSection(currentSection + 1);
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
+        lastScrollTimeRef.current = currentTime;
+        console.log('⌨️ KEYBOARD UP - Section:', currentSection, '→', currentSection - 1, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
         scrollToSection(currentSection - 1);
       }
     };
@@ -398,17 +469,24 @@ export const Homepage = () => {
     };
 
     const handleTouchEnd = (e) => {
-      if (isScrolling) return;
+      if (scrollBlockedRef.current || isScrolling) return;
+      
+      const currentTime = Date.now();
+      const timeSinceLastScroll = currentTime - lastScrollTimeRef.current;
       
       touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
       
-      if (Math.abs(deltaY) > 60) { // Reduced threshold for easier touch scrolling
+      if (Math.abs(deltaY) > 30) { // Reduced from 60 to 30 for better responsiveness
+        lastScrollTimeRef.current = currentTime;
+        
         if (deltaY > 0 && currentSection < sections.length - 1) {
           // Swipe up (scroll down)
+          console.log('👆 TOUCH DOWN - Section:', currentSection, '→', currentSection + 1, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
           scrollToSection(currentSection + 1);
         } else if (deltaY < 0 && currentSection > 0) {
           // Swipe down (scroll up)
+          console.log('👆 TOUCH UP - Section:', currentSection, '→', currentSection - 1, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
           scrollToSection(currentSection - 1);
         }
       }
@@ -585,7 +663,7 @@ export const Homepage = () => {
               {/* Middle Column - Stats Card */}
               <div className="flex-1 flex justify-center items-center h-full">
                 <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-center relative z-10 ${
-                  yellowBgAnimation.phase === 'stats' ? 'bg-[#F09A07]' : 'bg-transparent'
+                  delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
                   <div className="text-[48px] font-heading font-bold leading-[48px] mb-1">4x</div>
                   <div className="text-base font-normal mb-4">Faster data transmission</div>
