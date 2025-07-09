@@ -1,5 +1,6 @@
 import { PlayIcon } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
+import LoadingBar from "react-top-loading-bar";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import {
@@ -41,6 +42,9 @@ export const Homepage = () => {
   const lastScrollTimeRef = useRef(0);
   const scrollMomentumThreshold = 2000; // 2 seconds to detect momentum scrolling
   const safetyTimeoutRef = useRef(null); // Track safety timeout to prevent multiple
+  
+  // Loading bar ref for section transitions
+  const loadingBarRef = useRef(null);
 
   // Log initial component state
   useEffect(() => {
@@ -124,9 +128,15 @@ export const Homepage = () => {
     const direction = sectionIndex > currentSection ? 'DOWN' : 'UP';
     console.log('🔒 SCROLL BLOCKED SET - Direction:', direction, 'Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
     
+    // Start loading bar for section transition
+    if (loadingBarRef.current) {
+      loadingBarRef.current.continuousStart();
+      console.log('🔄 LOADING BAR STARTED - Direction:', direction);
+    }
+    
     setIsScrolling(true);
     let animationDuration = 400; // Reduced from 700 to 400 for faster transitions
-    let extendedBlockingDuration = 1800; // Extended blocking to handle scroll momentum
+    let extendedBlockingDuration = 800; // Shorter blocking - just enough to prevent momentum scrolling
     
     // Clear any existing safety timeout to prevent multiple unblocks
     if (safetyTimeoutRef.current) {
@@ -331,6 +341,12 @@ export const Homepage = () => {
         ...prev,
         isAnimating: false
       }));
+      
+      // Complete loading bar when animation is done
+      if (loadingBarRef.current) {
+        loadingBarRef.current.complete();
+        console.log('✅ LOADING BAR COMPLETED - Direction:', direction);
+      }
     }, animationDuration); // match animation duration for visual state
     
     // Extended blocking to handle scroll momentum - unblock after longer duration
@@ -345,7 +361,7 @@ export const Homepage = () => {
       scrollBlockedRef.current = false;
       safetyTimeoutRef.current = null;
       console.log('🔓 SAFETY UNBLOCK - Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
-    }, 2500); // 2.5 second safety net (longer than extended blocking)
+    }, 1500); // 1.5 second safety net (longer than extended blocking)
   };
 
   useEffect(() => {
@@ -383,14 +399,23 @@ export const Homepage = () => {
       
       console.log('📊 THRESHOLD CHECK - Delta:', delta, 'BaseThreshold:', SCROLL_THRESHOLD, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
       
-      // Additional momentum detection - if very recent scroll, require higher threshold
-      if (timeSinceLastScroll < scrollMomentumThreshold) {
+      // Smart momentum detection - stricter in first 800ms, then allow normal scrolling
+      if (timeSinceLastScroll < 800) {
+        // Very strict momentum detection for first 800ms (during animation + cooldown)
         const momentumThreshold = SCROLL_THRESHOLD * 5; // 5x higher threshold for momentum
         if (Math.abs(delta) < momentumThreshold) {
           console.log('❌ MOMENTUM THRESHOLD NOT MET - Delta:', delta, 'MomentumThreshold:', momentumThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
           return;
         }
         console.log('⚠️ MOMENTUM DETECTED - Delta:', delta, 'exceeded threshold:', momentumThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
+      } else if (timeSinceLastScroll < scrollMomentumThreshold) {
+        // Moderate momentum detection for 800ms-2000ms window
+        const moderateThreshold = SCROLL_THRESHOLD * 2; // 2x higher threshold
+        if (Math.abs(delta) < moderateThreshold) {
+          console.log('❌ MODERATE MOMENTUM THRESHOLD NOT MET - Delta:', delta, 'ModerateThreshold:', moderateThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
+          return;
+        }
+        console.log('⚠️ MODERATE MOMENTUM DETECTED - Delta:', delta, 'exceeded threshold:', moderateThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
       }
       
       // Update last scroll time
@@ -549,6 +574,15 @@ export const Homepage = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-white" data-model-id="84:741" style={{ isolation: 'isolate' }}>
+      {/* Loading Bar for Section Transitions */}
+      <LoadingBar 
+        color="linear-gradient(90deg, #FFD700 0%, #F09A07 50%, #FF6B35 100%)" 
+        ref={loadingBarRef} 
+        height={4}
+        shadow={true}
+        transitionTime={300}
+      />
+      
       {/* Sticky Header */}
       <div className={`w-full mx-auto px-12 py-8 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled ? 'border-b border-gray-200 shadow-sm' : ''}`}>
         <div className="relative w-32 h-16">
