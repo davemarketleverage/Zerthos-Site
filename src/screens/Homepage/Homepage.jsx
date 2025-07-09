@@ -39,7 +39,8 @@ export const Homepage = () => {
   
   // Track last scroll time to detect momentum/multiple events from same physical scroll
   const lastScrollTimeRef = useRef(0);
-  const scrollMomentumThreshold = 1000; // 1 second to detect momentum scrolling
+  const scrollMomentumThreshold = 2000; // 2 seconds to detect momentum scrolling
+  const safetyTimeoutRef = useRef(null); // Track safety timeout to prevent multiple
 
   // Log initial component state
   useEffect(() => {
@@ -125,7 +126,13 @@ export const Homepage = () => {
     
     setIsScrolling(true);
     let animationDuration = 400; // Reduced from 700 to 400 for faster transitions
-    let extendedBlockingDuration = 1200; // Extended blocking to handle scroll momentum
+    let extendedBlockingDuration = 1800; // Extended blocking to handle scroll momentum
+    
+    // Clear any existing safety timeout to prevent multiple unblocks
+    if (safetyTimeoutRef.current) {
+      clearTimeout(safetyTimeoutRef.current);
+      console.log('🧹 CLEARED EXISTING SAFETY TIMEOUT');
+    }
 
     // Handle yellow background animation during transitions
     if (currentSection === 0 && sectionIndex === 1) {
@@ -329,21 +336,22 @@ export const Homepage = () => {
     // Extended blocking to handle scroll momentum - unblock after longer duration
     setTimeout(() => {
       scrollBlockedRef.current = false;
-      console.log('🔓 SCROLL UNBLOCKED (Extended) - Direction:', direction, 'Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
+      console.log('🔓 SCROLL UNBLOCKED (Extended) - Direction:', direction, 'Duration:', extendedBlockingDuration + 'ms', 'Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
     }, extendedBlockingDuration); // Extended blocking to prevent momentum scrolling
     
-    // Safety timeout to ensure blocking never gets stuck
-    setTimeout(() => {
+    // Safety timeout to ensure blocking never gets stuck - only set once
+    safetyTimeoutRef.current = setTimeout(() => {
       setIsScrolling(false);
       scrollBlockedRef.current = false;
+      safetyTimeoutRef.current = null;
       console.log('🔓 SAFETY UNBLOCK - Time:', new Date().toLocaleTimeString(), 'Milliseconds:', new Date().getMilliseconds());
-    }, 2000); // 2 second safety net
+    }, 2500); // 2.5 second safety net (longer than extended blocking)
   };
 
   useEffect(() => {
     let touchStartY = 0;
     let touchEndY = 0;
-    const SCROLL_THRESHOLD = 10; // Much lower threshold for better responsiveness
+    const SCROLL_THRESHOLD = 15; // Slightly higher threshold to reduce sensitivity
     
     // Set scrolled state based on current section
     setIsScrolled(currentSection > 0);
@@ -373,13 +381,16 @@ export const Homepage = () => {
         return;
       }
       
+      console.log('📊 THRESHOLD CHECK - Delta:', delta, 'BaseThreshold:', SCROLL_THRESHOLD, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
+      
       // Additional momentum detection - if very recent scroll, require higher threshold
       if (timeSinceLastScroll < scrollMomentumThreshold) {
-        const momentumThreshold = SCROLL_THRESHOLD * 3; // 3x higher threshold for momentum
+        const momentumThreshold = SCROLL_THRESHOLD * 5; // 5x higher threshold for momentum
         if (Math.abs(delta) < momentumThreshold) {
           console.log('❌ MOMENTUM THRESHOLD NOT MET - Delta:', delta, 'MomentumThreshold:', momentumThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
           return;
         }
+        console.log('⚠️ MOMENTUM DETECTED - Delta:', delta, 'exceeded threshold:', momentumThreshold, 'TimeSinceLast:', timeSinceLastScroll + 'ms');
       }
       
       // Update last scroll time
