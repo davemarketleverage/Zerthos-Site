@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
@@ -21,10 +22,16 @@ export const DivSubsection = () => {
     { name: "Privacy policy" },
   ];
 
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  React.useEffect(() => {
+    if (inView) setHasAnimated(true);
+  }, [inView]);
+
   return (
-    <section className="relative w-full bg-[#202020]">
+    <section ref={ref} className="relative w-full bg-[#202020]">
       {/* Top section with CTA */}
-      <div className="w-full h-[560px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/bg-mask-group.png)] bg-[100%_100%]">
+      <div className={`w-full h-[560px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/bg-mask-group.png)] bg-[100%_100%] transition-all duration-1000 ease-out will-change-transform will-change-opacity ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
         <div className="flex w-full max-w-[1344px] items-start gap-40 relative top-[180px] mx-auto px-12">
           <div className="relative w-fit mt-[-1.00px] font-heading font-normal text-[#202020] text-6xl tracking-[0] leading-[60px]">
             Need a tailored
@@ -51,7 +58,7 @@ export const DivSubsection = () => {
       </div>
 
       {/* Footer section */}
-      <div className="flex flex-col w-full max-w-[1344px] items-start gap-9 mx-auto px-12 py-12">
+      <div className={`flex flex-col w-full max-w-[1344px] items-start gap-9 mx-auto px-12 py-12 transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-200 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
         <div className="items-start relative self-stretch w-full flex justify-between">
           <div className="inline-flex items-start gap-24 relative">
             {/* Logo */}

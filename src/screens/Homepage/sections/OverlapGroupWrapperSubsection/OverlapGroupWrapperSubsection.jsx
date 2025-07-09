@@ -1,34 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
 
 export const OverlapGroupWrapperSubsection = () => {
+  const [barWidths, setBarWidths] = useState([0, 0, 0]);
+  const [showPerformanceCard, setShowPerformanceCard] = useState(false);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      setShowPerformanceCard(true);
+      [0, 1, 2].forEach((i) => {
+        setTimeout(() => {
+          setBarWidths((prev) => {
+            const next = [...prev];
+            next[i] = 410;
+            return next;
+          });
+        }, i * 200);
+      });
+    }
+  }, [inView]);
+
+  useEffect(() => {
+    console.log('barWidths:', barWidths);
+  }, [barWidths]);
+
   const performanceMetrics = [
     {
       title: "Transmission speed",
       value: "Fastest (8x)",
-      progressWidth: "410px",
       progressColor:
         "bg-[linear-gradient(90deg,rgba(240,154,7,1)_0%,rgba(240,100,7,1)_100%)]",
     },
     {
       title: "Processing speed",
       value: "90(ms)",
-      progressWidth: "410px",
       progressColor:
         "bg-[linear-gradient(90deg,rgba(7,240,170,1)_0%,rgba(240,154,7,1)_100%)]",
     },
     {
       title: "Lossless Quality",
       value: "100% (no loss)",
-      progressWidth: "410px",
       progressColor:
         "bg-[linear-gradient(90deg,rgba(240,7,57,1)_0%,rgba(240,154,7,1)_100%)]",
     },
   ];
 
   return (
-    <section className="relative w-full h-[848px] bg-[#010101]">
+    <section ref={ref} className="relative w-full h-[848px] bg-[#010101]">
       <div className="relative w-full h-[735px] mx-auto px-12 ml-12">
         <img
           className="absolute w-[1080px] h-[735px] top-0 right-0 object-cover"
@@ -36,13 +57,13 @@ export const OverlapGroupWrapperSubsection = () => {
           src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/5672185-coll-wavebreak-animation-1920x1080-1.png"
         />
 
-        <h2 className="absolute top-[120px] left-0 font-heading font-normal text-white text-6xl tracking-[0] leading-[60px]">
+        <h2 className={`absolute top-[120px] left-0 font-heading font-normal text-white text-6xl tracking-[0] leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
           Performance
           <br />
           snapshot
         </h2>
 
-        <Card className="flex flex-col w-[660px] items-start gap-6 px-0 py-6 absolute top-[289px] left-0 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none">
+        <Card className={`flex flex-col w-[660px] items-start gap-6 px-0 py-6 absolute top-[289px] left-0 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
           {performanceMetrics.map((metric, index) => (
             <React.Fragment key={index}>
               <CardContent className="flex flex-col items-start justify-center gap-6 px-6 py-0 relative self-stretch w-full">
@@ -55,7 +76,12 @@ export const OverlapGroupWrapperSubsection = () => {
                   </div>
                 </div>
                 <div
-                  className={`relative w-[410px] h-3 rounded-[20px] ${metric.progressColor}`}
+                  className={`relative h-3 rounded-[20px] ${metric.progressColor}`}
+                  style={{
+                    width: `${barWidths[index]}px`,
+                    transition: "width 1s cubic-bezier(0.4,0,0.2,1)",
+                    opacity: barWidths[index] > 0 ? 1 : 0.5,
+                  }}
                 />
               </CardContent>
               {index < performanceMetrics.length - 1 && (

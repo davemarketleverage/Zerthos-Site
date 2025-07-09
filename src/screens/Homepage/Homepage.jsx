@@ -12,9 +12,10 @@ import { DivSubsection } from "./sections/DivSubsection";
 import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
 import { FrameSubsection } from "./sections/FrameSubsection";
 import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSubsection";
-import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection";
+import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
 import logoSvg from "../../assets/logo.svg";
 import brainImage from "../../assets/section2-brain.png";
+import newShape from '../../assets/newShape.png';
 
 export const Homepage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,6 +25,12 @@ export const Homepage = () => {
     isAnimating: false,
     phase: 'circle' // 'hidden', 'circle', 'bouncing', 'square'
   });
+  const [zoomedOut, setZoomedOut] = useState(false);
+  const [activeFeature, setActiveFeature] = useState(0);
+  const [isFeatureScrolling, setIsFeatureScrolling] = useState(false);
+  const [featuresListHovered, setFeaturesListHovered] = useState(false);
+  const [showHeroCard, setShowHeroCard] = useState(false);
+  const [showHeroImage, setShowHeroImage] = useState(false);
 
   // Log initial component state
   useEffect(() => {
@@ -53,6 +60,20 @@ export const Homepage = () => {
     }
   }, [currentSection, yellowBgAnimation.isAnimating, isScrolling]);
 
+  useEffect(() => {
+    if (currentSection === 4) {
+      setZoomedOut(true);
+    } else {
+      setZoomedOut(false);
+    }
+  }, [currentSection]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowHeroCard(true), 200);
+    const timer2 = setTimeout(() => setShowHeroImage(true), 400);
+    return () => { clearTimeout(timer); clearTimeout(timer2); };
+  }, []);
+
   const sections = [
     { id: 'hero', name: 'Hero' },
     { id: 'about', name: 'About' },
@@ -65,12 +86,15 @@ export const Homepage = () => {
     { id: 'contact', name: 'Contact' }
   ];
 
+  const featuresCount = 4; // keep in sync with OverlapWrapperSubsection
+
   const scrollToSection = (sectionIndex) => {
     if (isScrolling || sectionIndex < 0 || sectionIndex >= sections.length) return;
     
     setIsScrolling(true);
-    
-        // Handle yellow background animation during transitions
+    let animationDuration = 700; // default for instant transitions
+
+    // Handle yellow background animation during transitions
     if (currentSection === 0 && sectionIndex === 1) {
       // Going from section 1 to section 2 - smooth transition
       console.log('Starting Section 1 → Section 2 transition at', new Date().toLocaleTimeString());
@@ -266,7 +290,7 @@ export const Homepage = () => {
         ...prev,
         isAnimating: false
       }));
-    }, 700);
+    }, animationDuration); // match animation duration to prevent skipping
   };
 
   useEffect(() => {
@@ -287,7 +311,44 @@ export const Homepage = () => {
       
       const delta = e.deltaY;
       
-      // More sensitive threshold and immediate response
+      // Scene 5: Feature-by-feature scroll
+      if (currentSection === 5) {
+        if (isFeatureScrolling) return;
+        if (featuresListHovered) {
+          // Only allow scene scroll if at last/first feature
+          if (Math.abs(delta) > 10) {
+            if (delta > 0 && activeFeature === featuresCount - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (delta < 0 && activeFeature === 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+          return;
+        }
+        if (Math.abs(delta) > 10) {
+          if (delta > 0) {
+            // Scroll down
+            if (activeFeature < featuresCount - 1) {
+              setActiveFeature((prev) => prev + 1);
+              setIsFeatureScrolling(true);
+              setTimeout(() => setIsFeatureScrolling(false), 700);
+            } else {
+              scrollToSection(currentSection + 1);
+            }
+          } else if (delta < 0) {
+            // Scroll up
+            if (activeFeature > 0) {
+              setActiveFeature((prev) => prev - 1);
+              setIsFeatureScrolling(true);
+              setTimeout(() => setIsFeatureScrolling(false), 700);
+            } else {
+              scrollToSection(currentSection - 1);
+            }
+          }
+        }
+        return;
+      }
+      // Default scroll for other scenes
       if (Math.abs(delta) > 10) {
         if (delta > 0 && currentSection < sections.length - 1) {
           // Scroll down
@@ -352,7 +413,7 @@ export const Homepage = () => {
       // Restore body scroll
       document.body.style.overflow = 'auto';
     };
-  }, [currentSection, isScrolling, sections.length]);
+  }, [currentSection, isScrolling, sections.length, activeFeature, isFeatureScrolling, featuresListHovered]);
 
   const navigationItems = [
     { text: "Technology", width: "w-[89px]" },
@@ -422,7 +483,16 @@ export const Homepage = () => {
           <div className="w-full mx-auto pl-12 pr-0 relative">
             <div className="relative w-full h-[720px]">
 
-              <div className="absolute w-[779px] h-[636px] top-[84px] right-[30px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/adobestock-961893622-2.png)] bg-cover bg-[50%_50%] z-[999]">
+                {/* Duplicate static yellow shape for hero section */}
+                {currentSection === 0 && !isScrolling && (
+                  <img
+                    className="absolute w-[720px] h-[720px] right-0 bottom-0 z-0"
+                    alt="Yellow Shape"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-6.svg"
+                  />
+                )}
+
+              <div className={`absolute w-[779px] h-[636px] top-[84px] right-[30px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/adobestock-961893622-2.png)] bg-cover bg-[50%_50%] z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity ${showHeroImage ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
                 <img
                   className="absolute w-[636px] h-[634px] top-0.5 left-7 z-[999]"
                   alt="Vd"
@@ -434,7 +504,7 @@ export const Homepage = () => {
                 <FrameSubsection />
               </div>
 
-              <Card className="absolute w-[348px] h-[220px] bottom-0 left-0 rounded-xl overflow-hidden bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/combined-shape.png)] bg-[100%_100%] border-none z-[999]">
+              <Card className={`absolute w-[348px] h-[220px] bottom-12 left-0 rounded-xl overflow-hidden bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/combined-shape.png)] bg-[100%_100%] border-none z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity ${showHeroCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
                 <div className="absolute w-[300px] top-[23px] left-6 font-normal text-white text-lg leading-7">
                   Our proprietary TalonX protocol enables lightning-fast, secure, and
                   reliable delivery - leaving outdated systems behind.
@@ -447,10 +517,14 @@ export const Homepage = () => {
         {/* About Section */}
         <section className="w-full h-screen bg-white flex items-center">
           <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center">
-            <div className="relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-300 flex items-center justify-center" style={{ zIndex: 30 }}>
+            <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-300 flex items-center justify-center ${
+              yellowBgAnimation.phase === 'square'
+                ? 'bg-[#F09A07]' 
+                : 'bg-transparent'
+            }`} style={{ zIndex: 30 }}>
               {/* Brain image in center */}
               <img
-                className="w-[280px] h-[280px] object-contain mix-blend-overlay relative"
+                className={`w-[380px] h-[380px] object-contain mix-blend-overlay relative transition-all duration-700 ease-out will-change-transform will-change-opacity ${yellowBgAnimation.phase === 'square' && currentSection === 1 ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-90 invisible'}`}
                 alt="Brain"
                 src={brainImage}
                 style={{ zIndex: 30 }}
@@ -492,8 +566,8 @@ export const Homepage = () => {
 
               {/* Middle Column - Stats Card */}
               <div className="flex-1 flex justify-center items-center h-full">
-                <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-center ${
-                  currentSection === 2 ? 'bg-transparent' : 'bg-[#F09A07]'
+                <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-center relative z-10 ${
+                  yellowBgAnimation.phase === 'stats' ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
                   <div className="text-[48px] font-heading font-bold leading-[48px] mb-1">4x</div>
                   <div className="text-base font-normal mb-4">Faster data transmission</div>
@@ -524,8 +598,8 @@ export const Homepage = () => {
             {/* Left side - Title */}
             <div className="flex items-center gap-8">
               <img
-                className={`w-2 h-[200px] ${
-                  currentSection === 3 ? 'opacity-0' : 'opacity-100'
+                className={`w-2 h-[200px] transition-opacity duration-300 ${
+                  yellowBgAnimation.phase === 'partners' ? 'opacity-100' : 'opacity-0'
                 }`}
                 alt="Rectangle"
                 src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-7.svg"
@@ -617,17 +691,14 @@ export const Homepage = () => {
         {/* What Makes Zerthos Section */}
         <section className="w-full h-screen bg-white flex items-center justify-center">
           <div className="w-full max-w-6xl mx-auto px-12 text-center">
-            <h2 className="text-[80px] text-center text-[#202020] leading-[80px] font-heading font-normal">
-              What makes Zerthos
-              <br />a game changer
-            </h2>
+            {/* Heading removed, handled by shared heading */}
           </div>
         </section>
 
         {/* Features Section */}
         <section className="w-full h-screen bg-white flex items-center">
           <div className="w-full mx-auto px-12">
-            <OverlapWrapperSubsection />
+            <OverlapWrapperSubsection animate={currentSection === 5} activeFeature={activeFeature} setActiveFeature={setActiveFeature} setFeaturesListHovered={setFeaturesListHovered} />
           </div>
         </section>
 
@@ -658,7 +729,7 @@ export const Homepage = () => {
       {/* Animated Yellow Background Overlay */}
       <img
         className={`fixed z-20 ${
-          yellowBgAnimation.phase === 'hidden' ? 'opacity-0' : 'opacity-100'
+          yellowBgAnimation.phase === 'hidden' || yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'stats' ? 'opacity-0' : 'opacity-100'
         } ${
           yellowBgAnimation.phase === 'transitioning-to-square' ? 'yellow-to-square' : ''
         } ${
@@ -673,7 +744,15 @@ export const Homepage = () => {
           yellowBgAnimation.phase === 'transitioning-to-stats-from-partners' ? 'yellow-to-stats-from-partners' : ''
         }`}
         alt="Rectangle"
-        src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-6.svg"
+        src={
+          yellowBgAnimation.phase === 'transitioning-to-stats' ||
+          yellowBgAnimation.phase === 'stats' ||
+          yellowBgAnimation.phase === 'transitioning-to-square-from-stats' ||
+          yellowBgAnimation.phase === 'transitioning-to-partners' ||
+          yellowBgAnimation.phase === 'transitioning-to-stats-from-partners'
+            ? newShape
+            : "https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-6.svg"
+        }
         style={{
           ...((yellowBgAnimation.phase === 'transitioning-to-square' || 
                yellowBgAnimation.phase === 'transitioning-to-circle' ||
@@ -691,7 +770,8 @@ export const Homepage = () => {
             left: 'auto',
             top: 'auto',
             transform: 'scale(1)',
-            borderRadius: '0'
+            borderRadius: '0',
+            zIndex: -1 // ensure shape is behind hero image
           } : yellowBgAnimation.phase === 'square' ? {
             // Section 2 position (behind brain image)
             width: '432px',
@@ -701,7 +781,8 @@ export const Homepage = () => {
             right: 'auto',
             bottom: 'auto',
             transform: 'translateY(-50%)',
-            borderRadius: '24px'
+            borderRadius: '24px',
+            zIndex: 0
           } : yellowBgAnimation.phase === 'stats' ? {
             // Section 3 position (behind stats card - middle column)
             width: '320px',
@@ -735,6 +816,37 @@ export const Homepage = () => {
           })
         }}
       />
+
+      {/* Shared Animated Heading for Scenes 4 and 5 */}
+      <div
+        className={`fixed z-50 pointer-events-none transition-all duration-700 ease-in-out
+          ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
+          ${currentSection === 5 ? 'top-0 left-0 flex justify-start items-start pl-32 pt-12' : ''}
+        `}
+        style={{
+          transitionProperty: 'all',
+        }}
+      >
+        <h2
+          className={`transition-all duration-700 ease-in-out font-heading font-normal
+            ${currentSection === 4 ? 'text-[80px] leading-[80px] text-center' : ''}
+            ${currentSection === 5 ? 'text-[60px] leading-10 text-left': ''}
+            text-[#202020] pointer-events-auto`
+          }
+          style={{
+            width: currentSection === 5 ? '750px' : '100%',
+            maxWidth: currentSection === 4 ? '100%' : undefined,
+            minWidth: currentSection === 5 ? '320px' : undefined,
+            marginTop: currentSection === 5 ? '110px' : undefined,
+            lineHeight: currentSection === 5 ? '55px' : undefined,
+            letterSpacing: currentSection === 5 ? '0.02em' : '0.02em',
+
+
+          }}
+        >
+          What makes Zerthos<br />a game changer
+        </h2>
+      </div>
 
       {/* Section Indicators */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-3">
