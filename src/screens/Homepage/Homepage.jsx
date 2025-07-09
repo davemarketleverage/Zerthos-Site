@@ -31,6 +31,7 @@ export const Homepage = () => {
   const [featuresListHovered, setFeaturesListHovered] = useState(false);
   const [showHeroCard, setShowHeroCard] = useState(false);
   const [showHeroImage, setShowHeroImage] = useState(false);
+  const [delayedBrainBg, setDelayedBrainBg] = useState(false);
 
   // Log initial component state
   useEffect(() => {
@@ -73,6 +74,17 @@ export const Homepage = () => {
     const timer2 = setTimeout(() => setShowHeroImage(true), 400);
     return () => { clearTimeout(timer); clearTimeout(timer2); };
   }, []);
+
+  // Delay yellow background for brain image
+  useEffect(() => {
+    let timeout;
+    if ((yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'transitioning-to-square') && currentSection === 1) {
+      timeout = setTimeout(() => setDelayedBrainBg(true), 200);
+    } else {
+      setDelayedBrainBg(false);
+    }
+    return () => clearTimeout(timeout);
+  }, [yellowBgAnimation.phase, currentSection]);
 
   const sections = [
     { id: 'hero', name: 'Hero' },
@@ -139,7 +151,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'square'
         });
-      }, 1050);
+      }, 1200);
     
     } else if (currentSection === 1 && sectionIndex === 0) {
       // Going from section 2 back to section 1 - smooth reverse transition
@@ -298,7 +310,7 @@ export const Homepage = () => {
     let touchStartY = 0;
     let touchEndY = 0;
     let scrollAccumulator = 0;
-    const SCROLL_THRESHOLD = 15; // Very low threshold for instant scrolling
+    const SCROLL_THRESHOLD = 10; // Very low threshold for instant scrolling
     const SCROLL_DEBOUNCE = 15; // Almost instant response
     
     // Set scrolled state based on current section
@@ -537,14 +549,16 @@ export const Homepage = () => {
         {/* About Section */}
         <section className="w-full h-screen bg-white flex items-center">
           <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center">
-            <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-300 flex items-center justify-center ${
-              yellowBgAnimation.phase === 'square'
-                ? 'bg-[#F09A07]' 
-                : 'bg-transparent'
+            <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-700 ease-in-out flex items-center justify-center ${
+              delayedBrainBg ? 'bg-[#F09A07]' : 'bg-transparent'
             }`} style={{ zIndex: 30 }}>
               {/* Brain image in center */}
               <img
-                className={`w-[380px] h-[380px] object-contain mix-blend-overlay relative transition-all duration-700 ease-out will-change-transform will-change-opacity ${yellowBgAnimation.phase === 'square' && currentSection === 1 ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-90 invisible'}`}
+                className={`w-[380px] h-[380px] object-contain mix-blend-overlay relative transition-all duration-1000 ease-out will-change-transform will-change-opacity ${
+                  (yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'transitioning-to-square') && currentSection === 1 
+                    ? 'opacity-100 scale-100 visible' 
+                    : 'opacity-0 scale-90 invisible'
+                }`}
                 alt="Brain"
                 src={brainImage}
                 style={{ zIndex: 30 }}
