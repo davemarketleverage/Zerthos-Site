@@ -79,7 +79,7 @@ export const Homepage = () => {
   useEffect(() => {
     let timeout;
     if ((yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'transitioning-to-square') && currentSection === 1) {
-      timeout = setTimeout(() => setDelayedBrainBg(true), 200);
+      timeout = setTimeout(() => setDelayedBrainBg(true), 100); // Reduced from 200ms to 100ms
     } else {
       setDelayedBrainBg(false);
     }
@@ -104,7 +104,7 @@ export const Homepage = () => {
     if (isScrolling || sectionIndex < 0 || sectionIndex >= sections.length) return;
     
     setIsScrolling(true);
-    let animationDuration = 700; // default for instant transitions
+    let animationDuration = 400; // Reduced from 700 to 400 for faster transitions
 
     // Handle yellow background animation during transitions
     if (currentSection === 0 && sectionIndex === 1) {
@@ -114,15 +114,15 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-square | Start Position: right: 0px, bottom: 0px, size: 720x720px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-square'
-        });
-        
-        // Log intermediate positions during animation
-              setTimeout(() => console.log('5% (35ms): 705x707px, right: calc(0.05 * (100vw - 48px - 432px)), bottom: calc(0.05 * (50vh - 230px)), radius: 4px'), 35);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-square | Start Position: right: 0px, bottom: 0px, size: 720x720px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-square'
+      });
+      
+      // Log intermediate positions during animation
+      setTimeout(() => console.log('5% (35ms): 705x707px, right: calc(0.05 * (100vw - 48px - 432px)), bottom: calc(0.05 * (50vh - 230px)), radius: 4px'), 35);
       setTimeout(() => console.log('10% (70ms): 691x694px, right: calc(0.1 * (100vw - 48px - 432px)), bottom: calc(0.1 * (50vh - 230px)), radius: 8px'), 70);
       setTimeout(() => console.log('15% (105ms): 676x681px, right: calc(0.15 * (100vw - 48px - 432px)), bottom: calc(0.15 * (50vh - 230px)), radius: 12px'), 105);
       setTimeout(() => console.log('20% (140ms): 662x668px, right: calc(0.2 * (100vw - 48px - 432px)), bottom: calc(0.2 * (50vh - 230px)), radius: 16px'), 140);
@@ -142,7 +142,6 @@ export const Homepage = () => {
       setTimeout(() => console.log('90% (630ms): 461x486px, right: calc(0.9 * (100vw - 48px - 432px)), bottom: calc(0.9 * (50vh - 230px)), radius: 26px'), 630);
       setTimeout(() => console.log('95% (665ms): 446x473px, right: calc(0.95 * (100vw - 48px - 432px)), bottom: calc(0.95 * (50vh - 230px)), radius: 25px'), 665);
       setTimeout(() => console.log('100% (700ms): 432x460px, right: calc(100vw - 48px - 432px), bottom: calc(50vh - 230px), radius: 24px'), 700);
-      }, 50);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -151,7 +150,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'square'
         });
-      }, 1200);
+      }, 800); // Reduced from 1200 to 800
     
     } else if (currentSection === 1 && sectionIndex === 0) {
       // Going from section 2 back to section 1 - smooth reverse transition
@@ -160,15 +159,15 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-circle | Start Position: left: 48px, top: 50vh, size: 432x460px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-circle'
-        });
-        
-        // Log intermediate positions during reverse animation
-              setTimeout(() => console.log('5% (35ms): 446x473px, right: calc(0.95 * (100vw - 48px - 432px)), bottom: calc(0.95 * (50vh - 230px)), radius: 25px'), 35);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-circle | Start Position: left: 48px, top: 50vh, size: 432x460px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-circle'
+      });
+      
+      // Log intermediate positions during reverse animation
+      setTimeout(() => console.log('5% (35ms): 446x473px, right: calc(0.95 * (100vw - 48px - 432px)), bottom: calc(0.95 * (50vh - 230px)), radius: 25px'), 35);
       setTimeout(() => console.log('10% (70ms): 461x486px, right: calc(0.9 * (100vw - 48px - 432px)), bottom: calc(0.9 * (50vh - 230px)), radius: 26px'), 70);
       setTimeout(() => console.log('15% (105ms): 475x499px, right: calc(0.85 * (100vw - 48px - 432px)), bottom: calc(0.85 * (50vh - 230px)), radius: 27px'), 105);
       setTimeout(() => console.log('20% (140ms): 490x512px, right: calc(0.8 * (100vw - 48px - 432px)), bottom: calc(0.8 * (50vh - 230px)), radius: 28px'), 140);
@@ -188,7 +187,6 @@ export const Homepage = () => {
       setTimeout(() => console.log('90% (630ms): 691x694px, right: calc(0.1 * (100vw - 48px - 432px)), bottom: calc(0.1 * (50vh - 230px)), radius: 8px'), 630);
       setTimeout(() => console.log('95% (665ms): 705x707px, right: calc(0.05 * (100vw - 48px - 432px)), bottom: calc(0.05 * (50vh - 230px)), radius: 4px'), 665);
       setTimeout(() => console.log('100% (700ms): 720x720px, right: 0px, bottom: 0px, radius: 0px'), 700);
-      }, 50);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -197,7 +195,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'circle'
         });
-      }, 1050);
+      }, 750); // Reduced from 1050 to 750
     } else if (currentSection === 1 && sectionIndex === 2) {
       // Going from section 2 to section 3 - transition to stats
       console.log('Starting Section 2 → Section 3 transition at', new Date().toLocaleTimeString());
@@ -205,13 +203,12 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 432x460px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-stats'
-        });
-      }, 50);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 432x460px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-stats'
+      });
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -220,7 +217,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'stats'
         });
-      }, 1050);
+      }, 750); // Reduced from 1050 to 750
     } else if (currentSection === 2 && sectionIndex === 1) {
       // Going from section 3 back to section 2 - reverse transition
       console.log('Starting Section 3 → Section 2 transition at', new Date().toLocaleTimeString());
@@ -228,13 +225,12 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-square | Start Position: center: 50%, top: 50vh, size: 320x500px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-square-from-stats'
-        });
-      }, 50);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-square | Start Position: center: 50%, top: 50vh, size: 320x500px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-square-from-stats'
+      });
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -243,7 +239,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'square'
         });
-      }, 1050);
+      }, 750); // Reduced from 1050 to 750
     } else if (currentSection === 2 && sectionIndex === 3) {
       // Going from section 3 to section 4 - transition to partners
       console.log('Starting Section 3 → Section 4 transition at', new Date().toLocaleTimeString());
@@ -251,13 +247,12 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-partners | Start Position: center: 50%, top: 50vh, size: 320x500px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-partners'
-        });
-      }, 50);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-partners | Start Position: center: 50%, top: 50vh, size: 320x500px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-partners'
+      });
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -266,7 +261,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'partners'
         });
-      }, 1050);
+      }, 750); // Reduced from 1050 to 750
     } else if (currentSection === 3 && sectionIndex === 2) {
       // Going from section 4 back to section 3 - reverse transition
       console.log('Starting Section 4 → Section 3 transition at', new Date().toLocaleTimeString());
@@ -274,13 +269,12 @@ export const Homepage = () => {
       // Set the current section immediately to start main section transition
       setCurrentSection(sectionIndex);
       
-      setTimeout(() => {
-        console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 8x200px');
-        setYellowBgAnimation({
-          isAnimating: true,
-          phase: 'transitioning-to-stats-from-partners'
-        });
-      }, 50);
+      // Removed 50ms delay for immediate animation start
+      console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 8x200px');
+      setYellowBgAnimation({
+        isAnimating: true,
+        phase: 'transitioning-to-stats-from-partners'
+      });
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -289,7 +283,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'stats'
         });
-      }, 1050);
+      }, 750); // Reduced from 1050 to 750
     } else {
       // For all other transitions, set current section immediately
       setCurrentSection(sectionIndex);
@@ -306,12 +300,11 @@ export const Homepage = () => {
   };
 
   useEffect(() => {
-    let wheelTimeout;
     let touchStartY = 0;
     let touchEndY = 0;
-    let scrollAccumulator = 0;
-    const SCROLL_THRESHOLD = 10; // Very low threshold for instant scrolling
-    const SCROLL_DEBOUNCE = 15; // Almost instant response
+    let scrollCooldown = false;
+    const SCROLL_THRESHOLD = 50; // Increased threshold to require more intentional scrolling
+    const COOLDOWN_DURATION = 100; // Short cooldown to prevent rapid firing
     
     // Set scrolled state based on current section
     setIsScrolled(currentSection > 0);
@@ -322,74 +315,66 @@ export const Homepage = () => {
     const handleWheel = (e) => {
       e.preventDefault();
       
-      if (isScrolling) return;
+      // Block all scroll events during animation or cooldown
+      if (isScrolling || scrollCooldown) return;
       
       const delta = e.deltaY;
-      scrollAccumulator += delta;
       
-      // Clear existing timeout
-      if (wheelTimeout) {
-        clearTimeout(wheelTimeout);
+      // Check if scroll exceeds threshold
+      if (Math.abs(delta) < SCROLL_THRESHOLD) return;
+      
+      // Set cooldown immediately to prevent rapid firing
+      scrollCooldown = true;
+      setTimeout(() => {
+        scrollCooldown = false;
+      }, COOLDOWN_DURATION);
+      
+      const shouldScrollDown = delta > 0;
+      const shouldScrollUp = delta < 0;
+      
+      // Scene 5: Feature-by-feature scroll
+      if (currentSection === 5) {
+        if (isFeatureScrolling) return;
+        if (featuresListHovered) {
+          // Only allow scene scroll if at last/first feature
+          if (shouldScrollDown && activeFeature === featuresCount - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (shouldScrollUp && activeFeature === 0) {
+            scrollToSection(currentSection - 1);
+          }
+          return;
+        }
+        
+        if (shouldScrollDown) {
+          // Scroll down
+          if (activeFeature < featuresCount - 1) {
+            setActiveFeature((prev) => prev + 1);
+            setIsFeatureScrolling(true);
+            setTimeout(() => setIsFeatureScrolling(false), 400);
+          } else {
+            scrollToSection(currentSection + 1);
+          }
+        } else if (shouldScrollUp) {
+          // Scroll up
+          if (activeFeature > 0) {
+            setActiveFeature((prev) => prev - 1);
+            setIsFeatureScrolling(true);
+            setTimeout(() => setIsFeatureScrolling(false), 400);
+          } else {
+            scrollToSection(currentSection - 1);
+          }
+        }
+        return;
       }
       
-      // Debounce scroll events
-      wheelTimeout = setTimeout(() => {
-        // Only proceed if accumulated scroll exceeds threshold
-        if (Math.abs(scrollAccumulator) < SCROLL_THRESHOLD) {
-          scrollAccumulator = 0;
-          return;
-        }
-        
-        const shouldScrollDown = scrollAccumulator > 0;
-        const shouldScrollUp = scrollAccumulator < 0;
-        
-        // Reset accumulator
-        scrollAccumulator = 0;
-        
-        // Scene 5: Feature-by-feature scroll
-        if (currentSection === 5) {
-          if (isFeatureScrolling) return;
-          if (featuresListHovered) {
-            // Only allow scene scroll if at last/first feature
-            if (shouldScrollDown && activeFeature === featuresCount - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (shouldScrollUp && activeFeature === 0) {
-              scrollToSection(currentSection - 1);
-            }
-            return;
-          }
-          
-          if (shouldScrollDown) {
-            // Scroll down
-            if (activeFeature < featuresCount - 1) {
-              setActiveFeature((prev) => prev + 1);
-              setIsFeatureScrolling(true);
-              setTimeout(() => setIsFeatureScrolling(false), 700);
-            } else {
-              scrollToSection(currentSection + 1);
-            }
-          } else if (shouldScrollUp) {
-            // Scroll up
-            if (activeFeature > 0) {
-              setActiveFeature((prev) => prev - 1);
-              setIsFeatureScrolling(true);
-              setTimeout(() => setIsFeatureScrolling(false), 700);
-            } else {
-              scrollToSection(currentSection - 1);
-            }
-          }
-          return;
-        }
-        
-        // Default scroll for other scenes
-        if (shouldScrollDown && currentSection < sections.length - 1) {
-          // Scroll down
-          scrollToSection(currentSection + 1);
-        } else if (shouldScrollUp && currentSection > 0) {
-          // Scroll up
-          scrollToSection(currentSection - 1);
-        }
-      }, SCROLL_DEBOUNCE);
+      // Default scroll for other scenes - ONE SECTION AT A TIME
+      if (shouldScrollDown && currentSection < sections.length - 1) {
+        // Scroll down to next section only
+        scrollToSection(currentSection + 1);
+      } else if (shouldScrollUp && currentSection > 0) {
+        // Scroll up to previous section only
+        scrollToSection(currentSection - 1);
+      }
     };
 
     const handleKeyDown = (e) => {
@@ -441,7 +426,6 @@ export const Homepage = () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
-      clearTimeout(wheelTimeout);
       // Restore body scroll
       document.body.style.overflow = 'auto';
     };
@@ -504,7 +488,7 @@ export const Homepage = () => {
 
       {/* Sections Container */}
       <div 
-        className="w-full h-full transition-transform duration-1000 ease-in-out z-30"
+        className="w-full h-full transition-transform duration-500 ease-in-out z-30"
         style={{ 
           transform: `translateY(-${currentSection * 100}vh)`,
           height: `${sections.length * 100}vh`
@@ -853,7 +837,7 @@ export const Homepage = () => {
 
       {/* Shared Animated Heading for Scenes 4 and 5 */}
       <div
-        className={`fixed z-50 pointer-events-none transition-all duration-700 ease-in-out
+        className={`fixed z-50 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
           ${currentSection === 5 ? 'top-0 left-0 flex justify-start items-start pl-32 pt-12' : ''}
         `}
@@ -862,7 +846,7 @@ export const Homepage = () => {
         }}
       >
         <h2
-          className={`transition-all duration-700 ease-in-out font-heading font-normal
+          className={`transition-all duration-400 ease-in-out font-heading font-normal
             ${currentSection === 4 ? 'text-[80px] leading-[80px] text-center' : ''}
             ${currentSection === 5 ? 'text-[60px] leading-10 text-left': ''}
             text-[#202020] pointer-events-auto`

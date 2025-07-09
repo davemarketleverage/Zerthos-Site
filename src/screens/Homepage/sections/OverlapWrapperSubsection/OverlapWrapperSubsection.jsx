@@ -81,7 +81,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
         setActiveFeature((prev) => prev - 1);
       }
       setIsFeatureScrolling(true);
-      setTimeout(() => setIsFeatureScrolling(false), 400);
+      setTimeout(() => setIsFeatureScrolling(false), 300);
     }
   };
 
