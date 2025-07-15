@@ -99,7 +99,7 @@ export const Homepage = () => {
 
   // Delay yellow background for stats section
   useEffect(() => {
-    if ((yellowBgAnimation.phase === 'stats' || yellowBgAnimation.phase === 'transitioning-to-stats' || yellowBgAnimation.phase === 'transitioning-to-stats-from-partners') && currentSection === 2) {
+    if ((yellowBgAnimation.phase === 'stats' || yellowBgAnimation.phase === 'transitioning-to-stats' || yellowBgAnimation.phase === 'transitioning-to-stats-merge' || yellowBgAnimation.phase === 'transitioning-to-stats-from-partners') && currentSection === 2) {
       setDelayedStatsBg(true); // Instant transition - no delay
     } else {
       setDelayedStatsBg(false);
@@ -135,8 +135,8 @@ export const Homepage = () => {
     }
     
     setIsScrolling(true);
-    let animationDuration = 400; // Reduced from 700 to 400 for faster transitions
-    let extendedBlockingDuration = 800; // Shorter blocking - just enough to prevent momentum scrolling
+    let animationDuration = currentSection === 1 && sectionIndex === 2 ? 350 : 400; // 350ms for merging, 400ms for others
+    let extendedBlockingDuration = currentSection === 1 && sectionIndex === 2 ? 600 : 800; // Shorter blocking for merging
     
     // Clear any existing safety timeout to prevent multiple unblocks
     if (safetyTimeoutRef.current) {
@@ -235,14 +235,14 @@ export const Homepage = () => {
         });
       }, 750); // Reduced from 1050 to 750
     } else if (currentSection === 1 && sectionIndex === 2) {
-      // Going from section 2 to section 3 - transition to stats
-      console.log('Starting Section 2 → Section 3 transition at', new Date().toLocaleTimeString());
+      // Going from section 2 to section 3 - MERGING transition to stats
+      console.log('Starting Section 2 → Section 3 MERGING transition at', new Date().toLocaleTimeString());
       
       // Set animation state FIRST to prevent race condition
-      console.log('State: transitioning-to-stats | Start Position: left: 48px, top: 50vh, size: 432x460px');
+      console.log('State: transitioning-to-stats-merge | Start Position: left: 48px, top: 50vh, size: 432x460px');
       setYellowBgAnimation({
         isAnimating: true,
-        phase: 'transitioning-to-stats'
+        phase: 'transitioning-to-stats-merge'
       });
       
       // Then set the current section to start main section transition
@@ -255,7 +255,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'stats'
         });
-      }, 750); // Reduced from 1050 to 750
+      }, 400); // Reduced to 400ms for faster merging animation
     } else if (currentSection === 2 && sectionIndex === 1) {
       // Going from section 3 back to section 2 - reverse transition
       console.log('Starting Section 3 → Section 2 transition at', new Date().toLocaleTimeString());
@@ -869,7 +869,7 @@ export const Homepage = () => {
 
       {/* Animated Yellow Background Overlay */}
       <img
-        className={`fixed z-20 ${
+        className={`fixed z-20 will-change-transform will-change-opacity ${
           yellowBgAnimation.phase === 'hidden' || yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'stats' ? 'opacity-0' : 'opacity-100'
         } ${
           yellowBgAnimation.phase === 'transitioning-to-square' ? 'yellow-to-square' : ''
@@ -877,6 +877,8 @@ export const Homepage = () => {
           yellowBgAnimation.phase === 'transitioning-to-circle' ? 'yellow-to-circle' : ''
         } ${
           yellowBgAnimation.phase === 'transitioning-to-stats' ? 'yellow-to-stats' : ''
+        } ${
+          yellowBgAnimation.phase === 'transitioning-to-stats-merge' ? 'yellow-merge-to-stats' : ''
         } ${
           yellowBgAnimation.phase === 'transitioning-to-square-from-stats' ? 'yellow-to-square-from-stats' : ''
         } ${
@@ -887,6 +889,7 @@ export const Homepage = () => {
         alt="Rectangle"
         src={
           yellowBgAnimation.phase === 'transitioning-to-stats' ||
+          yellowBgAnimation.phase === 'transitioning-to-stats-merge' ||
           yellowBgAnimation.phase === 'stats' ||
           yellowBgAnimation.phase === 'transitioning-to-square-from-stats' ||
           yellowBgAnimation.phase === 'transitioning-to-partners' ||
@@ -898,6 +901,7 @@ export const Homepage = () => {
           ...((yellowBgAnimation.phase === 'transitioning-to-square' || 
                yellowBgAnimation.phase === 'transitioning-to-circle' ||
                yellowBgAnimation.phase === 'transitioning-to-stats' ||
+               yellowBgAnimation.phase === 'transitioning-to-stats-merge' ||
                yellowBgAnimation.phase === 'transitioning-to-square-from-stats' ||
                yellowBgAnimation.phase === 'transitioning-to-partners' ||
                yellowBgAnimation.phase === 'transitioning-to-stats-from-partners') ? {

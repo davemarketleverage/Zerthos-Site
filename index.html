@@ -449,7 +449,7 @@
         10% {
           width: 420px;
           height: 470px;
-          left: calc(48px + 0.1 * (50vw - 48px - 216px - 30px));    
+          left: calc(48px + 0.1 * (50vw - 48px - 216px - 70px));    
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -459,7 +459,7 @@
         20% {
           width: 410px;
           height: 480px;
-          left: calc(48px + 0.2 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.2 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -469,7 +469,7 @@
         30% {
           width: 400px;
           height: 485px;
-          left: calc(48px + 0.3 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.3 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -479,7 +479,7 @@
         40% {
           width: 390px;
           height: 490px;
-          left: calc(48px + 0.4 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.4 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -489,7 +489,7 @@
         50% {
           width: 380px;
           height: 495px;
-          left: calc(48px + 0.5 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.5 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -499,7 +499,7 @@
         60% {
           width: 370px;
           height: 497px;
-          left: calc(48px + 0.6 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.6 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -509,7 +509,7 @@
         70% {
           width: 360px;
           height: 499px;
-          left: calc(48px + 0.7 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.7 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -519,7 +519,7 @@
         80% {
           width: 350px;
           height: 500px;
-          left: calc(48px + 0.8 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.8 * (50vw - 48px - 216px - 70px));
           top: 55vh;
           right: auto;
           bottom: auto;
@@ -529,7 +529,7 @@
         90% {
           width: 335px;
           height: 500px;
-          left: calc(48px + 0.9 * (50vw - 48px - 216px - 30px));
+          left: calc(48px + 0.9 * (50vw - 48px - 216px - 70px));
           top: 52vh;
           right: auto;
           bottom: auto;
@@ -539,7 +539,7 @@
         100% {
           width: 320px;
           height: 500px;
-          left: 50%;
+          left: 42%;
           top: 50vh;
           right: auto;
           bottom: auto;
@@ -672,6 +672,57 @@
       .yellow-to-stats {
         animation: yellowToStats 400ms ease-in-out forwards;
       }
+      
+      @keyframes yellowMergeToStats {
+        0% {
+          width: 432px;
+          height: 460px;
+          left: 48px;
+          top: 55vh;
+          right: auto;
+          bottom: auto;
+          transform: translateY(-50%);
+          border-radius: 24px;
+          opacity: 1;
+        }
+        33% {
+          width: 400px;
+          height: 485px;
+          left: calc(100px + 0.33 * (50vw - 48px - 216px));
+          top: 54vh;
+          right: auto;
+          bottom: auto;
+          transform: translateY(-50%);
+          border-radius: 24px;
+          opacity: 0.85;
+        }
+        66% {
+          width: 350px;
+          height: 500px;
+          left: calc(110px + 0.66 * (50vw - 48px - 216px));
+          top: 53vh;
+          right: auto;
+          bottom: auto;
+          transform: translateY(-50%);
+          border-radius: 24px;
+          opacity: 0.6;
+        }
+        100% {
+          width: 320px;
+          height: 500px;
+          left: 42%;
+          top: 52vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 24px;
+          opacity: 0.4;
+        }
+      }
+      
+              .yellow-merge-to-stats {
+          animation: yellowMergeToStats 300ms ease-out forwards;
+        }
       
       @keyframes yellowToPartners {
         0% {
