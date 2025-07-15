@@ -135,8 +135,8 @@ export const Homepage = () => {
     }
     
     setIsScrolling(true);
-    let animationDuration = (currentSection === 1 && sectionIndex === 2) || (currentSection === 3 && sectionIndex === 2) ? 350 : 400; // 350ms for merging transitions
-    let extendedBlockingDuration = (currentSection === 1 && sectionIndex === 2) || (currentSection === 3 && sectionIndex === 2) ? 600 : 800; // Shorter blocking for merging
+    let animationDuration = (currentSection === 1 && sectionIndex === 2) || (currentSection === 3 && sectionIndex === 2) || (currentSection === 1 && sectionIndex === 0) ? 300 : 400; // 300ms for merging transitions
+    let extendedBlockingDuration = (currentSection === 1 && sectionIndex === 2) || (currentSection === 3 && sectionIndex === 2) || (currentSection === 1 && sectionIndex === 0) ? 500 : 800; // Shorter blocking for merging
     
     // Clear any existing safety timeout to prevent multiple unblocks
     if (safetyTimeoutRef.current) {
@@ -191,40 +191,18 @@ export const Homepage = () => {
       }, 800); // Reduced from 1200 to 800
     
     } else if (currentSection === 1 && sectionIndex === 0) {
-      // Going from section 2 back to section 1 - smooth reverse transition
-      console.log('Starting Section 2 → Section 1 transition at', new Date().toLocaleTimeString());
+      // Going from section 2 back to section 1 - MERGING transition
+      console.log('Starting Section 2 → Section 1 MERGING transition at', new Date().toLocaleTimeString());
       
       // Set animation state FIRST to prevent race condition
-      console.log('State: transitioning-to-circle | Start Position: left: 48px, top: 50vh, size: 432x460px');
+      console.log('State: transitioning-to-circle-merge | Start Position: left: 48px, top: 50vh, size: 432x460px');
       setYellowBgAnimation({
         isAnimating: true,
-        phase: 'transitioning-to-circle'
+        phase: 'transitioning-to-circle-merge'
       });
       
       // Then set the current section to start main section transition
       setCurrentSection(sectionIndex);
-      
-      // Log intermediate positions during reverse animation
-      setTimeout(() => console.log('5% (35ms): 446x473px, right: calc(0.95 * (100vw - 48px - 432px)), bottom: calc(0.95 * (50vh - 230px)), radius: 25px'), 35);
-      setTimeout(() => console.log('10% (70ms): 461x486px, right: calc(0.9 * (100vw - 48px - 432px)), bottom: calc(0.9 * (50vh - 230px)), radius: 26px'), 70);
-      setTimeout(() => console.log('15% (105ms): 475x499px, right: calc(0.85 * (100vw - 48px - 432px)), bottom: calc(0.85 * (50vh - 230px)), radius: 27px'), 105);
-      setTimeout(() => console.log('20% (140ms): 490x512px, right: calc(0.8 * (100vw - 48px - 432px)), bottom: calc(0.8 * (50vh - 230px)), radius: 28px'), 140);
-      setTimeout(() => console.log('25% (175ms): 504x525px, right: calc(0.75 * (100vw - 48px - 432px)), bottom: calc(0.75 * (50vh - 230px)), radius: 29px'), 175);
-      setTimeout(() => console.log('30% (210ms): 518x538px, right: calc(0.7 * (100vw - 48px - 432px)), bottom: calc(0.7 * (50vh - 230px)), radius: 30px'), 210);
-      setTimeout(() => console.log('35% (245ms): 533x551px, right: calc(0.65 * (100vw - 48px - 432px)), bottom: calc(0.65 * (50vh - 230px)), radius: 31px'), 245);
-      setTimeout(() => console.log('40% (280ms): 547x564px, right: calc(0.6 * (100vw - 48px - 432px)), bottom: calc(0.6 * (50vh - 230px)), radius: 32px'), 280);
-      setTimeout(() => console.log('45% (315ms): 562x577px, right: calc(0.55 * (100vw - 48px - 432px)), bottom: calc(0.55 * (50vh - 230px)), radius: 32px'), 315);
-      setTimeout(() => console.log('50% (350ms): 576x590px, right: calc(0.5 * (100vw - 48px - 432px)), bottom: calc(0.5 * (50vh - 230px)), radius: 32px'), 350);
-      setTimeout(() => console.log('55% (385ms): 590x603px, right: calc(0.45 * (100vw - 48px - 432px)), bottom: calc(0.45 * (50vh - 230px)), radius: 32px'), 385);
-      setTimeout(() => console.log('60% (420ms): 605x616px, right: calc(0.4 * (100vw - 48px - 432px)), bottom: calc(0.4 * (50vh - 230px)), radius: 32px'), 420);
-      setTimeout(() => console.log('65% (455ms): 619x629px, right: calc(0.35 * (100vw - 48px - 432px)), bottom: calc(0.35 * (50vh - 230px)), radius: 28px'), 455);
-      setTimeout(() => console.log('70% (490ms): 634x642px, right: calc(0.3 * (100vw - 48px - 432px)), bottom: calc(0.3 * (50vh - 230px)), radius: 24px'), 490);
-      setTimeout(() => console.log('75% (525ms): 648x655px, right: calc(0.25 * (100vw - 48px - 432px)), bottom: calc(0.25 * (50vh - 230px)), radius: 20px'), 525);
-      setTimeout(() => console.log('80% (560ms): 662x668px, right: calc(0.2 * (100vw - 48px - 432px)), bottom: calc(0.2 * (50vh - 230px)), radius: 16px'), 560);
-      setTimeout(() => console.log('85% (595ms): 676x681px, right: calc(0.15 * (100vw - 48px - 432px)), bottom: calc(0.15 * (50vh - 230px)), radius: 12px'), 595);
-      setTimeout(() => console.log('90% (630ms): 691x694px, right: calc(0.1 * (100vw - 48px - 432px)), bottom: calc(0.1 * (50vh - 230px)), radius: 8px'), 630);
-      setTimeout(() => console.log('95% (665ms): 705x707px, right: calc(0.05 * (100vw - 48px - 432px)), bottom: calc(0.05 * (50vh - 230px)), radius: 4px'), 665);
-      setTimeout(() => console.log('100% (700ms): 720x720px, right: 0px, bottom: 0px, radius: 0px'), 700);
       
       // After animation completes, set final state
       setTimeout(() => {
@@ -233,7 +211,7 @@ export const Homepage = () => {
           isAnimating: false,
           phase: 'circle'
         });
-      }, 750); // Reduced from 1050 to 750
+      }, 320); // Slightly shorter to prevent blink
     } else if (currentSection === 1 && sectionIndex === 2) {
       // Going from section 2 to section 3 - MERGING transition to stats
       console.log('Starting Section 2 → Section 3 MERGING transition at', new Date().toLocaleTimeString());
@@ -870,11 +848,13 @@ export const Homepage = () => {
       {/* Animated Yellow Background Overlay */}
       <img
         className={`fixed z-20 will-change-transform will-change-opacity ${
-          yellowBgAnimation.phase === 'hidden' || yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'stats' ? 'opacity-0' : 'opacity-100'
+          yellowBgAnimation.phase === 'hidden' || yellowBgAnimation.phase === 'square' || yellowBgAnimation.phase === 'stats' || yellowBgAnimation.phase === 'partners' ? 'opacity-0' : 'opacity-100'
         } ${
           yellowBgAnimation.phase === 'transitioning-to-square' ? 'yellow-to-square' : ''
         } ${
           yellowBgAnimation.phase === 'transitioning-to-circle' ? 'yellow-to-circle' : ''
+        } ${
+          yellowBgAnimation.phase === 'transitioning-to-circle-merge' ? 'yellow-merge-to-circle' : ''
         } ${
           yellowBgAnimation.phase === 'transitioning-to-stats' ? 'yellow-to-stats' : ''
         } ${
@@ -903,6 +883,7 @@ export const Homepage = () => {
         style={{
           ...((yellowBgAnimation.phase === 'transitioning-to-square' || 
                yellowBgAnimation.phase === 'transitioning-to-circle' ||
+               yellowBgAnimation.phase === 'transitioning-to-circle-merge' ||
                yellowBgAnimation.phase === 'transitioning-to-stats' ||
                yellowBgAnimation.phase === 'transitioning-to-stats-merge' ||
                yellowBgAnimation.phase === 'transitioning-to-stats-merge-from-partners' ||
