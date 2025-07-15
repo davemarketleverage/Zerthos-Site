@@ -720,9 +720,137 @@
         }
       }
       
-              .yellow-merge-to-stats {
-          animation: yellowMergeToStats 300ms ease-out forwards;
+                    .yellow-merge-to-stats {
+        animation: yellowMergeToStats 300ms ease-out forwards;
+      }
+      
+      @keyframes yellowMergeToStatsFromPartners {
+        0% {
+          width: 8px;
+          height: 200px;
+          left: 48px;
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translateY(-50%);
+          border-radius: 4px;
+          opacity: 1;
         }
+        10% {
+          width: 15px;
+          height: 210px;
+          left: calc(43% - 0.9 * (50vw - 7px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 4px;
+          opacity: 0.9;
+        }
+        20% {
+          width: 30px;
+          height: 220px;
+          left: calc(43% - 0.8 * (50vw - 15px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 4px;
+          opacity: 0.8;
+        }
+        30% {
+          width: 60px;
+          height: 240px;
+          left: calc(43% - 0.7 * (50vw - 30px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 5px;
+          opacity: 0.7;
+        }
+        40% {
+          width: 100px;
+          height: 260px;
+          left: calc(43% - 0.6 * (50vw - 50px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 6px;
+          opacity: 0.6;
+        }
+        50% {
+          width: 140px;
+          height: 280px;
+          left: calc(43% - 0.5 * (50vw - 70px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 8px;
+          opacity: 0.5;
+        }
+        60% {
+          width: 180px;
+          height: 300px;
+          left: calc(43% - 0.4 * (50vw - 90px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 10px;
+          opacity: 0.4;
+        }
+        70% {
+          width: 220px;
+          height: 350px;
+          left: calc(43% - 0.3 * (50vw - 110px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 12px;
+          opacity: 0.3;
+        }
+        80% {
+          width: 260px;
+          height: 400px;
+          left: calc(43% - 0.2 * (50vw - 130px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 16px;
+          opacity: 0.2;
+        }
+        90% {
+          width: 290px;
+          height: 450px;
+          left: calc(43% - 0.1 * (50vw - 160px));
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 20px;
+          opacity: 0.1;
+        }
+        100% {
+          width: 320px;
+          height: 500px;
+          left: 43%;
+          top: 50vh;
+          right: auto;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+          border-radius: 24px;
+          opacity: 0.4;
+        }
+      }
+      
+      .yellow-merge-to-stats-from-partners {
+        animation: yellowMergeToStatsFromPartners 400ms ease-out forwards;
+      }
       
       @keyframes yellowToPartners {
         0% {
