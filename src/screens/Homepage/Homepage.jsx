@@ -1201,7 +1201,7 @@ export const Homepage = () => {
           transitionProperty: 'all',
         }}
       >
-        <h2
+        {/* <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
             ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
             ${currentSection === 5 ? 'text-[60px] md:text-[48px] sm:text-[32px] leading-10 md:leading-8 sm:leading-6 text-left': ''}
@@ -1217,7 +1217,7 @@ export const Homepage = () => {
           }}
         >
           What makes Zerthos<br />a game changer
-        </h2>
+        </h2> */}
       </div>
 
       {/* Section Indicators */}
