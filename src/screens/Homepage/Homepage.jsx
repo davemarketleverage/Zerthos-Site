@@ -17,6 +17,7 @@ import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSub
 import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
+import logoSvg from '../../assets/logo.svg';
 
 export const Homepage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
