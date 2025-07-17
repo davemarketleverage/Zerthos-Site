@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
+import { Header } from "../../components/ui/header";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -14,7 +15,6 @@ import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
 import { FrameSubsection } from "./sections/FrameSubsection";
 import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSubsection";
 import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
-import logoSvg from "../../assets/logo.svg";
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
 
@@ -562,30 +562,7 @@ export const Homepage = () => {
       />
       
       {/* Sticky Header */}
-      <div className={`w-full mx-auto px-12 py-8 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled ? 'border-b border-gray-200 shadow-sm' : ''}`}>
-        <div className="relative w-32 h-16">
-          <img
-            className="w-full h-full object-contain"
-            alt="Zerthos Logo"
-            src={logoSvg}
-          />
-        </div>
-
-        <NavigationMenu>
-          <NavigationMenuList className="flex items-center gap-9">
-            {navigationItems.map((item, index) => (
-              <NavigationMenuItem key={index}>
-                <NavigationMenuLink
-                  className={`${item.width} font-normal text-[#202020] text-base leading-6 break-words cursor-pointer`}
-                  onClick={() => scrollToSection(index % sections.length)}
-                >
-                  {item.text}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+      <Header isScrolled={isScrolled} />
 
       {/* Sections Container */}
       <div 
