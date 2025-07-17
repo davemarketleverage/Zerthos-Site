@@ -4,12 +4,7 @@ import LoadingBar from "react-top-loading-bar";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Header } from "../../components/ui/header";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "../../components/ui/navigation-menu";
+
 import { DivSubsection } from "./sections/DivSubsection";
 import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
 import { FrameSubsection } from "./sections/FrameSubsection";
@@ -17,7 +12,6 @@ import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSub
 import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
-import logoSvg from '../../assets/logo.svg';
 
 export const Homepage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +30,6 @@ export const Homepage = () => {
   const [delayedBrainBg, setDelayedBrainBg] = useState(false);
   const [delayedStatsBg, setDelayedStatsBg] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Immediate scroll blocking using ref to prevent multiple rapid scrolls
   const scrollBlockedRef = useRef(false);
@@ -536,15 +529,7 @@ export const Homepage = () => {
     };
   }, [currentSection, isScrolling, sections.length, activeFeature, isFeatureScrolling, featuresListHovered]);
 
-  const navigationItems = [
-    { text: "Technology", width: "w-[89px]" },
-    { text: "Leadership", width: "w-[84px]" },
-    { text: "Industries We Serve", width: "w-[152px]" },
-    { text: "TalonX", width: "w-[53px]" },
-    { text: " Solutions", width: "w-[75px]" },
-    { text: "News & Updates", width: "w-[127px]" },
-    { text: "Careers", width: "w-[60px]" },
-  ];
+
 
 
 
@@ -576,76 +561,7 @@ export const Homepage = () => {
       />
       
       {/* Sticky Header */}
-      <div className={`w-full mx-auto px-12 md:px-8 sm:px-4 py-8 md:py-6 sm:py-4 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled ? 'border-b border-gray-200 shadow-sm' : ''}`} style={{ minHeight: '80px' }}>
-        <div className="relative w-32 h-16 md:w-28 md:h-14 sm:w-24 sm:h-12">
-          <img
-            className="w-full h-full object-contain"
-            alt="Zerthos Logo"
-            src={logoSvg}
-          />
-        </div>
-
-        <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="flex items-center gap-9 md:gap-6">
-            {navigationItems.map((item, index) => (
-              <NavigationMenuItem key={index}>
-                <NavigationMenuLink
-                  className={`${item.width} font-normal text-[#202020] text-base md:text-sm leading-6 break-words cursor-pointer`}
-                  onClick={() => scrollToSection(index % sections.length)}
-                >
-                  {item.text}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-        
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-          <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></div>
-          <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 md:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className={`absolute top-0 right-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-8">
-              <img
-                className="w-24 h-12 object-contain"
-                alt="Zerthos Logo"
-                src={logoSvg}
-              />
-              <button 
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-8 h-8 flex flex-col justify-center items-center"
-              >
-                <div className="w-6 h-0.5 bg-gray-800 rotate-45"></div>
-                <div className="w-6 h-0.5 bg-gray-800 -rotate-45 -mt-0.5"></div>
-              </button>
-            </div>
-            <nav className="space-y-4">
-              {navigationItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    scrollToSection(index % sections.length);
-                    setMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-                >
-                  {item.text}
-                </button>
-              ))}
-            </nav>
-          </div>
-        </div>
-      </div>
+      <Header isScrolled={isScrolled} />
 
       {/* Sections Container */}
       <div 
@@ -1305,7 +1221,7 @@ export const Homepage = () => {
       </div>
 
       {/* Section Indicators */}
-      <div className="fixed right-8 md:right-6 sm:right-4 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-3 md:gap-2 sm:gap-2 sm:top-[calc(50%+40px)] md:top-1/2">
+      <div className="fixed right-8 md:right-6 sm:right-4 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-3 md:gap-2 sm:gap-2 sm:top-[calc(50%+40px)] md:top-1/2 hidden sm:block">
         {sections.map((section, index) => (
           <div key={section.id} className="relative group">
             <button
