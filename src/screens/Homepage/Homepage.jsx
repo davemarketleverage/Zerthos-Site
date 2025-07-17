@@ -726,8 +726,9 @@ export const Homepage = () => {
 
         {/* Watch Zerthos in Action Section */}
         <section className="w-full h-screen bg-white flex items-center">
-          <div className="w-full flex items-center">
-            <div className="flex w-full items-stretch h-[500px]">
+          <div className="w-full flex items-center px-4 sm:px-6 md:px-8 lg:px-12">
+            {/* Desktop Layout - 3 columns */}
+            <div className="hidden xl:flex w-full items-stretch h-[500px]">
               {/* Left Column - Text Content with Grey Background */}
               <div className="flex-1 h-full ml-12">
                 <div className="bg-[#F8F8F8] rounded-[24px] px-9 py-16 flex flex-col justify-center items-start gap-12 h-full">
@@ -767,6 +768,79 @@ export const Homepage = () => {
                 </div>
               </div>
             </div>
+
+            {/* Tablet Layout - 3 columns with reduced sizes */}
+            <div className="hidden md:flex xl:hidden w-full items-stretch h-[400px] gap-4">
+              {/* Left Column - Text Content with Grey Background */}
+              <div className="flex-1 h-full">
+                <div className="bg-[#F8F8F8] rounded-[20px] px-6 py-12 flex flex-col justify-center items-start gap-8 h-full">
+                  <h2 className="text-[#202020] text-[40px] font-heading font-normal leading-[40px]">
+                    Watch<br/>
+                    Zerthos<br/>
+                    in action
+                  </h2>
+                  <p className="text-[#565B68] text-lg font-normal leading-7">
+                    Watch our technology<br/>
+                    demo to see how Zerthos transform data transmission with unmatched speed and<br/>
+                    security.
+                  </p>
+                </div>
+              </div>
+
+              {/* Middle Column - Stats Card */}
+              <div className="flex-1 flex justify-center items-center h-full">
+                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[240px] h-full flex flex-col justify-center relative z-10 ${
+                  delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
+                }`}>
+                  <div className="text-[32px] font-heading font-bold leading-[32px] mb-1">4x</div>
+                  <div className="text-sm font-normal mb-3">Faster data transmission</div>
+                  <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">99.99%</div>
+                  <div className="text-sm font-normal mb-3">Uptime guarantee</div>
+                  <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">256-bit</div>
+                  <div className="text-sm font-normal">Military-grade encryption</div>
+                </div>
+              </div>
+
+              {/* Right Column - Video Demo (Custom Flex, Full Edge) */}
+              <div className="flex items-center h-full" style={{flex: '1.75 1 0%'}}>
+                <div className="w-full h-full bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/mask-group.png)] bg-cover bg-center rounded-[20px] relative flex items-center justify-center">
+                  <Button className="w-[60px] h-[60px] bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <PlayIcon className="w-[18px] h-[18px] text-[#F09A07] ml-1" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Layout - 2 columns vertical, hide video */}
+            <div className="flex md:hidden w-full flex-col gap-6 h-full justify-center">
+              {/* Top Row - Text Content with Grey Background */}
+              <div className="flex-1 h-[calc(50vh-120px)]">
+                <div className="bg-[#F8F8F8] rounded-[20px] px-6 py-8 flex flex-col justify-center items-start gap-6 h-full">
+                  <h2 className="text-[#202020] text-[32px] font-heading font-normal leading-[32px]">
+                    Watch<br/>
+                    Zerthos<br/>
+                    in action
+                  </h2>
+                  <p className="text-[#565B68] text-base font-normal leading-6">
+                    Watch our technology demo to see how Zerthos transform data transmission with unmatched speed and security.
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Row - Stats Card */}
+              <div className="flex-1 h-[calc(50vh-120px)] flex justify-center items-center">
+                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[280px] h-full flex flex-col justify-center relative z-10 ${
+                  delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
+                }`}>
+                  <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">4x</div>
+                  <div className="text-sm font-normal mb-3">Faster data transmission</div>
+                  <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">99.99%</div>
+                  <div className="text-sm font-normal mb-3">Uptime guarantee</div>
+                  <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">256-bit</div>
+                  <div className="text-sm font-normal">Military-grade encryption</div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -774,95 +848,286 @@ export const Homepage = () => {
 
         {/* Partners Section */}
         <section className="w-full h-screen bg-white flex items-center">
-          <div className="w-full mx-auto px-12 flex items-center">
-            {/* Left side - Title */}
-            <div className="flex items-center gap-8">
-              <img
-                className={`w-2 h-[200px] transition-opacity duration-300 ${
-                  yellowBgAnimation.phase === 'partners' ? 'opacity-100' : 'opacity-0'
-                }`}
-                alt="Rectangle"
-                src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-7.svg"
-              />
-              <h2 className="font-heading font-normal text-[#202020] text-5xl leading-[52px] whitespace-pre-line">
-                Trusted by
-                <br />
-                industry leaders
-              </h2>
+          <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+            {/* Desktop Layout - Original design */}
+            <div className="hidden xl:flex w-full items-center">
+              {/* Left side - Title */}
+              <div className="flex items-center gap-8">
+                <img
+                  className={`w-2 h-[200px] transition-opacity duration-300 ${
+                    yellowBgAnimation.phase === 'partners' ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  alt="Rectangle"
+                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-7.svg"
+                />
+                <h2 className="font-heading font-normal text-[#202020] text-5xl leading-[52px] whitespace-pre-line">
+                  Trusted by
+                  <br />
+                  industry leaders
+                </h2>
+              </div>
+
+              {/* Right side - Partner logos */}
+              <div className="flex flex-col items-center gap-9 ml-48">
+                {/* First row - 3 logos */}
+                <div className="flex items-center justify-center gap-20 w-[774px]">
+                  <img
+                    className="h-8"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2.png"
+                  />
+                </div>
+
+                {/* Second row - 5 logos */}
+                <div className="flex items-center justify-center gap-12 w-[774px]">
+                  <img
+                    className="h-8"
+                    alt="Databricks"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-3.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="Discover"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2-1.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="Alaska Airlines"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-5.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="Align"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-6.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-7.png"
+                  />
+                </div>
+
+                {/* Third row - 4 logos */}
+                <div className="flex items-center justify-center gap-16 w-[774px]">
+                  <img
+                    className="h-8"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-8.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-9.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-10.png"
+                  />
+                  <img
+                    className="h-8"
+                    alt="3M"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1-1.png"
+                  />
+                </div>
+              </div>
             </div>
 
-            {/* Right side - Partner logos */}
-            <div className="flex flex-col items-center gap-9 ml-48">
-              {/* First row - 3 logos */}
-              <div className="flex items-center justify-center gap-20 w-[774px]">
+            {/* Tablet Layout - Reduced sizes */}
+            <div className="hidden md:flex xl:hidden w-full items-center">
+              {/* Left side - Title */}
+              <div className="flex items-center gap-6">
                 <img
-                  className="h-8"
-                  alt="Delta"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group.png"
+                  className={`w-1.5 h-[150px] transition-opacity duration-300 ${
+                    yellowBgAnimation.phase === 'partners' ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  alt="Rectangle"
+                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-7.svg"
                 />
-                <img
-                  className="h-8"
-                  alt="ADP"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1.png"
-                />
-                <img
-                  className="h-8"
-                  alt="Carrier"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2.png"
-                />
+                <h2 className="font-heading font-normal text-[#202020] text-4xl leading-[44px] whitespace-pre-line">
+                  Trusted by
+                  <br />
+                  industry leaders
+                </h2>
               </div>
 
-              {/* Second row - 5 logos */}
-              <div className="flex items-center justify-center gap-12 w-[774px]">
+              {/* Right side - Partner logos */}
+              <div className="flex flex-col items-center gap-6 ml-12 md:ml-16 lg:ml-24">
+                {/* First row - 3 logos */}
+                <div className="flex items-center justify-center gap-8 md:gap-10 lg:gap-12 w-full max-w-[400px] md:max-w-[450px] lg:max-w-[500px]">
+                  <img
+                    className="h-6"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2.png"
+                  />
+                </div>
+
+                {/* Second row - 5 logos */}
+                <div className="flex items-center justify-center gap-6 md:gap-7 lg:gap-8 w-full max-w-[400px] md:max-w-[450px] lg:max-w-[500px] flex-wrap">
+                  <img
+                    className="h-6"
+                    alt="Databricks"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-3.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="Discover"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2-1.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="Alaska Airlines"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-5.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="Align"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-6.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-7.png"
+                  />
+                </div>
+
+                {/* Third row - 4 logos */}
+                <div className="flex items-center justify-center gap-8 md:gap-9 lg:gap-10 w-full max-w-[400px] md:max-w-[450px] lg:max-w-[500px]">
+                  <img
+                    className="h-6"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-8.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-9.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-10.png"
+                  />
+                  <img
+                    className="h-6"
+                    alt="3M"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1-1.png"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Layout - Vertical stack */}
+            <div className="flex md:hidden w-full flex-col items-center gap-8 h-full justify-center">
+              {/* Title Section */}
+              <div className="flex items-center gap-4">
                 <img
-                  className="h-8"
-                  alt="Databricks"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-3.png"
+                  className={`w-1 h-[100px] transition-opacity duration-300 ${
+                    yellowBgAnimation.phase === 'partners' ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  alt="Rectangle"
+                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-7.svg"
                 />
-                <img
-                  className="h-8"
-                  alt="Discover"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2-1.png"
-                />
-                <img
-                  className="h-8"
-                  alt="Alaska Airlines"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-5.png"
-                />
-                <img
-                  className="h-8"
-                  alt="Align"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-6.png"
-                />
-                <img
-                  className="h-8"
-                  alt="ADP"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-7.png"
-                />
+                <h2 className="font-heading font-normal text-[#202020] text-3xl leading-[36px] whitespace-pre-line text-center">
+                  Trusted by
+                  <br />
+                  industry leaders
+                </h2>
               </div>
 
-              {/* Third row - 4 logos */}
-              <div className="flex items-center justify-center gap-16 w-[774px]">
-                <img
-                  className="h-8"
-                  alt="Delta"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-8.png"
-                />
-                <img
-                  className="h-8"
-                  alt="ADP"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-9.png"
-                />
-                <img
-                  className="h-8"
-                  alt="Carrier"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-10.png"
-                />
-                <img
-                  className="h-8"
-                  alt="3M"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1-1.png"
-                />
+              {/* Partner logos - 2 columns for mobile */}
+              <div className="flex flex-col items-center gap-4 w-full">
+                {/* First row - 3 logos */}
+                <div className="flex items-center justify-center gap-4 w-full">
+                  <img
+                    className="h-4"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2.png"
+                  />
+                </div>
+
+                {/* Second row - 5 logos */}
+                <div className="flex items-center justify-center gap-3 w-full flex-wrap">
+                  <img
+                    className="h-4"
+                    alt="Databricks"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-3.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="Discover"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-2-1.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="Alaska Airlines"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-5.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="Align"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-6.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-7.png"
+                  />
+                </div>
+
+                {/* Third row - 4 logos */}
+                <div className="flex items-center justify-center gap-4 w-full">
+                  <img
+                    className="h-4"
+                    alt="Delta"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-8.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="ADP"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-9.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="Carrier"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-10.png"
+                  />
+                  <img
+                    className="h-4"
+                    alt="3M"
+                    src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/group-1-1.png"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -1021,7 +1286,7 @@ export const Homepage = () => {
       >
         <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
-            ${currentSection === 4 ? 'text-[80px] md:text-[60px] sm:text-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
+            ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
             ${currentSection === 5 ? 'text-[60px] md:text-[48px] sm:text-[32px] leading-10 md:leading-8 sm:leading-6 text-left': ''}
             text-[#202020] pointer-events-auto`
           }
