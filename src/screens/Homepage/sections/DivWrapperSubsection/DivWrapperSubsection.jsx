@@ -78,28 +78,18 @@ export const DivWrapperSubsection = () => {
   }, [inView]);
 
   return (
-    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-12 top-20">
-      <header className="flex flex-col items-center gap-0 mb-4">
-        <h2 className={`text-5xl text-[#202020] leading-[60px] font-heading font-normal text-center transition-all duration-1000 ease-out will-change-transform will-change-opacity ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
-          The Zerthos advantage
-        </h2>
-        <p className={`text-xl text-[#565a67] leading-7 font-normal text-center transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-150 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
-          Engineered to outperform on every metric that matters.
-        </p>
-      </header>
-
-      <Card className={`relative border border-solid border-[#cccccc] rounded-2xl transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-300 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
+    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 mt-16">
+      <Card className={`relative border border-solid border-[#cccccc] rounded-xl sm:rounded-2xl transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-300 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
         <CardContent className="p-0">
 
-
           {/* Column headers */}
-          <div className="flex justify-between px-6 pt-4 pb-3 relative z-10">
-            <div className="w-[520px]"></div>
-            <div className="flex flex-1 gap-[40px]">
-              <div className="flex-1 bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] font-bold text-transparent text-xl tracking-[0] leading-7 whitespace-nowrap">
+          <div className="flex justify-between px-4 sm:px-6 pt-4 pb-3 relative z-10">
+            <div className="w-1/3 sm:w-[300px] md:w-[400px] lg:w-[520px]"></div>
+            <div className="flex flex-1 gap-2 sm:gap-4 md:gap-6 lg:gap-[40px]">
+              <div className="flex-1 bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] font-bold text-transparent text-sm sm:text-base md:text-lg lg:text-xl tracking-[0] leading-5 sm:leading-6 md:leading-7 whitespace-nowrap">
                 TalonX
               </div>
-              <div className="flex-1 font-bold text-[#202020] text-base tracking-[0] leading-6 whitespace-nowrap">
+              <div className="flex-1 font-bold text-[#202020] text-xs sm:text-sm md:text-base tracking-[0] leading-4 sm:leading-5 md:leading-6 whitespace-nowrap">
                 Traditional Solutions
               </div>
             </div>
@@ -108,27 +98,27 @@ export const DivWrapperSubsection = () => {
           {/* Feature rows */}
           {features.map((feature, index) => (
             <React.Fragment key={index}>
-              <div className="flex items-center px-6 py-3 relative z-10">
-                <div className="flex w-[520px] items-center gap-3">
+              <div className="flex items-center px-4 sm:px-6 py-3 relative z-10">
+                <div className="flex w-1/3 sm:w-[300px] md:w-[400px] lg:w-[520px] items-center gap-2 sm:gap-3">
                   <img
-                    className="w-7 h-7"
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
                     alt={feature.title}
                     src={feature.icon}
                   />
-                  <div className="flex flex-col items-start gap-1">
-                    <h3 className="font-bold text-[#202020] text-base leading-6">
+                  <div className="flex flex-col items-start gap-0.5 sm:gap-1">
+                    <h3 className="font-bold text-[#202020] text-xs sm:text-sm md:text-base leading-4 sm:leading-5 md:leading-6">
                       {feature.title}
                     </h3>
-                    <p className="text-xs text-[#565a67] leading-5 font-normal">
+                    <p className="hidden sm:block text-xs text-[#565a67] leading-4 sm:leading-5 font-normal">
                       {feature.description}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-[40px] flex-1">
-                  <div className="flex-1 font-bold text-[#202020] text-base leading-6 whitespace-nowrap">
+                <div className="flex items-center gap-2 sm:gap-4 md:gap-6 lg:gap-[40px] flex-1">
+                  <div className="flex-1 font-bold text-[#202020] text-xs sm:text-sm md:text-base leading-4 sm:leading-5 md:leading-6 whitespace-nowrap">
                     {feature.talonX}
                   </div>
-                  <div className="flex-1 font-normal text-[#565b68] text-base leading-6 whitespace-nowrap">
+                  <div className="flex-1 font-normal text-[#565b68] text-xs sm:text-sm md:text-base leading-4 sm:leading-5 md:leading-6 whitespace-nowrap">
                     {feature.traditional}
                   </div>
                 </div>

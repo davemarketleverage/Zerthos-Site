@@ -1073,7 +1073,7 @@ export const Homepage = () => {
 
         {/* Advantage Section */}
         <section className="w-full h-screen bg-white flex items-center">
-          <div className="w-full mx-auto px-12">
+          <div className="w-full mx-auto sm:px-12">
             <DivWrapperSubsection />
           </div>
         </section>
