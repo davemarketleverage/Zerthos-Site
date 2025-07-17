@@ -1052,7 +1052,7 @@ export const Homepage = () => {
 
         {/* What Makes Zerthos Section */}
         <section className="w-full h-screen bg-white flex items-center justify-center">
-          <div className="w-full max-w-6xl mx-auto px-12 text-center">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 text-center">
             {/* Heading removed, handled by shared heading */}
           </div>
         </section>

@@ -6,22 +6,32 @@ import { Separator } from "../../../../components/ui/separator";
 export const OverlapGroupWrapperSubsection = () => {
   const [barWidths, setBarWidths] = useState([0, 0, 0]);
   const [showPerformanceCard, setShowPerformanceCard] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !isAnimating) {
+      setIsAnimating(true);
       setShowPerformanceCard(true);
+      
+      // Staggered animation for each progress bar with different max values
+      const maxWidths = [
+        80, // Transmission speed: 80%
+        90, // Processing speed: 90%
+        100, // Lossless Quality: 100%
+      ];
+      
       [0, 1, 2].forEach((i) => {
         setTimeout(() => {
           setBarWidths((prev) => {
             const next = [...prev];
-            next[i] = 410;
+            next[i] = maxWidths[i];
             return next;
           });
-        }, i * 200);
+        }, i * 300 + 500); // 500ms delay before first bar, then 300ms between each
       });
     }
-  }, [inView]);
+  }, [inView, isAnimating]);
 
   useEffect(() => {
     console.log('barWidths:', barWidths);
@@ -49,51 +59,78 @@ export const OverlapGroupWrapperSubsection = () => {
   ];
 
   return (
-    <section ref={ref} className="relative w-full h-[848px] bg-[#010101]">
-      <div className="relative w-full h-[735px] mx-auto px-12 ml-12">
+    <section ref={ref} className="relative w-full h-screen bg-[#010101] flex items-start justify-start">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
         <img
-          className="absolute w-[1080px] h-[735px] top-0 right-0 object-cover"
+          className="w-full h-full object-cover"
           alt="Element coll"
           src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/5672185-coll-wavebreak-animation-1920x1080-1.png"
         />
+      </div>
 
-        <h2 className={`absolute top-[120px] left-0 font-heading font-normal text-white text-6xl tracking-[0] leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
-          Performance
-          <br />
-          snapshot
-        </h2>
+      {/* Content Container */}
+      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16 w-full">
+          
+          {/* Left Side - Title and Performance Card */}
+          <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 lg:max-w-[600px]">
+            
+            {/* Title */}
+            <h2 className={`font-heading font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0] leading-[48px] sm:leading-[52px] md:leading-[56px] lg:leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+              Performance
+              <br />
+              snapshot
+            </h2>
 
-        <Card className={`flex flex-col w-[660px] items-start gap-6 px-0 py-6 absolute top-[289px] left-0 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
-          {performanceMetrics.map((metric, index) => (
-            <React.Fragment key={index}>
-              <CardContent className="flex flex-col items-start justify-center gap-6 px-6 py-0 relative self-stretch w-full">
-                <div className="flex items-center justify-between relative self-stretch w-full">
-                  <div className="relative w-fit mt-[-1.00px] font-semibold text-white text-2xl tracking-[0] leading-9 whitespace-nowrap">
-                    {metric.title}
-                  </div>
-                  <div className="relative w-fit font-normal text-white text-lg tracking-[0] leading-7 whitespace-nowrap">
-                    {metric.value}
-                  </div>
-                </div>
-                <div
-                  className={`relative h-3 rounded-[20px] ${metric.progressColor}`}
-                  style={{
-                    width: `${barWidths[index]}px`,
-                    transition: "width 1s cubic-bezier(0.4,0,0.2,1)",
-                    opacity: barWidths[index] > 0 ? 1 : 0.5,
-                  }}
-                />
-              </CardContent>
-              {index < performanceMetrics.length - 1 && (
-                <Separator className="self-stretch w-full h-px bg-[#ffffff1f]" />
-              )}
-            </React.Fragment>
-          ))}
-        </Card>
+            {/* Performance Card */}
+            <Card className={`flex flex-col w-full sm:w-[400px] md:w-[500px] lg:w-[600px] items-start gap-4 sm:gap-5 md:gap-6 px-0 py-4 sm:py-5 md:py-6 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+              {performanceMetrics.map((metric, index) => (
+                <React.Fragment key={index}>
+                  <CardContent className="flex flex-col items-start justify-center gap-4 sm:gap-5 md:gap-6 px-4 sm:px-5 md:px-6 py-0 relative self-stretch w-full">
+                    <div className="flex items-center justify-between relative self-stretch w-full">
+                      <div className="relative w-fit mt-[-1.00px] font-semibold text-white text-lg sm:text-xl md:text-2xl tracking-[0] leading-7 sm:leading-8 md:leading-9 whitespace-nowrap">
+                        {metric.title}
+                      </div>
+                      <div className="relative w-fit font-normal text-white text-base sm:text-lg tracking-[0] leading-6 sm:leading-7 whitespace-nowrap">
+                        {metric.value}
+                      </div>
+                    </div>
+                    <div className="relative w-full bg-white/10 rounded-[20px] h-2 sm:h-2.5 md:h-3 overflow-hidden">
+                      <div
+                        className={`relative h-full rounded-[20px] ${metric.progressColor} shadow-lg`}
+                        style={{
+                          width: `${barWidths[index]}%`,
+                          transition: "width 1.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                          opacity: barWidths[index] > 0 ? 1 : 0,
+                          transform: barWidths[index] > 0 ? 'scaleX(1)' : 'scaleX(0)',
+                          transformOrigin: 'left',
+                          maxWidth: '100%', // Ensure bar doesn't overflow on small screens
+                        }}
+                      />
+                    </div>
+                  </CardContent>
+                  {index < performanceMetrics.length - 1 && (
+                    <Separator className="self-stretch w-full h-px bg-[#ffffff1f]" />
+                  )}
+                </React.Fragment>
+              ))}
+            </Card>
 
-        <p className="absolute top-[698px] left-0 opacity-60 font-normal text-white text-lg tracking-[0] leading-7 whitespace-nowrap">
-          Based on tests with 10,000+ files including 5.6GB satellite TIFs
-        </p>
+            {/* Bottom Text */}
+            <p className="opacity-60 font-normal text-white text-sm sm:text-base md:text-lg tracking-[0] leading-5 sm:leading-6 md:leading-7">
+              Based on tests with 10,000+ files including 5.6GB satellite TIFs
+            </p>
+          </div>
+
+          {/* Right Side - Speedometer/Graphic (Desktop only) */}
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
+            <div className="w-[400px] h-[400px] flex items-center justify-center">
+              {/* Placeholder for speedometer graphic - you can add the actual speedometer component here */}
+              <div className="w-full h-full bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full opacity-20"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
