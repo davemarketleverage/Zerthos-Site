@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
+import { Header } from "../../components/ui/header";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -14,7 +15,6 @@ import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
 import { FrameSubsection } from "./sections/FrameSubsection";
 import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSubsection";
 import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
-import logoSvg from "../../assets/logo.svg";
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
 
