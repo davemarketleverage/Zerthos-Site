@@ -1191,33 +1191,27 @@ export const Homepage = () => {
         }}
       />
 
-      {/* Shared Animated Heading for Scenes 4 and 5 */}
+      {/* Shared Animated Heading for Scene 4 only */}
       <div
         className={`fixed z-50 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
-          ${currentSection === 5 ? 'top-0 left-0 flex justify-start items-start pl-32 md:pl-24 sm:pl-4 pt-12 md:pt-8 sm:pt-4' : ''}
         `}
         style={{
           transitionProperty: 'all',
         }}
       >
-        {/* <h2
+        <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
             ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
-            ${currentSection === 5 ? 'text-[60px] md:text-[48px] sm:text-[32px] leading-10 md:leading-8 sm:leading-6 text-left': ''}
             text-[#202020] pointer-events-auto`
           }
           style={{
-            width: currentSection === 5 ? '750px' : '100%',
             maxWidth: currentSection === 4 ? '100%' : undefined,
-            minWidth: currentSection === 5 ? '320px' : undefined,
-            marginTop: currentSection === 5 ? '110px' : undefined,
-            lineHeight: currentSection === 5 ? '55px' : undefined,
-            letterSpacing: currentSection === 5 ? '0.02em' : '0.02em',
+            letterSpacing: '0.02em',
           }}
         >
           What makes Zerthos<br />a game changer
-        </h2> */}
+        </h2>
       </div>
 
       {/* Section Indicators */}

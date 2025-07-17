@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logoSvg from '../../assets/logo.svg';
+import logoDark from '../../assets/zerthos-dark.png';
 
 export const Header = ({ isScrolled = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -7,11 +7,11 @@ export const Header = ({ isScrolled = false }) => {
   return (
     <>
       <div className={`w-full mx-auto px-12 md:px-8 sm:px-4 py-8 md:py-6 sm:py-4 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''}`} style={{ minHeight: '80px' }}>
-        <div className="relative w-32 h-16 md:w-28 md:h-14 sm:w-24 sm:h-12">
+        <div className="relative h-10">
           <img
             className="w-full h-full object-contain"
             alt="Zerthos Logo"
-            src={logoSvg}
+            src={logoDark}
           />
         </div>
 
@@ -41,7 +41,7 @@ export const Header = ({ isScrolled = false }) => {
               <img
                 className="w-24 h-12 object-contain"
                 alt="Zerthos Logo"
-                src={logoSvg}
+                src={logoDark}
               />
               <button 
                 onClick={() => setMobileMenuOpen(false)}

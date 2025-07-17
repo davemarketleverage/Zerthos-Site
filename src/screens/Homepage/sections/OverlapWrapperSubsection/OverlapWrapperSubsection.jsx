@@ -104,7 +104,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
               {features.map((feature, idx) => (
                 <Card
                   key={feature.id}
-                  className={`border-none shadow-none cursor-pointer transition-all duration-300 w-full scroll-snap-align-center ${
+                  className={`mb-4 border-none shadow-none cursor-pointer transition-all duration-300 w-full scroll-snap-align-center ${
                     activeFeature === idx
                       ? "bg-white"
                       : "bg-transparent opacity-60"
