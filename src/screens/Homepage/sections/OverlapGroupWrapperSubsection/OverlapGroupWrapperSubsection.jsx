@@ -70,7 +70,7 @@ export const OverlapGroupWrapperSubsection = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center">
+      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center mt-12">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16 w-full">
           
           {/* Left Side - Title and Performance Card */}
