@@ -574,7 +574,7 @@ export const Homepage = () => {
         {/* Hero Section */}
         <section className="w-full h-screen bg-white flex items-end pt-20 sm:pt-16 md:pt-0">
           <div className="w-full mx-auto pl-12 md:pl-8 sm:pl-4 pr-0 relative">
-            <div className="relative w-full h-[720px] md:h-[600px] sm:h-[500px]">
+            <div className="relative w-full h-[720px] md:h-[600px] sm:h-[500px] lg:h-[720px] xl:h-[720px] 2xl:h-[800px]">
 
                 {/* Duplicate static yellow shape for hero section - hidden on mobile */}
                 {currentSection === 0 && !isScrolling && (
@@ -586,9 +586,9 @@ export const Homepage = () => {
                 )}
 
               {/* Hero Image - hidden on mobile, reduced size on tablet */}
-              <div className={`absolute w-[779px] h-[636px] md:w-[400px] md:h-[320px] lg:w-[600px] lg:h-[490px] xl:w-[779px] xl:h-[636px] bottom-0 md:bottom-0 lg:bottom-0 xl:bottom-0 right-[30px] md:right-[16px] lg:right-[20px] xl:right-[30px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/adobestock-961893622-2.png)] bg-cover bg-[50%_50%] z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroImage ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+              <div className={`absolute w-[779px] h-[636px] md:w-[400px] md:h-[320px] lg:w-[779px] lg:h-[636px] xl:w-[779px] xl:h-[636px] 2xl:w-[900px] 2xl:h-[736px] bottom-0 md:bottom-0 lg:bottom-0 xl:bottom-0 2xl:bottom-0 right-[30px] md:right-[16px] lg:right-[30px] xl:right-[30px] 2xl:right-[50px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/adobestock-961893622-2.png)] bg-cover bg-[50%_50%] z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroImage ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
                 <img
-                  className="absolute w-[636px] h-[634px] md:w-[320px] md:h-[318px] lg:w-[490px] lg:h-[488px] xl:w-[636px] xl:h-[634px] top-0.5 left-7 md:left-4 lg:left-6 xl:left-7 z-[999]"
+                  className="absolute w-[636px] h-[634px] md:w-[320px] md:h-[318px] lg:w-[636px] lg:h-[634px] xl:w-[636px] xl:h-[634px] 2xl:w-[736px] 2xl:h-[734px] top-0.5 left-7 md:left-4 lg:left-7 xl:left-7 2xl:left-9 z-[999]"
                   alt="Vd"
                   src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/vd.png"
                 />
@@ -1060,7 +1060,7 @@ export const Homepage = () => {
         {/* Features Section */}
         <section className="w-full h-screen bg-white flex items-center">
           <div className="w-full mx-auto px-12">
-            <OverlapWrapperSubsection animate={currentSection === 5} activeFeature={activeFeature} setActiveFeature={setActiveFeature} setFeaturesListHovered={setFeaturesListHovered} />
+            <OverlapWrapperSubsection animate={currentSection === 5} activeFeature={activeFeature} setActiveFeature={setActiveFeature} setFeaturesListHovered={setFeaturesListHovered} windowWidth={windowWidth} />
           </div>
         </section>
 
@@ -1191,10 +1191,11 @@ export const Homepage = () => {
         }}
       />
 
-      {/* Shared Animated Heading for Scene 4 only */}
+      {/* Shared Animated Heading for Scene 4 and 5 */}
       <div
-        className={`fixed z-50 pointer-events-none transition-all duration-400 ease-in-out
+        className={`fixed z-30 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
+          ${currentSection === 5 ? 'top-28 md:top-[74px] left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8' : ''}
         `}
         style={{
           transitionProperty: 'all',
@@ -1203,10 +1204,11 @@ export const Homepage = () => {
         <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
             ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
+            ${currentSection === 5 ? 'text-[32px] sm:text-[20px] md:text-[30px] lg:text-[36px] xl:text-[40px] xl:ml-16 leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight sm:text-left md:text-left lg:text-left xl:text-left' : ''}
             text-[#202020] pointer-events-auto`
           }
           style={{
-            maxWidth: currentSection === 4 ? '100%' : undefined,
+            maxWidth: (currentSection === 4 || currentSection === 5) ? '100%' : undefined,
             letterSpacing: '0.02em',
           }}
         >

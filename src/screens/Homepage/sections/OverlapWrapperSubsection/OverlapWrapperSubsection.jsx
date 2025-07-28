@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 
-export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeature, setFeaturesListHovered }) => {
+export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeature, setFeaturesListHovered, windowWidth }) => {
   const features = [
     {
       id: 1,
@@ -86,61 +86,99 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
   };
 
   return (
-    <section className="relative py-12 mt-24 ml-20">
+    <section className="relative py-12 mt-24 sm:ml-0 sm:mt-16 md:ml-12 md:mt-20 lg:ml-20">
       <div className="mx-auto">
-        <div className="flex">
-          {/* Left: Features List */}
-          <div className="flex-1 flex flex-col justify-start" style={{ maxWidth: 750 }}>
-            {/* Heading is now shared, not rendered here */}
-            <div
-              className="w-full flex flex-col pr-2 custom-scrollbar overflow-y-auto items-center"
-              style={{
-                height: 420, // enough to show 1.5 features above and below
-                gap: 48, // large vertical gap between features
-                scrollSnapType: 'y mandatory',
-              }}
-              ref={scrollContainerRef}
-            >
+        {/* Mobile View - 2x2 Grid Layout */}
+        <div className="md:hidden">
+          <div className="px-1 py-4">
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-1">
               {features.map((feature, idx) => (
-                <Card
+                <div
                   key={feature.id}
-                  className={`mb-4 border-none shadow-none cursor-pointer transition-all duration-300 w-full scroll-snap-align-center ${
+                  className={`p-3 rounded-lg transition-all duration-300 cursor-pointer h-52 sm:h-48 flex flex-col justify-between border-2 ${
                     activeFeature === idx
-                      ? "bg-white"
-                      : "bg-transparent opacity-60"
+                      ? "bg-white shadow-md border-[#F09A07]"
+                      : "bg-gray-50 border-transparent"
                   }`}
-                  onClick={() => {
-                    setActiveFeature(idx);
-                    scrollToFeature(idx);
-                  }}
-                  ref={el => featureRefs.current[idx] = el}
-                  style={{ minHeight: 140, maxHeight: 180 }}
+                  onClick={() => setActiveFeature(idx)}
                 >
-                  <CardContent className="p-0">
-                    <div className="flex flex-col items-start gap-2">
-                      <h3 className={`self-stretch mt-[-1px] font-semibold text-2xl leading-9 transition-all duration-300 ${
-                        activeFeature === idx ? "text-[#202020]" : "text-[#b0b0b0]"
-                      }`}>
-                        {feature.title}
-                      </h3>
-                      <p className={`self-stretch font-normal text-lg leading-7 transition-all duration-300 max-w-[500px] ${
-                        activeFeature === idx ? "text-[#565a67]" : "text-[#d0d0d0]"
-                      }`}>
-                        {feature.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <div>
+                    <h3 className={`text-base font-semibold mb-3 transition-all duration-300 leading-tight ${
+                      activeFeature === idx ? "text-[#202020]" : "text-[#b0b0b0]"
+                    }`}>
+                      {feature.title}
+                    </h3>
+                    <p className={`text-sm leading-5 transition-all duration-300 line-clamp-5 ${
+                      activeFeature === idx ? "text-[#565a67]" : "text-[#d0d0d0]"
+                    }`}>
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-          {/* Right: Image */}
-          <div className="flex-1 flex items-center">
-            <img
-              className={`rounded-2xl h-[500px] w-[1000px] max-w-[1000px] object-cover shadow-lg mr-14 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
-              alt={features[displayedFeature].title}
-              src={features[displayedFeature].image}
-            />
+        </div>
+
+        {/* Desktop/Tablet View - Original Layout */}
+        <div className="hidden md:block">
+          <div className="flex flex-col xl:flex-row xl:gap-8 md:px-4 lg:px-8">
+            {/* Features List - Top on tablet, left on desktop */}
+            <div className="flex flex-col justify-start xl:w-[600px] xl:flex-shrink-0" style={{ maxWidth: windowWidth < 1280 ? '100%' : 600 }}>
+              {/* Heading is now shared, not rendered here */}
+              <div
+                className="w-full flex flex-col pr-2 custom-scrollbar overflow-y-auto xl:items-start"
+                style={{
+                  height: windowWidth < 1280 ? 300 : 420, // smaller height for tablet
+                  gap: windowWidth < 1280 ? 24 : 48, // smaller gap for tablet
+                  scrollSnapType: 'y mandatory',
+                }}
+                ref={scrollContainerRef}
+              >
+                {features.map((feature, idx) => (
+                  <Card
+                    key={feature.id}
+                    className={`mb-3 md:mb-2 border-none shadow-none cursor-pointer transition-all duration-300 w-full scroll-snap-align-center ${
+                      activeFeature === idx
+                        ? "bg-white"
+                        : "bg-transparent opacity-60"
+                    }`}
+                    onClick={() => {
+                      setActiveFeature(idx);
+                      scrollToFeature(idx);
+                    }}
+                    ref={el => featureRefs.current[idx] = el}
+                    style={{ 
+                      minHeight: windowWidth < 1024 ? 140 : 140, 
+                      maxHeight: windowWidth < 1024 ? 200 : 180 
+                    }}
+                  >
+                    <CardContent className="p-0">
+                      <div className="flex flex-col items-start gap-2">
+                        <h3 className={`self-stretch font-semibold text-2xl md:text-xl leading-9 md:leading-7 transition-all duration-300 ${
+                          activeFeature === idx ? "text-[#202020]" : "text-[#b0b0b0]"
+                        }`}>
+                          {feature.title}
+                        </h3>
+                        <p className={`self-stretch font-normal text-lg md:text-base leading-7 md:leading-6 transition-all duration-300 lg:max-w-[500px] md:max-w-full ${
+                          activeFeature === idx ? "text-[#565a67]" : "text-[#d0d0d0]"
+                        }`}>
+                          {feature.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+            {/* Image - Bottom on tablet, right on desktop */}
+            <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : '0px' }}>
+              <img
+                className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
+                alt={features[displayedFeature].title}
+                src={features[displayedFeature].image}
+              />
+            </div>
           </div>
         </div>
       </div>

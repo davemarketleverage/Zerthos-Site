@@ -34,7 +34,7 @@ export const Header = ({ isScrolled = false }) => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-all duration-300 md:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`fixed inset-0 bg-black bg-opacity-50 z-[60] transition-all duration-300 md:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className={`absolute top-0 right-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-6 pt-20">
             <div className="flex justify-between items-center mb-8">
