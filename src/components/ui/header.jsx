@@ -18,6 +18,9 @@ export const Header = ({ isScrolled = false }) => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-4 text-lg font-medium items-center">
           <a href="/" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Home</a>
+          <a href="/technology" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Technology</a>
+          <a href="/industries" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Industries</a>
+          <a href="/leadership" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Leadership</a>
           <a href="/careers" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Careers</a>
           <a href="/contact" className="border border-[#F09A07] text-[#F09A07] rounded-xl px-5 py-2 ml-2 font-semibold hover:bg-[#FFF7E0] transition">Contact</a>
         </nav>
@@ -58,6 +61,27 @@ export const Header = ({ isScrolled = false }) => {
                 className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
               >
                 Home
+              </a>
+              <a
+                href="/technology"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              >
+                Technology
+              </a>
+              <a
+                href="/industries"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              >
+                Industries
+              </a>
+              <a
+                href="/leadership"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              >
+                Leadership
               </a>
               <a
                 href="/careers"
