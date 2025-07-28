@@ -1195,7 +1195,7 @@ export const Homepage = () => {
       <div
         className={`fixed z-30 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
-          ${currentSection === 5 ? 'top-28 left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8 md:hidden lg:block' : ''}
+          ${currentSection === 5 ? 'top-28 left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8 md:hidden' : ''}
         `}
         style={{
           transitionProperty: 'all',
