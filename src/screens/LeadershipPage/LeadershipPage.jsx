@@ -52,7 +52,7 @@ export const LeadershipPage = () => {
       name: "Christopher Cochran",
       title: "President & CEO, Zerthos, Inc.",
       image: christopherCochran,
-      linkedin: "https://linkedin.com/in/christopher-cochran",
+      linkedin: "https://www.linkedin.com/in/pghcochran/",
       bio: `Christopher Cochran serves as President & CEO of Zerthos, Inc., leading the company's mission to revolutionize data delivery through the TalonX protocol. With over 30 years of experience in enterprise technology, Christopher has been instrumental in developing TalonX from concept to deployment.
 
 Prior to founding Zerthos, Christopher held leadership positions at BluChip Solutions and Coeptis Therapeutics, where he gained deep expertise in high-performance computing and data infrastructure. His background spans from Division I wrestling at the University of Tennessee to authoring "What's GOOD About TODAY?" - reflecting his commitment to both physical and intellectual excellence.
@@ -63,7 +63,7 @@ Christopher's vision for Zerthos centers on creating technology that doesn't jus
       name: "Mark A. Grace",
       title: "Chief Legal Officer and General Counsel",
       image: markGrace,
-      linkedin: "https://linkedin.com/in/mark-grace",
+      linkedin: "https://www.linkedin.com/in/mark-grace-7477495/",
       bio: `Mark A. Grace serves as Chief Legal Officer and General Counsel at Zerthos, bringing over two decades of legal expertise in high-tech and intellectual property law. As managing partner at Cohen & Grace, LLC, Mark has established himself as a leading trial lawyer in patent and trademark infringement, trade secrets, and complex commercial litigation.
 
 Mark's legal career began with a strong technical foundation, earning a degree in Nuclear Engineering from Penn State University before pursuing his Juris Doctor at George Washington University. His professional journey includes significant roles at Westinghouse, Texas Utilities Electric Company, Winston & Strawn, and Cohen & Grigsby, providing him with comprehensive experience in both corporate and litigation environments.
