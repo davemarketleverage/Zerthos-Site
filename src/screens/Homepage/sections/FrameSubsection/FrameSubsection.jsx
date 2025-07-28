@@ -5,7 +5,7 @@ export const FrameSubsection = () => {
   return (
     <section className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 sm:gap-6 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0">
       <div className="flex flex-col items-start gap-6 md:gap-4 sm:gap-3 w-full">
-        <h1 className="w-full xs:w-[60%] md:w-full mt-[-1.00px] font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] sm:text-[36px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] sm:leading-[36px] break-words">
+        <h1 className="w-full xs:w-[60%] md:w-full mt-8 sm:mt-6 md:mt-4 font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] sm:text-[36px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] sm:leading-[36px] break-words">
           Delivering data,
           <br />
           driving innovation
