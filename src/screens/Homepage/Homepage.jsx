@@ -1195,7 +1195,7 @@ export const Homepage = () => {
       <div
         className={`fixed z-30 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
-          ${currentSection === 5 ? 'top-28 md:top-[74px] left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8' : ''}
+          ${currentSection === 5 ? 'top-28 left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8 md:hidden' : ''}
         `}
         style={{
           transitionProperty: 'all',
@@ -1204,7 +1204,7 @@ export const Homepage = () => {
         <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
             ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
-            ${currentSection === 5 ? 'text-[32px] sm:text-[20px] md:text-[30px] lg:text-[36px] xl:text-[40px] xl:ml-16 leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight sm:text-left md:text-left lg:text-left xl:text-left' : ''}
+            ${currentSection === 5 ? 'text-[32px] sm:text-[20px] md:text-[30px] lg:text-[36px] xl:text-[40px] xl:ml-0 leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight sm:text-left md:text-left lg:text-left xl:text-left' : ''}
             text-[#202020] pointer-events-auto`
           }
           style={{

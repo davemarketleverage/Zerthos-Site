@@ -86,7 +86,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
   };
 
   return (
-    <section className="relative py-12 mt-24 sm:ml-0 sm:mt-16 md:ml-12 md:mt-20 lg:ml-20">
+    <section className="relative py-12 mt-24 sm:ml-0 sm:mt-16 md:ml-0 md:mt-0 lg:ml-0">
       <div className="mx-auto">
         {/* Mobile View - 2x2 Grid Layout */}
         <div className="md:hidden">
@@ -127,7 +127,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
             <div className="flex flex-col justify-start xl:w-[600px] xl:flex-shrink-0" style={{ maxWidth: windowWidth < 1280 ? '100%' : 600 }}>
               {/* Heading is now shared, not rendered here */}
               <div
-                className="w-full flex flex-col pr-2 custom-scrollbar overflow-y-auto xl:items-start"
+                className="w-full flex flex-col pr-2 custom-scrollbar overflow-y-auto xl:items-start md:items-center xl:items-start"
                 style={{
                   height: windowWidth < 1280 ? 300 : 420, // smaller height for tablet
                   gap: windowWidth < 1280 ? 24 : 48, // smaller gap for tablet
@@ -154,13 +154,13 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
                     }}
                   >
                     <CardContent className="p-0">
-                      <div className="flex flex-col items-start gap-2">
-                        <h3 className={`self-stretch font-semibold text-2xl md:text-xl leading-9 md:leading-7 transition-all duration-300 ${
+                      <div className="flex flex-col items-start md:items-center xl:items-start gap-2">
+                        <h3 className={`font-semibold text-2xl md:text-xl leading-9 md:leading-7 transition-all duration-300 md:text-center xl:text-left ${
                           activeFeature === idx ? "text-[#202020]" : "text-[#b0b0b0]"
                         }`}>
                           {feature.title}
                         </h3>
-                        <p className={`self-stretch font-normal text-lg md:text-base leading-7 md:leading-6 transition-all duration-300 lg:max-w-[500px] md:max-w-full ${
+                        <p className={`font-normal text-lg md:text-base leading-7 md:leading-6 transition-all duration-300 lg:max-w-[500px] md:max-w-full md:text-center xl:text-left ${
                           activeFeature === idx ? "text-[#565a67]" : "text-[#d0d0d0]"
                         }`}>
                           {feature.description}
@@ -175,8 +175,8 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
             <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : '0px' }}>
               <img
                 className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
-                alt={features[displayedFeature].title}
-                src={features[displayedFeature].image}
+                alt={features[displayedFeature]?.title}
+                src={features[displayedFeature]?.image}
               />
             </div>
           </div>
