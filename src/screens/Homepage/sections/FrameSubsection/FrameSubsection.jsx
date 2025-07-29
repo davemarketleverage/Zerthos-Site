@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 
 export const FrameSubsection = () => {
+  const navigate = useNavigate();
+
+  const handleTalonXClick = () => {
+    navigate('/technology');
+  };
+
   return (
     <section 
       className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0"
@@ -31,7 +38,10 @@ export const FrameSubsection = () => {
         </p>
       </div>
 
-      <Button className="w-auto h-auto px-6 py-4 md:px-5 md:py-3 sm:px-4 sm:py-3 bg-[linear-gradient(90deg,#E56C15_0%,#EE5522_100%)] overflow-hidden rounded-xl justify-center items-center gap-2.5 inline-flex">
+      <Button 
+        onClick={handleTalonXClick}
+        className="w-auto h-auto px-6 py-4 md:px-5 md:py-3 sm:px-4 sm:py-3 bg-[linear-gradient(90deg,#E56C15_0%,#EE5522_100%)] overflow-hidden rounded-xl justify-center items-center gap-2.5 inline-flex hover:bg-[linear-gradient(90deg,#D55C05_0%,#DD4A12_100%)] transition-all duration-200"
+      >
         <span className="text-white text-base md:text-sm sm:text-sm font-semibold leading-6 md:leading-5 sm:leading-4 break-words">
           See TalonX in Action
         </span>
