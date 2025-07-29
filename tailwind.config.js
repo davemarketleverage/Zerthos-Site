@@ -72,6 +72,12 @@ module.exports = {
           "system-ui",
           "sans-serif",
         ],
+        inter: [
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       keyframes: {
         "accordion-down": {
