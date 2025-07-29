@@ -233,92 +233,115 @@ Best regards,
 
       {/* Current Openings Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 bg-[#202020]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-            Current openings
-          </h2>
-          <p className="text-gray-300 mb-12">
-            If you think you might be a good fit for our team we'd love to hear from you!
-          </p>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-heading">
+              Current openings
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+              If you think you might be a good fit for our team we'd love to hear from you!
+            </p>
+          </div>
           
-          <div className="space-y-0">
+          <div className="space-y-4">
             {jobs.map((job, index) => (
-              <div key={job.id} className="relative">
+              <div key={job.id} className="relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-black/20">
                 <div 
-                  className="flex flex-col sm:flex-row sm:items-center justify-between py-6 px-4 hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:p-8 hover:bg-gray-800/50 transition-all duration-300 cursor-pointer group"
                   onClick={() => toggleJob(job.id)}
                 >
-                  <div className="flex-1 mb-2 sm:mb-0">
-                    <h3 className="text-lg font-bold text-white font-heading">
-                      {job.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      {job.location}
-                    </p>
+                  <div className="flex-1 mb-4 sm:mb-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-white font-heading group-hover:text-orange-400 transition-colors duration-300">
+                        {job.title}
+                      </h3>
+                      <div className="px-3 py-1 bg-orange-500/20 border border-orange-500/30 rounded-full">
+                        <span className="text-orange-400 text-xs font-medium uppercase tracking-wide">
+                          {job.type}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 text-gray-400">
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                        <span className="text-sm font-medium">{job.location}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <span className="text-gray-400 text-sm">
-                      {job.type}
-                    </span>
-                    {expandedJob === job.id ? (
-                      <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    )}
+                  <div className="flex items-center gap-4">
+                    <div className="hidden sm:block w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-all duration-300">
+                      {expandedJob === job.id ? (
+                        <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                      )}
+                    </div>
                   </div>
                 </div>
                 
                 {/* Expanded Job Details */}
                 {expandedJob === job.id && (
-                  <div className="bg-gray-800 px-4 py-6 border-t border-gray-700">
-                    <div className="mb-6">
-                      <p className="text-gray-300 leading-relaxed mb-4">
-                        {job.description}
-                      </p>
-                    </div>
-                    
-                    <div className="grid md:grid-cols-2 gap-6 mb-6">
-                      <div>
-                        <h4 className="text-white font-semibold mb-3">Key Responsibilities:</h4>
-                        <ul className="text-gray-300 space-y-2">
-                          {job.responsibilities.map((resp, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-orange-400 mr-2">•</span>
-                              {resp}
-                            </li>
-                          ))}
-                        </ul>
+                  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-t border-gray-700/50">
+                    <div className="p-6 sm:p-8">
+                      {/* Job Description */}
+                      <div className="mb-8">
+                        <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-orange-400 rounded-full"></div>
+                          About this role
+                        </h4>
+                        <p className="text-gray-300 leading-relaxed text-base">
+                          {job.description}
+                        </p>
                       </div>
-                      <div>
-                        <h4 className="text-white font-semibold mb-3">Requirements:</h4>
-                        <ul className="text-gray-300 space-y-2">
-                          {job.requirements.map((req, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="text-orange-400 mr-2">•</span>
-                              {req}
-                            </li>
-                          ))}
-                        </ul>
+                      
+                      {/* Responsibilities and Requirements */}
+                      <div className="grid lg:grid-cols-2 gap-8 mb-8">
+                        <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+                          <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+                            <div className="w-1 h-5 bg-orange-400 rounded-full"></div>
+                            Key Responsibilities
+                          </h4>
+                          <ul className="text-gray-300 space-y-3">
+                            {job.responsibilities.map((resp, idx) => (
+                              <li key={idx} className="flex items-start gap-3 group/item">
+                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200"></div>
+                                <span className="leading-relaxed">{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+                          <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
+                            <div className="w-1 h-5 bg-orange-400 rounded-full"></div>
+                            Requirements
+                          </h4>
+                          <ul className="text-gray-300 space-y-3">
+                            {job.requirements.map((req, idx) => (
+                              <li key={idx} className="flex items-start gap-3 group/item">
+                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200"></div>
+                                <span className="leading-relaxed">{req}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <div className="flex justify-end">
-                      <Button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleApply(job);
-                        }}
-                        className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>Apply Now</span>
-                      </Button>
+                      
+                      {/* Apply Button */}
+                      <div className="flex justify-end">
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleApply(job);
+                          }}
+                          className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 transform hover:scale-105"
+                        >
+                          <Mail className="w-5 h-5" />
+                          <span>Apply Now</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                )}
-                
-                {index < jobs.length - 1 && (
-                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-700"></div>
                 )}
               </div>
             ))}
