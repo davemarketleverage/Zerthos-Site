@@ -11,9 +11,9 @@ const socialLinks = [
 ];
 
 const legalLinks = [
-  { name: "Cookies policy", href: "#" },
-  { name: "Legal terms", href: "#" },
-  { name: "Privacy policy", href: "#" },
+  { name: "Cookies policy", href: "/cookies-policy" },
+  { name: "Legal terms", href: "/legal-terms" },
+  { name: "Privacy policy", href: "/privacy-policy" },
 ];
 
 export const Footer = () => (
