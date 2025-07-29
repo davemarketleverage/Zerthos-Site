@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/button';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, ChevronUp, Mail } from 'lucide-react';
 import careersHeroGrid from '../../assets/careers-hero-grid.jpg';
 import careersTestimonial from '../../assets/careers-testimonial.jpg';
 
@@ -10,27 +10,102 @@ const jobs = [
   {
     id: "business-development",
     title: "Business development",
-    type: "Onsite - Full time"
+    type: "Onsite - Full time",
+    location: "San Francisco, CA",
+    description: "We're looking for a dynamic Business Development professional to drive growth and establish strategic partnerships. You'll be responsible for identifying new business opportunities, building relationships with potential clients, and contributing to our market expansion strategy.",
+    responsibilities: [
+      "Identify and pursue new business opportunities",
+      "Build and maintain relationships with potential clients",
+      "Develop strategic partnerships",
+      "Conduct market research and competitive analysis",
+      "Collaborate with cross-functional teams"
+    ],
+    requirements: [
+      "3+ years of experience in business development",
+      "Strong communication and negotiation skills",
+      "Proven track record of meeting sales targets",
+      "Experience in the technology sector preferred"
+    ]
   },
   {
     id: "senior-ui-developer",
     title: "Senior UI developer",
-    type: "Onsite - Full time"
+    type: "Onsite - Full time",
+    location: "San Francisco, CA",
+    description: "Join our engineering team as a Senior UI Developer and help us create exceptional user experiences. You'll work on cutting-edge web applications using modern technologies and collaborate with designers and backend developers.",
+    responsibilities: [
+      "Develop responsive and accessible user interfaces",
+      "Collaborate with designers and product managers",
+      "Write clean, maintainable code",
+      "Mentor junior developers",
+      "Participate in code reviews"
+    ],
+    requirements: [
+      "5+ years of experience in frontend development",
+      "Expertise in React, TypeScript, and modern CSS",
+      "Experience with design systems and component libraries",
+      "Strong problem-solving skills"
+    ]
   },
   {
     id: "hr-generalist",
     title: "HR generalist",
-    type: "Onsite - Full time"
+    type: "Onsite - Full time",
+    location: "San Francisco, CA",
+    description: "We're seeking an HR Generalist to support our growing team. You'll handle various HR functions including recruitment, employee relations, benefits administration, and HR operations.",
+    responsibilities: [
+      "Manage full-cycle recruitment process",
+      "Handle employee relations and conflict resolution",
+      "Administer benefits and compensation programs",
+      "Maintain HR records and ensure compliance",
+      "Support performance management processes"
+    ],
+    requirements: [
+      "3+ years of HR experience",
+      "Knowledge of employment laws and regulations",
+      "Strong interpersonal and communication skills",
+      "Experience with HRIS systems preferred"
+    ]
   },
   {
     id: "3d-motion-designer",
     title: "3D motion designer",
-    type: "Onsite - Full time"
+    type: "Onsite - Full time",
+    location: "San Francisco, CA",
+    description: "Join our creative team as a 3D Motion Designer and bring our visual concepts to life. You'll create stunning animations, visual effects, and motion graphics for our products and marketing materials.",
+    responsibilities: [
+      "Create 3D animations and motion graphics",
+      "Develop visual effects for product demos",
+      "Collaborate with marketing and product teams",
+      "Maintain brand consistency across all visual assets",
+      "Stay updated with industry trends and tools"
+    ],
+    requirements: [
+      "3+ years of experience in 3D motion design",
+      "Proficiency in Cinema 4D, After Effects, and related tools",
+      "Strong portfolio demonstrating creative and technical skills",
+      "Experience with real-time rendering preferred"
+    ]
   },
   {
     id: "backend-engineer",
     title: "Backend engineer",
-    type: "Onsite - Full time"
+    type: "Onsite - Full time",
+    location: "San Francisco, CA",
+    description: "We're looking for a Backend Engineer to build scalable and reliable systems that power our applications. You'll work on high-performance APIs, database design, and infrastructure optimization.",
+    responsibilities: [
+      "Design and implement scalable backend systems",
+      "Develop RESTful APIs and microservices",
+      "Optimize database performance and queries",
+      "Ensure system security and data protection",
+      "Collaborate with frontend and DevOps teams"
+    ],
+    requirements: [
+      "4+ years of backend development experience",
+      "Expertise in Node.js, Python, or similar languages",
+      "Experience with cloud platforms (AWS, GCP, Azure)",
+      "Knowledge of database design and optimization"
+    ]
   }
 ];
 
@@ -51,10 +126,30 @@ const whyJoinReasons = [
 
 export const CareersPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [expandedJob, setExpandedJob] = useState(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const toggleJob = (jobId) => {
+    setExpandedJob(expandedJob === jobId ? null : jobId);
+  };
+
+  const handleApply = (job) => {
+    const subject = `Application for ${job.title} position`;
+    const body = `Dear Hiring Team,
+
+I am writing to express my interest in the ${job.title} position at Zerthos.
+
+Please find my resume attached.
+
+Best regards,
+[Your Name]`;
+    
+    const mailtoLink = `mailto:careers@zerthos.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -149,22 +244,79 @@ export const CareersPage = () => {
           <div className="space-y-0">
             {jobs.map((job, index) => (
               <div key={job.id} className="relative">
-                <a 
-                  href={`/job/${job.id}`}
+                <div 
                   className="flex flex-col sm:flex-row sm:items-center justify-between py-6 px-4 hover:bg-gray-800 transition-colors duration-200 cursor-pointer"
+                  onClick={() => toggleJob(job.id)}
                 >
                   <div className="flex-1 mb-2 sm:mb-0">
                     <h3 className="text-lg font-bold text-white font-heading">
                       {job.title}
                     </h3>
+                    <p className="text-gray-400 text-sm mt-1">
+                      {job.location}
+                    </p>
                   </div>
                   <div className="flex items-center space-x-4">
                     <span className="text-gray-400 text-sm">
                       {job.type}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    {expandedJob === job.id ? (
+                      <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    )}
                   </div>
-                </a>
+                </div>
+                
+                {/* Expanded Job Details */}
+                {expandedJob === job.id && (
+                  <div className="bg-gray-800 px-4 py-6 border-t border-gray-700">
+                    <div className="mb-6">
+                      <p className="text-gray-300 leading-relaxed mb-4">
+                        {job.description}
+                      </p>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                      <div>
+                        <h4 className="text-white font-semibold mb-3">Key Responsibilities:</h4>
+                        <ul className="text-gray-300 space-y-2">
+                          {job.responsibilities.map((resp, idx) => (
+                            <li key={idx} className="flex items-start">
+                              <span className="text-orange-400 mr-2">•</span>
+                              {resp}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-3">Requirements:</h4>
+                        <ul className="text-gray-300 space-y-2">
+                          {job.requirements.map((req, idx) => (
+                            <li key={idx} className="flex items-start">
+                              <span className="text-orange-400 mr-2">•</span>
+                              {req}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-end">
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleApply(job);
+                        }}
+                        className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2"
+                      >
+                        <Mail className="w-4 h-4" />
+                        <span>Apply Now</span>
+                      </Button>
+                    </div>
+                  </div>
+                )}
+                
                 {index < jobs.length - 1 && (
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-700"></div>
                 )}

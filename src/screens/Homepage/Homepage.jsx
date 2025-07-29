@@ -4,6 +4,7 @@ import LoadingBar from "react-top-loading-bar";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Header } from "../../components/ui/header";
+import MaskedVideoHero from "../../components/ui/masked-video-hero";
 
 import { DivSubsection } from "./sections/DivSubsection";
 import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
@@ -585,13 +586,9 @@ export const Homepage = () => {
                   />
                 )}
 
-              {/* Hero Image - hidden on mobile, reduced size on tablet */}
-              <div className={`absolute w-[779px] h-[636px] md:w-[400px] md:h-[320px] lg:w-[779px] lg:h-[636px] xl:w-[779px] xl:h-[636px] 2xl:w-[900px] 2xl:h-[736px] bottom-0 md:bottom-0 lg:bottom-0 xl:bottom-0 2xl:bottom-0 right-[30px] md:right-[16px] lg:right-[30px] xl:right-[30px] 2xl:right-[50px] bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/adobestock-961893622-2.png)] bg-cover bg-[50%_50%] z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroImage ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
-                <img
-                  className="absolute w-[636px] h-[634px] md:w-[320px] md:h-[318px] lg:w-[636px] lg:h-[634px] xl:w-[636px] xl:h-[634px] 2xl:w-[736px] 2xl:h-[734px] top-0.5 left-7 md:left-4 lg:left-7 xl:left-7 2xl:left-9 z-[999]"
-                  alt="Vd"
-                  src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/vd.png"
-                />
+              {/* Hero Video with Masked Person - hidden on mobile, reduced size on tablet */}
+              <div className={`absolute bottom-0 md:bottom-0 lg:bottom-0 xl:bottom-0 2xl:bottom-0 right-[30px] md:right-[16px] lg:right-[30px] xl:right-[30px] 2xl:right-[50px] z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroImage ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+                <MaskedVideoHero />
               </div>
 
               <div className="z-[999] md:relative md:z-auto">

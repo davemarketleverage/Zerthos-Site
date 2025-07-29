@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
+import performanceSnapshotBg from "../../../../assets/performance-snapshot-bg.jpg";
+import performanceSpeedometer from "../../../../assets/performance-speedometer.mp4";
 
 export const OverlapGroupWrapperSubsection = () => {
   const [barWidths, setBarWidths] = useState([0, 0, 0]);
@@ -60,17 +62,20 @@ export const OverlapGroupWrapperSubsection = () => {
 
   return (
     <section ref={ref} className="relative w-full h-screen bg-[#010101] flex items-start justify-start">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img
-          className="w-full h-full object-cover"
-          alt="Element coll"
-          src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/5672185-coll-wavebreak-animation-1920x1080-1.png"
+        <video
+          src={performanceSpeedometer}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover pt-[100%] lg:pt-0 lg:pl-[30%]"
         />
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center mt-12">
+      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center mt-12 lg:mt-12 -mt-[20%]">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16 w-full">
           
           {/* Left Side - Title and Performance Card */}
@@ -123,11 +128,10 @@ export const OverlapGroupWrapperSubsection = () => {
             </p>
           </div>
 
-          {/* Right Side - Speedometer/Graphic (Desktop only) */}
+          {/* Right Side - Empty space for layout balance */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
             <div className="w-[400px] h-[400px] flex items-center justify-center">
-              {/* Placeholder for speedometer graphic - you can add the actual speedometer component here */}
-              <div className="w-full h-full bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full opacity-20"></div>
+              {/* Video is now in background */}
             </div>
           </div>
         </div>
