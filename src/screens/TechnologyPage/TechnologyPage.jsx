@@ -203,39 +203,6 @@ export const TechnologyPage = () => {
         </div>
       </section>
 
-      {/* Built for what comes next Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-[#333333] leading-tight">
-                Built for what
-                <br />
-                comes next
-              </h2>
-              <p className="text-lg md:text-xl text-[#333333] leading-relaxed">
-                The future won't wait. And your data shouldn't either.
-                TalonX isn't just a better engine — it's a new kind of fuel for
-                the digital world.
-              </p>
-              <p className="text-lg md:text-xl text-[#333333] leading-relaxed font-light italic">
-                What the world couldn't move, we just did.
-              </p>
-            </div>
-            
-            {/* Right - Golden Globe Graphic */}
-            <div className="relative h-96 lg:h-[500px] flex items-center justify-center">
-              <img 
-                src={technologyGoldenGlobe} 
-                alt="Golden globe graphic" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* A new class of performance Section */}
       <section className="px-4 sm:px-6 lg:px-8 pt-20 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -453,6 +420,39 @@ export const TechnologyPage = () => {
             <p className="text-lg md:text-xl text-[#333333] leading-relaxed">
               Wherever data lives — TalonX delivers it faster, leaner, and exactly as it was intended.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Built for what comes next Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-[#333333] leading-tight">
+                Built for what
+                <br />
+                comes next
+              </h2>
+              <p className="text-lg md:text-xl text-[#333333] leading-relaxed">
+                The future won't wait. And your data shouldn't either.
+                TalonX isn't just a better engine — it's a new kind of fuel for
+                the digital world.
+              </p>
+              <p className="text-lg md:text-xl text-[#333333] leading-relaxed font-light italic">
+                What the world couldn't move, we just did.
+              </p>
+            </div>
+            
+            {/* Right - Golden Globe Graphic */}
+            <div className="relative h-96 lg:h-[500px] flex items-center justify-center">
+              <img 
+                src={technologyGoldenGlobe} 
+                alt="Golden globe graphic" 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
