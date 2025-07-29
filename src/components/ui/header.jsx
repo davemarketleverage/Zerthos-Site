@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logoDark from '../../assets/zerthos-dark.png';
 
 export const Header = ({ isScrolled = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('');
+
+  // Detect current page based on pathname
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    if (pathname === '/') {
+      setCurrentPage('home');
+    } else {
+      setCurrentPage(pathname.substring(1)); // Remove leading slash
+    }
+  }, []);
+
+  // Helper function to check if a nav item is active
+  const isActive = (page) => {
+    return currentPage === page;
+  };
 
   return (
     <>
@@ -17,12 +33,66 @@ export const Header = ({ isScrolled = false }) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-4 text-lg font-medium items-center">
-          <a href="/" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Home</a>
-          <a href="/technology" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Technology</a>
-          <a href="/industries" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Industries</a>
-          <a href="/leadership" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Leadership</a>
-          <a href="/careers" className="text-[#202020] hover:text-[#F09A07] transition px-3 py-1">Careers</a>
-          <a href="/contact" className="border border-[#F09A07] text-[#F09A07] rounded-xl px-5 py-2 ml-2 font-semibold hover:bg-[#FFF7E0] transition">Contact</a>
+          <a 
+            href="/" 
+            className={`px-3 py-1 transition-colors duration-200 ${
+              isActive('home') 
+                ? 'text-[#F09A07] font-semibold' 
+                : 'text-[#202020] hover:text-[#F09A07]'
+            }`}
+          >
+            Home
+          </a>
+          <a 
+            href="/technology" 
+            className={`px-3 py-1 transition-colors duration-200 ${
+              isActive('technology') 
+                ? 'text-[#F09A07] font-semibold' 
+                : 'text-[#202020] hover:text-[#F09A07]'
+            }`}
+          >
+            Technology
+          </a>
+          <a 
+            href="/industries" 
+            className={`px-3 py-1 transition-colors duration-200 ${
+              isActive('industries') 
+                ? 'text-[#F09A07] font-semibold' 
+                : 'text-[#202020] hover:text-[#F09A07]'
+            }`}
+          >
+            Industries
+          </a>
+          <a 
+            href="/leadership" 
+            className={`px-3 py-1 transition-colors duration-200 ${
+              isActive('leadership') 
+                ? 'text-[#F09A07] font-semibold' 
+                : 'text-[#202020] hover:text-[#F09A07]'
+            }`}
+          >
+            Leadership
+          </a>
+          <a 
+            href="/careers" 
+            className={`px-3 py-1 transition-colors duration-200 ${
+              isActive('careers') 
+                ? 'text-[#F09A07] font-semibold' 
+                : 'text-[#202020] hover:text-[#F09A07]'
+            }`}
+          >
+            Careers
+          </a>
+          <a 
+            href="/contact" 
+            className={`border border-[#F09A07] rounded-xl px-5 py-2 ml-2 font-semibold transition-colors duration-200 ${
+              isActive('contact') 
+                ? 'bg-[#F09A07] text-white hover:bg-[#F09A07]/90' 
+                : 'text-[#F09A07] hover:bg-[#FFF7E0]'
+            }`}
+          >
+            Contact
+          </a>
         </nav>
         
         {/* Mobile Menu Button */}
@@ -58,42 +128,66 @@ export const Header = ({ isScrolled = false }) => {
               <a
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                  isActive('home')
+                    ? 'bg-[#F09A07]/10 text-[#F09A07] font-semibold border-l-4 border-[#F09A07]'
+                    : 'text-gray-800 hover:bg-gray-100'
+                }`}
               >
                 Home
               </a>
               <a
                 href="/technology"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                  isActive('technology')
+                    ? 'bg-[#F09A07]/10 text-[#F09A07] font-semibold border-l-4 border-[#F09A07]'
+                    : 'text-gray-800 hover:bg-gray-100'
+                }`}
               >
                 Technology
               </a>
               <a
                 href="/industries"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                  isActive('industries')
+                    ? 'bg-[#F09A07]/10 text-[#F09A07] font-semibold border-l-4 border-[#F09A07]'
+                    : 'text-gray-800 hover:bg-gray-100'
+                }`}
               >
                 Industries
               </a>
               <a
                 href="/leadership"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                  isActive('leadership')
+                    ? 'bg-[#F09A07]/10 text-[#F09A07] font-semibold border-l-4 border-[#F09A07]'
+                    : 'text-gray-800 hover:bg-gray-100'
+                }`}
               >
                 Leadership
               </a>
               <a
                 href="/careers"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left py-3 px-4 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className={`block w-full text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
+                  isActive('careers')
+                    ? 'bg-[#F09A07]/10 text-[#F09A07] font-semibold border-l-4 border-[#F09A07]'
+                    : 'text-gray-800 hover:bg-gray-100'
+                }`}
               >
                 Careers
               </a>
               <a
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-3 px-4 border border-[#F09A07] text-[#F09A07] rounded-xl font-semibold hover:bg-[#FFF7E0] transition-colors duration-200"
+                className={`block w-full text-center py-3 px-4 rounded-xl font-semibold transition-colors duration-200 ${
+                  isActive('contact')
+                    ? 'bg-[#F09A07] text-white hover:bg-[#F09A07]/90'
+                    : 'border border-[#F09A07] text-[#F09A07] hover:bg-[#FFF7E0]'
+                }`}
               >
                 Contact
               </a>

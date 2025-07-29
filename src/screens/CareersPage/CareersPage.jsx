@@ -4,7 +4,7 @@ import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
 import { ArrowUpRight, ChevronDown, ChevronUp, Mail } from 'lucide-react';
 import careersHeroGrid from '../../assets/careers-hero-grid.jpg';
-import careersTestimonial from '../../assets/careers-testimonial.jpg';
+import careerPhoto from '../../assets/career-photo.jpeg';
 
 const jobs = [
   {
@@ -218,7 +218,7 @@ Best regards,
           <div className="flex items-center justify-center space-x-4">
             <div className="w-16 h-16 rounded-lg overflow-hidden">
               <img 
-                src={careersTestimonial} 
+                src={careerPhoto} 
                 alt="Harry Donald" 
                 className="w-full h-full object-cover"
               />
@@ -232,117 +232,145 @@ Best regards,
       </section>
 
       {/* Current Openings Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 bg-[#202020]">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-heading">
-              Current openings
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-[#202020] relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F09A07]/10 border border-[#F09A07]/30 rounded-full mb-6">
+              <div className="w-2 h-2 bg-[#F09A07] rounded-full"></div>
+              <span className="text-[#F09A07] text-sm font-normal uppercase tracking-wider">We're Hiring</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 font-heading leading-tight">
+              Join Our Team
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-              If you think you might be a good fit for our team we'd love to hear from you!
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+              Discover exciting opportunities to shape the future of data transmission technology
             </p>
           </div>
           
           <div className="space-y-4">
             {jobs.map((job, index) => (
-              <div key={job.id} className="relative bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-black/20">
-                <div 
-                  className="flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:p-8 hover:bg-gray-800/50 transition-all duration-300 cursor-pointer group"
-                  onClick={() => toggleJob(job.id)}
-                >
-                  <div className="flex-1 mb-4 sm:mb-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-white font-heading group-hover:text-orange-400 transition-colors duration-300">
-                        {job.title}
-                      </h3>
-                      <div className="px-3 py-1 bg-orange-500/20 border border-orange-500/30 rounded-full">
-                        <span className="text-orange-400 text-xs font-medium uppercase tracking-wide">
-                          {job.type}
-                        </span>
+              <div key={job.id} className="group">
+                <div className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-700 hover:border-[#F09A07]/50 transition-colors duration-200 hover:shadow-lg">
+                  {/* Header */}
+                  <div 
+                    className="flex flex-col lg:flex-row lg:items-center justify-between p-6 lg:p-8 hover:bg-gray-800/30 transition-colors duration-200 cursor-pointer"
+                    onClick={() => toggleJob(job.id)}
+                  >
+                    <div className="flex-1 mb-4 lg:mb-0">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
+                        <div className="flex-1">
+                          <h3 className="text-2xl md:text-3xl font-semibold text-white font-heading group-hover:text-[#F09A07] transition-colors duration-200 mb-2">
+                            {job.title}
+                          </h3>
+                          <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex items-center gap-2 px-3 py-1 bg-[#F09A07]/10 border border-[#F09A07]/30 rounded-full">
+                              <div className="w-2 h-2 bg-[#F09A07] rounded-full"></div>
+                              <span className="text-[#F09A07] text-sm font-medium uppercase tracking-wide">
+                                {job.type}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 px-3 py-1 bg-gray-800 border border-gray-600 rounded-full">
+                              <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                              <span className="text-gray-300 text-sm font-normal">{job.location}</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                        <span className="text-sm font-medium">{job.location}</span>
+                    
+                    {/* Toggle Button */}
+                    <div className="flex items-center gap-4">
+                      <div className="hidden lg:flex items-center gap-3">
+                        <span className="text-gray-400 text-sm font-normal">View Details</span>
+                        <div className="w-10 h-10 bg-[#F09A07]/10 border border-[#F09A07]/30 rounded-full flex items-center justify-center group-hover:bg-[#F09A07] transition-colors duration-200">
+                          {expandedJob === job.id ? (
+                            <ChevronUp className="w-5 h-5 text-[#F09A07] group-hover:text-white transition-colors duration-200" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-[#F09A07] group-hover:text-white transition-colors duration-200" />
+                          )}
+                        </div>
+                      </div>
+                      <div className="lg:hidden w-8 h-8 bg-[#F09A07]/10 border border-[#F09A07]/30 rounded-full flex items-center justify-center">
+                        {expandedJob === job.id ? (
+                          <ChevronUp className="w-4 h-4 text-[#F09A07]" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4 text-[#F09A07]" />
+                        )}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="hidden sm:block w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-all duration-300">
-                      {expandedJob === job.id ? (
-                        <ChevronUp className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                      )}
+                  
+                  {/* Expanded Job Details */}
+                  {expandedJob === job.id && (
+                    <div className="bg-gray-800 border-t border-gray-700">
+                      <div className="p-6 lg:p-8">
+                        {/* Job Description */}
+                        <div className="mb-8">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="w-1 h-6 bg-[#F09A07] rounded-full"></div>
+                            <h4 className="text-white font-semibold text-lg">About This Role</h4>
+                          </div>
+                          <div className="bg-gray-900 rounded-xl p-4 border border-gray-700">
+                            <p className="text-gray-300 leading-relaxed">
+                              {job.description}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Responsibilities and Requirements */}
+                        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+                          <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="w-6 h-6 bg-[#F09A07] rounded-lg flex items-center justify-center">
+                                <div className="w-2 h-2 bg-white rounded-sm"></div>
+                              </div>
+                              <h4 className="text-white font-semibold">Key Responsibilities</h4>
+                            </div>
+                            <ul className="space-y-3">
+                              {job.responsibilities.map((resp, idx) => (
+                                <li key={idx} className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-[#F09A07] rounded-full mt-2 flex-shrink-0"></div>
+                                  <span className="text-gray-300 leading-relaxed text-sm">{resp}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 rounded-xl p-6 border border-gray-700">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="w-6 h-6 bg-[#F09A07] rounded-lg flex items-center justify-center">
+                                <div className="w-2 h-2 bg-white rounded-sm"></div>
+                              </div>
+                              <h4 className="text-white font-semibold">Requirements</h4>
+                            </div>
+                            <ul className="space-y-3">
+                              {job.requirements.map((req, idx) => (
+                                <li key={idx} className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-[#F09A07] rounded-full mt-2 flex-shrink-0"></div>
+                                  <span className="text-gray-300 leading-relaxed text-sm">{req}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                        
+                        {/* Apply Button */}
+                        <div className="flex justify-end">
+                          <Button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleApply(job);
+                            }}
+                            className="bg-[#F09A07] hover:bg-[#F09A07]/90 text-white font-medium px-8 py-3 rounded-xl transition-colors duration-200 flex items-center gap-3 shadow-lg hover:shadow-xl"
+                          >
+                            <Mail className="w-5 h-5" />
+                            <span>Apply for this position</span>
+                            <ArrowUpRight className="w-5 h-5" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
-                
-                {/* Expanded Job Details */}
-                {expandedJob === job.id && (
-                  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-t border-gray-700/50">
-                    <div className="p-6 sm:p-8">
-                      {/* Job Description */}
-                      <div className="mb-8">
-                        <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
-                          <div className="w-1 h-6 bg-orange-400 rounded-full"></div>
-                          About this role
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed text-base">
-                          {job.description}
-                        </p>
-                      </div>
-                      
-                      {/* Responsibilities and Requirements */}
-                      <div className="grid lg:grid-cols-2 gap-8 mb-8">
-                        <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
-                          <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
-                            <div className="w-1 h-5 bg-orange-400 rounded-full"></div>
-                            Key Responsibilities
-                          </h4>
-                          <ul className="text-gray-300 space-y-3">
-                            {job.responsibilities.map((resp, idx) => (
-                              <li key={idx} className="flex items-start gap-3 group/item">
-                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200"></div>
-                                <span className="leading-relaxed">{resp}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
-                          <h4 className="text-white font-semibold text-lg mb-4 flex items-center gap-2">
-                            <div className="w-1 h-5 bg-orange-400 rounded-full"></div>
-                            Requirements
-                          </h4>
-                          <ul className="text-gray-300 space-y-3">
-                            {job.requirements.map((req, idx) => (
-                              <li key={idx} className="flex items-start gap-3 group/item">
-                                <div className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200"></div>
-                                <span className="leading-relaxed">{req}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                      
-                      {/* Apply Button */}
-                      <div className="flex justify-end">
-                        <Button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleApply(job);
-                          }}
-                          className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 transform hover:scale-105"
-                        >
-                          <Mail className="w-5 h-5" />
-                          <span>Apply Now</span>
-                          <ArrowUpRight className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </div>
