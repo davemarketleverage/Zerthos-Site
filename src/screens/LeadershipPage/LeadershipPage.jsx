@@ -224,7 +224,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
 
       {/* Call to Action Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-[#E5F7FF] relative md:h-[50vh]">
-        <div className="max-w-7xl mx-auto h-full flex items-center">
+        <div className="max-w-7xl mx-auto h-full flex">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Content */}
             <div>
@@ -234,7 +234,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
             </div>
             
             {/* Right Content */}
-            <div className="flex justify-center lg:justify-end flex-col gap-4">
+            <div className="flex flex-col gap-4">
             <p className="text-lg md:text-xl text-[#333333] leading-relaxed ">
                 We're always looking for leaders at every level, people who question limits, build from scratch, and engineer with intent. Join a team rewriting the rules of data performance.
               </p>

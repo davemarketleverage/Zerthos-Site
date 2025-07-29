@@ -2,9 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
 import industriesHeroWave from '../../assets/industries-hero-wave.jpg';
+import healthcareImage from '../../assets/healthcare-image.jpg';
+import gamingImage from '../../assets/gaming-image.jpg';
+import energyImage from '../../assets/energy-image.jpg';
+import governmentImage from '../../assets/government-image.jpg';
+import financeImage from '../../assets/finance-image.jpg';
+import mediaImage from '../../assets/media-image.jpg';
+import aiImage from '../../assets/ai-image.jpg';
+import manufacturingImage from '../../assets/manufacturing-image3.jpg';
+import aerospaceImage from '../../assets/aerospace-image.jpg';
+import logisticsImage from '../../assets/logistics-image.jpg';
+import insuranceImage from '../../assets/insurance-image.jpg';
+import legalImage from '../../assets/legal-image.jpg';
+import edtechImage from '../../assets/edtech-image.jpg';
+import biotechImage from '../../assets/biotech-image.jpg';
+import ecommerceImage from '../../assets/ecommerce-image.jpg';
+import cloudImage from '../../assets/cloud-image.jpg';
 
 export const IndustriesPage = () => {
   const [activeIndustry, setActiveIndustry] = useState('Healthcare');
+  const [activeAdditionalIndustry, setActiveAdditionalIndustry] = useState('Aerospace & Aviation');
+  const [activeEmergingSector, setActiveEmergingSector] = useState('Education Technology (EdTech)');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -17,7 +35,7 @@ export const IndustriesPage = () => {
     'Finance',
     'Media & Entertainment',
     'AI & Big Data',
-    'Manufacturing & Aut'
+    'Manufacturing & Automotive'
   ];
 
   const emergingSectors = [
@@ -47,7 +65,7 @@ export const IndustriesPage = () => {
         'HIPAA-ready frameworks, with exact data preservation'
       ],
       conclusion: 'TalonX transforms patient data from a delay to a decision.',
-      image: '/healthcare-image.jpg'
+      image: healthcareImage
     },
     'Gaming & Interactive Media': {
       title: 'TalonX in Gaming: Powering the next generation of play',
@@ -59,7 +77,7 @@ export const IndustriesPage = () => {
         'Distribute content globally without lag or compromise'
       ],
       conclusion: 'TalonX levels up your infrastructure.',
-      image: '/gaming-image.jpg'
+      image: gamingImage
     },
     'Energy & Utilities': {
       title: 'TalonX in Energy: Powering smarter infrastructure',
@@ -71,7 +89,7 @@ export const IndustriesPage = () => {
         'Move energy market data without delay'
       ],
       conclusion: 'TalonX helps power flow smarter.',
-      image: '/energy-image.jpg'
+      image: energyImage
     },
     'Government & Defense': {
       title: 'TalonX in Government & Defense: Secure data at mission speed',
@@ -83,7 +101,7 @@ export const IndustriesPage = () => {
         'Compliance with federal security standards'
       ],
       conclusion: 'TalonX ensures mission-critical data arrives when it matters most.',
-      image: '/government-image.jpg'
+      image: governmentImage
     },
     'Finance': {
       title: 'TalonX in Finance: Trading at the speed of light',
@@ -95,7 +113,7 @@ export const IndustriesPage = () => {
         'Secure compliance reporting and auditing'
       ],
       conclusion: 'TalonX gives you the competitive edge in every trade.',
-      image: '/finance-image.jpg'
+      image: financeImage
     },
     'Media & Entertainment': {
       title: 'TalonX in Media: Deliver content at the speed of thought',
@@ -107,7 +125,7 @@ export const IndustriesPage = () => {
         'Instant video editing and collaboration'
       ],
       conclusion: 'TalonX brings your content to life instantly.',
-      image: '/media-image.jpg'
+      image: mediaImage
     },
     'AI & Big Data': {
       title: 'TalonX in AI: Process data at the speed of intelligence',
@@ -119,9 +137,9 @@ export const IndustriesPage = () => {
         'Accelerated research and development'
       ],
       conclusion: 'TalonX accelerates your AI journey.',
-      image: '/ai-image.jpg'
+      image: aiImage
     },
-    'Manufacturing & Aut': {
+    'Manufacturing & Automotive': {
       title: 'TalonX in Manufacturing: Automate at the speed of innovation',
       description: 'Modern manufacturing relies on real-time data from sensors, IoT devices, and automation systems. TalonX ensures every component communicates instantly.',
       benefits: [
@@ -131,7 +149,7 @@ export const IndustriesPage = () => {
         'Supply chain visibility and control'
       ],
       conclusion: 'TalonX powers the factory of the future.',
-      image: '/manufacturing-image.jpg'
+      image: manufacturingImage
     },
     'Aerospace & Aviation': {
       title: 'TalonX in Aerospace: Navigate data at the speed of flight',
@@ -143,7 +161,7 @@ export const IndustriesPage = () => {
         'Rapid maintenance and safety system alerts'
       ],
       conclusion: 'TalonX keeps your operations flying high.',
-      image: '/aerospace-image.jpg'
+      image: aerospaceImage
     },
     'Logistics & Supply Chain': {
       title: 'TalonX in Logistics: Streamline operations at the speed of commerce',
@@ -155,7 +173,7 @@ export const IndustriesPage = () => {
         'Seamless integration with IoT and sensor networks'
       ],
       conclusion: 'TalonX delivers efficiency at every step.',
-      image: '/logistics-image.jpg'
+      image: logisticsImage
     },
     'Insurance': {
       title: 'TalonX in Insurance: Process claims at the speed of need',
@@ -167,7 +185,7 @@ export const IndustriesPage = () => {
         'Seamless customer data integration'
       ],
       conclusion: 'TalonX protects your business with speed.',
-      image: '/insurance-image.jpg'
+      image: insuranceImage
     },
     'Legal & eDiscovery': {
       title: 'TalonX in Legal: Access information at the speed of justice',
@@ -179,7 +197,7 @@ export const IndustriesPage = () => {
         'Secure client communication and file sharing'
       ],
       conclusion: 'TalonX accelerates the pursuit of justice.',
-      image: '/legal-image.jpg'
+      image: legalImage
     },
     'Education Technology (EdTech)': {
       title: 'TalonX in EdTech: Learn at the speed of curiosity',
@@ -191,7 +209,7 @@ export const IndustriesPage = () => {
         'Rapid assessment and feedback systems'
       ],
       conclusion: 'TalonX makes learning limitless.',
-      image: '/edtech-image.jpg'
+      image: edtechImage
     },
     'Biotechnology & Genomics': {
       title: 'TalonX in Biotech: Analyze data at the speed of discovery',
@@ -203,7 +221,7 @@ export const IndustriesPage = () => {
         'Seamless collaboration across research institutions'
       ],
       conclusion: 'TalonX accelerates the pace of discovery.',
-      image: '/biotech-image.jpg'
+      image: biotechImage
     },
     'eCommerce & Retail': {
       title: 'TalonX in eCommerce: Sell at the speed of desire',
@@ -215,7 +233,7 @@ export const IndustriesPage = () => {
         'Rapid analytics and personalized recommendations'
       ],
       conclusion: 'TalonX turns clicks into conversions instantly.',
-      image: '/ecommerce-image.jpg'
+      image: ecommerceImage
     },
     'Cloud Services & SaaS Providers': {
       title: 'TalonX in Cloud: Scale at the speed of demand',
@@ -227,7 +245,7 @@ export const IndustriesPage = () => {
         'Seamless API performance and integration'
       ],
       conclusion: 'TalonX powers your cloud at the speed of light.',
-      image: '/cloud-image.jpg'
+      image: cloudImage
     }
   };
 
@@ -300,15 +318,12 @@ export const IndustriesPage = () => {
                 {industryData[activeIndustry].title}
               </h2>
               
-              <div className="aspect-video bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 rounded-xl flex items-center justify-center shadow-sm">
-                <div className="text-center text-gray-500">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium">Industry-specific image placeholder</p>
-                </div>
+              <div className="rounded-xl overflow-hidden shadow-sm aspect-[3/1]">
+                <img 
+                  src={industryData[activeIndustry].image} 
+                  alt={`${activeIndustry} industry`}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-4xl">
@@ -346,14 +361,14 @@ export const IndustriesPage = () => {
                   <div
                     key={industry}
                     className={`flex items-center cursor-pointer transition-all duration-300 py-2 ${
-                      activeIndustry === industry ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
+                      activeAdditionalIndustry === industry ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
                     }`}
-                    onClick={() => setActiveIndustry(industry)}
+                    onClick={() => setActiveAdditionalIndustry(industry)}
                   >
-                    {activeIndustry === industry && (
+                    {activeAdditionalIndustry === industry && (
                       <div className="w-3 h-3 bg-[#E8B96F] rounded-full mr-4 flex-shrink-0"></div>
                     )}
-                    <span className={`text-lg ${activeIndustry === industry ? 'ml-0' : 'ml-7'}`}>
+                    <span className={`text-lg ${activeAdditionalIndustry === industry ? 'ml-0' : 'ml-7'}`}>
                       {industry}
                     </span>
                   </div>
@@ -363,29 +378,26 @@ export const IndustriesPage = () => {
             
             {/* Right - Industry Details */}
             <div>
-              {activeIndustry && industryData[activeIndustry] ? (
+              {activeAdditionalIndustry && industryData[activeAdditionalIndustry] ? (
                 <div className="space-y-8">
                   <h3 className="text-2xl md:text-3xl font-bold text-[#333333] font-heading">
-                    {industryData[activeIndustry].title}
+                    {industryData[activeAdditionalIndustry].title}
                   </h3>
                   
-                  <div className="aspect-video bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 rounded-xl flex items-center justify-center shadow-sm">
-                    <div className="text-center text-gray-500">
-                      <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="text-sm font-medium">Industry-specific image placeholder</p>
-                    </div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-sm">
+                    <img 
+                      src={industryData[activeAdditionalIndustry].image} 
+                      alt={`${activeAdditionalIndustry} industry`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   
                   <p className="text-lg text-[#333333] leading-relaxed">
-                    {industryData[activeIndustry].description}
+                    {industryData[activeAdditionalIndustry].description}
                   </p>
                   
                   <ul className="space-y-3">
-                    {industryData[activeIndustry].benefits.map((benefit, index) => (
+                    {industryData[activeAdditionalIndustry].benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-[#E8B96F] mr-3 mt-1 text-lg">•</span>
                         <span className="text-[#333333] text-lg">{benefit}</span>
@@ -394,7 +406,7 @@ export const IndustriesPage = () => {
                   </ul>
                   
                   <p className="text-xl font-bold text-[#333333]">
-                    {industryData[activeIndustry].conclusion}
+                    {industryData[activeAdditionalIndustry].conclusion}
                   </p>
                 </div>
               ) : (
@@ -421,14 +433,14 @@ export const IndustriesPage = () => {
                   <div
                     key={sector}
                     className={`flex items-center cursor-pointer transition-all duration-300 py-2 ${
-                      activeIndustry === sector ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
+                      activeEmergingSector === sector ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
                     }`}
-                    onClick={() => setActiveIndustry(sector)}
+                    onClick={() => setActiveEmergingSector(sector)}
                   >
-                    {activeIndustry === sector && (
+                    {activeEmergingSector === sector && (
                       <div className="w-3 h-3 bg-[#E8B96F] rounded-full mr-4 flex-shrink-0"></div>
                     )}
-                    <span className={`text-lg ${activeIndustry === sector ? 'ml-0' : 'ml-7'}`}>
+                    <span className={`text-lg ${activeEmergingSector === sector ? 'ml-0' : 'ml-7'}`}>
                       {sector}
                     </span>
                   </div>
@@ -438,29 +450,26 @@ export const IndustriesPage = () => {
             
             {/* Right - Sector Details */}
             <div>
-              {activeIndustry && industryData[activeIndustry] ? (
+              {activeEmergingSector && industryData[activeEmergingSector] ? (
                 <div className="space-y-8">
                   <h3 className="text-2xl md:text-3xl font-bold text-[#333333] font-heading">
-                    {industryData[activeIndustry].title}
+                    {industryData[activeEmergingSector].title}
                   </h3>
                   
-                  <div className="aspect-video bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 rounded-xl flex items-center justify-center shadow-sm">
-                    <div className="text-center text-gray-500">
-                      <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <p className="text-sm font-medium">Sector-specific image placeholder</p>
-                    </div>
+                  <div className="aspect-video rounded-xl overflow-hidden shadow-sm">
+                    <img 
+                      src={industryData[activeEmergingSector].image} 
+                      alt={`${activeEmergingSector} sector`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   
                   <p className="text-lg text-[#333333] leading-relaxed">
-                    {industryData[activeIndustry].description}
+                    {industryData[activeEmergingSector].description}
                   </p>
                   
                   <ul className="space-y-3">
-                    {industryData[activeIndustry].benefits.map((benefit, index) => (
+                    {industryData[activeEmergingSector].benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-[#E8B96F] mr-3 mt-1 text-lg">•</span>
                         <span className="text-[#333333] text-lg">{benefit}</span>
@@ -469,7 +478,7 @@ export const IndustriesPage = () => {
                   </ul>
                   
                   <p className="text-xl font-bold text-[#333333]">
-                    {industryData[activeIndustry].conclusion}
+                    {industryData[activeEmergingSector].conclusion}
                   </p>
                 </div>
               ) : (
