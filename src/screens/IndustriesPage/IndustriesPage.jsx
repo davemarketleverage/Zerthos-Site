@@ -1,4 +1,24 @@
-import React, { useState, useEffect } from 'react';
+/**
+ * IndustriesPage Component with Lazy Loading Implementation
+ * 
+ * This component implements lazy loading for industry images to improve performance
+ * and user experience. Key features:
+ * 
+ * 1. LazyImage Component: Handles individual image loading with loading states
+ * 2. useLazyImage Hook: Custom hook for image loading logic
+ * 3. Image Preloading: Preloads all images in the background for faster switching
+ * 4. Priority Loading: Active images are loaded first
+ * 5. Smooth Transitions: Fade effects when switching between industries
+ * 6. Loading Indicators: Visual feedback during image loading
+ * 
+ * Performance optimizations:
+ * - Debounced image loading to prevent too many simultaneous requests
+ * - Priority-based preloading for active images
+ * - Smooth transitions to mask loading delays
+ * - Error handling for failed image loads
+ */
+
+import React, { useState, useEffect, useCallback } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
 import industriesHeroWave from '../../assets/industries-hero-wave.jpg';
@@ -19,15 +39,133 @@ import biotechImage from '../../assets/biotech-image.jpg';
 import ecommerceImage from '../../assets/ecommerce-image.jpg';
 import cloudImage from '../../assets/cloud-image.jpg';
 
+// Custom hook for lazy loading images
+const useLazyImage = (imageSrc) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const loadImage = useCallback(() => {
+    if (!imageSrc) return;
+
+    setImageLoaded(false);
+    setImageError(false);
+
+    const img = new Image();
+    img.onload = () => {
+      setImageLoaded(true);
+      setImageError(false);
+    };
+    img.onerror = () => {
+      setImageError(true);
+      setImageLoaded(false);
+    };
+    img.src = imageSrc;
+  }, [imageSrc]);
+
+  useEffect(() => {
+    // Add a small delay to prevent too many simultaneous requests
+    const timer = setTimeout(() => {
+      loadImage();
+    }, 50);
+    
+    return () => clearTimeout(timer);
+  }, [loadImage]);
+
+  return { imageLoaded, imageError, reloadImage: loadImage };
+};
+
+// Lazy Image Component
+const LazyImage = ({ src, alt, className, fallbackClassName = "bg-gray-200" }) => {
+  const { imageLoaded, imageError } = useLazyImage(src);
+
+  if (imageError) {
+    return (
+      <div className={`${className} ${fallbackClassName} flex items-center justify-center`}>
+        <div className="text-gray-500 text-center">
+          <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p className="text-sm">Image failed to load</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${className} relative overflow-hidden`}>
+      {!imageLoaded && (
+        <div className={`absolute inset-0 ${fallbackClassName} flex items-center justify-center z-10`}>
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E8B96F] mb-2"></div>
+            <p className="text-sm text-gray-500">Loading...</p>
+          </div>
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} transition-all duration-500 ease-in-out ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+      />
+    </div>
+  );
+};
+
 export const IndustriesPage = () => {
   const [activeIndustry, setActiveIndustry] = useState('Healthcare');
   const [activeAdditionalIndustry, setActiveAdditionalIndustry] = useState('Aerospace & Aviation');
   const [activeEmergingSector, setActiveEmergingSector] = useState('Education Technology (EdTech)');
   const [isVisible, setIsVisible] = useState(false);
+  const [preloadedImages, setPreloadedImages] = useState(new Set());
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Handle industry transitions with smooth loading
+  const handleIndustryChange = (newIndustry, setter) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setter(newIndustry);
+      setIsTransitioning(false);
+    }, 150);
+  };
+
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImage = (src, priority = false) => {
+      if (preloadedImages.has(src)) return;
+      
+      const img = new Image();
+      img.onload = () => {
+        setPreloadedImages(prev => new Set([...prev, src]));
+      };
+      img.src = src;
+    };
+
+    // Preload all industry images - moved after industryData definition
+    const preloadAllImages = () => {
+      // First, preload active images with priority
+      const activeImages = [
+        industryData[activeIndustry]?.image,
+        industryData[activeAdditionalIndustry]?.image,
+        industryData[activeEmergingSector]?.image
+      ].filter(Boolean);
+
+      activeImages.forEach(image => preloadImage(image, true));
+
+      // Then preload all other images
+      Object.values(industryData).forEach(industry => {
+        if (industry.image && !activeImages.includes(industry.image)) {
+          preloadImage(industry.image);
+        }
+      });
+    };
+
+    // Delay preloading to ensure industryData is defined
+    const timer = setTimeout(preloadAllImages, 100);
+    return () => clearTimeout(timer);
+  }, [preloadedImages, activeIndustry, activeAdditionalIndustry, activeEmergingSector]);
 
   const industries = [
     'Healthcare',
@@ -291,11 +429,22 @@ export const IndustriesPage = () => {
       {/* Industry Navigation */}
       <section className="px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-sm text-gray-500">
+              {preloadedImages.size > 0 && preloadedImages.size < Object.keys(industryData).length && (
+                <span className="flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#E8B96F] mr-2"></div>
+                  Preloading images... ({preloadedImages.size}/{Object.keys(industryData).length})
+                </span>
+              )}
+
+            </div>
+          </div>
           <nav className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 overflow-x-auto pb-2">
             {industries.map((industry) => (
               <button
                 key={industry}
-                onClick={() => setActiveIndustry(industry)}
+                onClick={() => handleIndustryChange(industry, setActiveIndustry)}
                 className={`px-2 py-3 text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap ${
                   activeIndustry === industry
                     ? 'text-[#E8B96F] border-b-2 border-[#E8B96F]'
@@ -313,13 +462,13 @@ export const IndustriesPage = () => {
       <section className="px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-7xl mx-auto">
           {activeIndustry && industryData[activeIndustry] && (
-            <div className="space-y-10">
+            <div className={`space-y-10 transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333333] leading-tight font-heading">
                 {industryData[activeIndustry].title}
               </h2>
               
               <div className="rounded-xl overflow-hidden shadow-sm aspect-[3/1]">
-                <img 
+                <LazyImage
                   src={industryData[activeIndustry].image} 
                   alt={`${activeIndustry} industry`}
                   className="w-full h-full object-cover"
@@ -363,7 +512,7 @@ export const IndustriesPage = () => {
                     className={`flex items-center cursor-pointer transition-all duration-300 py-2 ${
                       activeAdditionalIndustry === industry ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
                     }`}
-                    onClick={() => setActiveAdditionalIndustry(industry)}
+                    onClick={() => handleIndustryChange(industry, setActiveAdditionalIndustry)}
                   >
                     {activeAdditionalIndustry === industry && (
                       <div className="w-3 h-3 bg-[#E8B96F] rounded-full mr-4 flex-shrink-0"></div>
@@ -379,13 +528,13 @@ export const IndustriesPage = () => {
             {/* Right - Industry Details */}
             <div>
               {activeAdditionalIndustry && industryData[activeAdditionalIndustry] ? (
-                <div className="space-y-8">
+                <div className={`space-y-8 transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
                   <h3 className="text-2xl md:text-3xl font-bold text-[#333333] font-heading">
                     {industryData[activeAdditionalIndustry].title}
                   </h3>
                   
                   <div className="aspect-video rounded-xl overflow-hidden shadow-sm">
-                    <img 
+                    <LazyImage 
                       src={industryData[activeAdditionalIndustry].image} 
                       alt={`${activeAdditionalIndustry} industry`}
                       className="w-full h-full object-cover"
@@ -435,7 +584,7 @@ export const IndustriesPage = () => {
                     className={`flex items-center cursor-pointer transition-all duration-300 py-2 ${
                       activeEmergingSector === sector ? 'text-[#E8B96F] font-bold' : 'text-[#333333] hover:text-[#E8B96F]'
                     }`}
-                    onClick={() => setActiveEmergingSector(sector)}
+                    onClick={() => handleIndustryChange(sector, setActiveEmergingSector)}
                   >
                     {activeEmergingSector === sector && (
                       <div className="w-3 h-3 bg-[#E8B96F] rounded-full mr-4 flex-shrink-0"></div>
@@ -451,13 +600,13 @@ export const IndustriesPage = () => {
             {/* Right - Sector Details */}
             <div>
               {activeEmergingSector && industryData[activeEmergingSector] ? (
-                <div className="space-y-8">
+                <div className={`space-y-8 transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
                   <h3 className="text-2xl md:text-3xl font-bold text-[#333333] font-heading">
                     {industryData[activeEmergingSector].title}
                   </h3>
                   
                   <div className="aspect-video rounded-xl overflow-hidden shadow-sm">
-                    <img 
+                    <LazyImage 
                       src={industryData[activeEmergingSector].image} 
                       alt={`${activeEmergingSector} sector`}
                       className="w-full h-full object-cover"
