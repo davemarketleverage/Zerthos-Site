@@ -429,17 +429,7 @@ export const IndustriesPage = () => {
       {/* Industry Navigation */}
       <section className="px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-sm text-gray-500">
-              {preloadedImages.size > 0 && preloadedImages.size < Object.keys(industryData).length && (
-                <span className="flex items-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#E8B96F] mr-2"></div>
-                  Preloading images... ({preloadedImages.size}/{Object.keys(industryData).length})
-                </span>
-              )}
-
-            </div>
-          </div>
+          
           <nav className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 overflow-x-auto pb-2">
             {industries.map((industry) => (
               <button
