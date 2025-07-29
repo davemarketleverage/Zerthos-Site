@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
 import { Linkedin } from 'lucide-react';
-import leadershipHeroBuilding from '../../assets/leadership-hero-building.jpg';
+import leadershipHeroBuilding from '../../assets/lead-building.png';
 import christopherCochran from '../../assets/christopher-cochran.jpg';
 import markGrace from '../../assets/mark-grace.jpg';
 
@@ -77,55 +77,52 @@ At Zerthos, Mark oversees all legal matters including intellectual property prot
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#E5F7FF] md:h-[612px]">
         {/* Background Building Image */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white">
+        <div className="absolute inset-0 bg-gradient-to-br ">
           <div className="absolute right-0 top-0 w-1/2 h-full opacity-30">
-            <div className="w-full h-full bg-gradient-to-br from-blue-200 via-blue-100 to-blue-50 rounded-l-3xl"></div>
+            <div className="w-full h-full bg-gradient-to-br rounded-l-3xl"></div>
           </div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto flex items-center h-full">
+          <div className="">
             {/* Left Content */}
             <div className="space-y-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-[#333333] leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-light text-[#333333] leading-tight">
                 Our leadership
               </h1>
-              <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl z-20">
                 At Zerthos, leadership means invention. Behind TalonX is a team of bold thinkers and engineers redefining how the world moves data.
               </p>
             </div>
             
-            {/* Right - Building Background */}
-            <div className="relative h-96 lg:h-[500px]">
+            </div>
+            </div>
               <img 
                 src={leadershipHeroBuilding} 
                 alt="Leadership building background" 
-                className="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-30"
+                className="absolute right-0 bottom-0 w-[60%] h-3/4 object-cover rounded-2xl z-10"
               />
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Vision-driven Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-heading font-light text-[#333333] mb-6">
             Vision-driven, Engineer-led
           </h2>
-          <p className="text-lg md:text-xl text-[#333333] leading-relaxed mb-8">
+          <p className="text-lg md:text-lg text-[#565B68] leading-relaxed mb-8 font-inter font-normal">
             The team behind TalonX doesn't just lead a company — they lead a movement. From first principles to real-world deployment, our leadership works hands-on with product, engineering, and enterprise partners to deliver a future where data moves faster, leaner, and smarter.
           </p>
-          <h3 className="text-xl md:text-2xl font-heading font-light text-[#333333]">
+          <h3 className="text-xl md:text-lg font-inter font-semibold text-[#333333]">
             What defines our leadership:
           </h3>
         </div>
       </section>
 
       {/* Three Column Features */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20">
+      <section className="px-4 sm:px-6 lg:px-8 pb-20 pt-5">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             {leadershipFeatures.map((feature, index) => (
@@ -199,7 +196,7 @@ At Zerthos, Mark oversees all legal matters including intellectual property prot
       </section>
 
       {/* Call to Action Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-20 bg-gradient-to-br from-[#E5F7FF] via-blue-100 to-blue-[#E5F7FF]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}

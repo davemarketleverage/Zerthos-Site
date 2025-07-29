@@ -236,33 +236,24 @@ export const IndustriesPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FFFCE5]">
+        <div className="max-w-7xl mx-auto lg:h-[40vh] flex items-center">
+          <div className="grid lg:grid-cols-3 gap-12 items-center w-full">
             {/* Left Content */}
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#333333] leading-tight font-heading">
+            <div className="space-y-6 lg:col-span-2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-[#333333] leading-tight font-heading">
                 Industries we serve
               </h1>
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl">
                 Built for Every Industry That Moves Data. From healthcare to defense, media to AI, TalonX delivers unmatched speed, adaptability, and precision, transforming how entire industries operate.
               </p>
             </div>
-            
-            {/* Right - Golden Wave Graphic */}
-            <div className="relative h-96 lg:h-[500px]">
-              <img 
-                src={industriesHeroWave} 
-                alt="Golden wave graphic" 
-                className="absolute inset-0 w-full h-full object-cover rounded-2xl"
-              />
-            </div>
           </div>
         </div>
       </section>
 
       {/* Lower Content Section */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-16">
+      <section className="px-4 sm:px-6 lg:px-8 pb-16 pt-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
