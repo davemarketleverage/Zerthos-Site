@@ -1,5 +1,5 @@
 import React from "react";
-import logoSvg from "../../assets/logo.svg";
+import logoSvg from "../../assets/logo-light.svg";
 import { Separator } from "./separator";
 
 const socialLinks = [
