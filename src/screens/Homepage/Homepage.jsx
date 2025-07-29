@@ -13,6 +13,7 @@ import { OverlapGroupWrapperSubsection } from "./sections/OverlapGroupWrapperSub
 import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/OverlapWrapperSubsection";
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
+import imgPng from "../../assets/img_png.png";
 
 export const Homepage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -593,6 +594,11 @@ export const Homepage = () => {
 
               <div className="z-[999] md:relative md:z-auto">
                 <FrameSubsection />
+              </div>
+
+              {/* Mobile Video Hero - shown only on mobile */}
+              <div className="absolute bottom-0 right-0 z-[1] sm:block md:hidden -mr-4 -mb-4">
+                <MaskedVideoHero className="w-[400px] h-[400px]" />
               </div>
 
               {/* Info Card - hidden on mobile, reduced size on tablet */}

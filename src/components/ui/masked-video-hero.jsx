@@ -51,7 +51,7 @@ const MaskedVideoHero = ({ className = '', showHeroImage = false }) => {
   };
 
   return (
-    <div className={`relative w-[779px] h-[636px] md:w-[400px] md:h-[320px] lg:w-[779px] lg:h-[636px] xl:w-[779px] xl:h-[636px] 2xl:w-[900px] 2xl:h-[736px] overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden ${className || 'w-[779px] h-[636px] sm:w-[120px] sm:h-[120px] md:w-[400px] md:h-[320px] lg:w-[779px] lg:h-[636px] xl:w-[779px] xl:h-[636px] 2xl:w-[900px] 2xl:h-[736px]'}`}>
       {/* Background Image */}
       <img
         src={imgPng}
