@@ -1,13 +1,12 @@
 import React from "react";
 import logoSvg from "../../assets/logo-light.svg";
 import { Separator } from "./separator";
+import { Instagram, Twitter, Facebook } from "lucide-react";
 
 const socialLinks = [
-  { name: "Instagram", href: "#" },
-  { name: "LinkedIn", href: "#" },
-  { name: "Twitter", href: "#" },
-  { name: "Facebook", href: "#" },
-  { name: "Youtube", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/zerthos.talonx", icon: Instagram },
+  { name: "X", href: "https://x.com/Zerthos_TalonX", icon: Twitter },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61576774251222", icon: Facebook },
 ];
 
 const legalLinks = [
@@ -65,18 +64,25 @@ export const Footer = () => (
         <div className="opacity-70 font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px] order-2 sm:order-1">
           ©Zerthos 2025. All rights reserved.
         </div>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:gap-3.5 relative w-full sm:w-auto order-1 sm:order-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-6 relative w-full sm:w-auto order-1 sm:order-2">
           <span className="font-sans font-semibold text-white text-xs lg:text-sm leading-5 lg:leading-[22px]">Connect:</span>
-          <div className="flex flex-wrap gap-3 lg:gap-3.5">
-            {socialLinks.map((social, index) => (
-              <a 
-                key={`social-${index}`} 
-                href={social.href} 
-                className="font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px] hover:opacity-80 transition-opacity"
-              >
-                {social.name}
-              </a>
-            ))}
+          <div className="flex flex-wrap gap-4 lg:gap-6">
+            {socialLinks.map((social, index) => {
+              const IconComponent = social.icon;
+              return (
+                <a 
+                  key={`social-${index}`} 
+                  href={social.href} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px] hover:opacity-80 transition-all duration-200 hover:scale-105"
+                  aria-label={`Visit our ${social.name} page`}
+                >
+                  <IconComponent className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <span className="hidden sm:inline">{social.name}</span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
