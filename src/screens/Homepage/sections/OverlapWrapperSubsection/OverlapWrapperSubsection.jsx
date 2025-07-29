@@ -1,5 +1,73 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
+import feature1 from "../../../../assets/feature-1.png";
+import feature2 from "../../../../assets/feature-2.png";
+import feature3 from "../../../../assets/feature-3.png";
+import feature4 from "../../../../assets/feature-4.png";
+
+// Custom hook for lazy loading images
+const useLazyImage = (src) => {
+  const [imageSrc, setImageSrc] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const loadImage = useCallback(() => {
+    const img = new Image();
+    img.onload = () => {
+      setImageSrc(src);
+      setIsLoading(false);
+      setError(false);
+    };
+    img.onerror = () => {
+      setIsLoading(false);
+      setError(true);
+    };
+    img.src = src;
+  }, [src]);
+
+  useEffect(() => {
+    loadImage();
+  }, [loadImage]);
+
+  const reload = useCallback(() => {
+    setIsLoading(true);
+    setError(false);
+    loadImage();
+  }, [loadImage]);
+
+  return { imageSrc, isLoading, error, reload };
+};
+
+// LazyImage component
+const LazyImage = ({ src, alt, className, onLoad, onError }) => {
+  const { imageSrc, isLoading, error, reload } = useLazyImage(src);
+
+  if (error) {
+    return (
+      <div className={`${className} bg-gray-100 flex items-center justify-center`}>
+        <div className="text-center">
+          <div className="text-gray-500 text-sm mb-2">Failed to load image</div>
+          <button 
+            onClick={reload}
+            className="text-[#F09A07] text-sm hover:underline"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={imageSrc || src}
+      alt={alt}
+      className={`${className} transition-opacity duration-300`}
+      onLoad={onLoad}
+      onError={onError}
+    />
+  );
+};
 
 export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeature, setFeaturesListHovered, windowWidth }) => {
   const features = [
@@ -8,28 +76,28 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
       title: "Next-Gen Transmission Engine",
       description:
         "Built from the ground up, our ZRT protocol propels data up to 4x faster, even under constrained bandwidth or remote conditions.",
-      image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=900&q=80"
+      image: feature1
     },
     {
       id: 2,
       title: "[vault_encrypt] Security",
       description:
         "Security isn't an afterthought—it's baked in. With 1,000x higher bitrate than industry standards, [bloc_encrypt] ensures airtight delivery without compromising speed.",
-      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=900&q=80"
+      image: feature2
     },
     {
       id: 3,
       title: "AI-Powered Optimization",
       description:
         "Our adaptive transmission engine learns and adjusts in real-time, delivering blazing performance while consuming minimal system resources.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=900&q=80"
+      image: feature3
     },
     {
       id: 4,
       title: "Plug-and-Play Deployment",
       description:
         "Deploy across cloud, on-prem, or hybrid environments with a single lightweight API—no deep re-architecting required.",
-      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=900&q=80"
+      image: feature4
     },
   ];
 
@@ -40,6 +108,34 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
   // Fade animation for image
   const [imageVisible, setImageVisible] = useState(true);
   const [displayedFeature, setDisplayedFeature] = useState(activeFeature);
+  const [preloadedImages, setPreloadedImages] = useState(new Set());
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Preload all feature images
+  useEffect(() => {
+    const preloadAllImages = () => {
+      setTimeout(() => {
+        features.forEach((feature, index) => {
+          const img = new Image();
+          img.onload = () => {
+            setPreloadedImages(prev => new Set([...prev, index]));
+          };
+          img.src = feature.image;
+        });
+      }, 100); // Small delay to prioritize active image
+    };
+
+    preloadAllImages();
+  }, [features]);
+
+  // Handle feature change with smooth transition
+  const handleFeatureChange = useCallback((newIndex) => {
+    setIsTransitioning(true);
+    setActiveFeature(newIndex);
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 300);
+  }, [setActiveFeature]);
 
   useEffect(() => {
     setImageVisible(false); // Start fade out
@@ -100,7 +196,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
                       ? "bg-white shadow-md border-[#F09A07]"
                       : "bg-gray-50 border-transparent"
                   }`}
-                  onClick={() => setActiveFeature(idx)}
+                  onClick={() => handleFeatureChange(idx)}
                 >
                   <div>
                     <h3 className={`text-base font-semibold mb-3 transition-all duration-300 leading-tight ${
@@ -144,7 +240,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
                         : "bg-transparent opacity-60"
                     }`}
                     onClick={() => {
-                      setActiveFeature(idx);
+                      handleFeatureChange(idx);
                       scrollToFeature(idx);
                     }}
                     ref={el => featureRefs.current[idx] = el}
@@ -173,10 +269,10 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
             </div>
             {/* Image - Bottom on tablet, right on desktop */}
             <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : '0px' }}>
-              <img
-                className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
-                alt={features[displayedFeature]?.title}
+              <LazyImage
                 src={features[displayedFeature]?.image}
+                alt={features[displayedFeature]?.title}
+                className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
               />
             </div>
           </div>
