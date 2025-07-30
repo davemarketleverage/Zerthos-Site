@@ -16,8 +16,8 @@ export const DivSubsection = () => {
   return (
     <section ref={ref} className="relative w-full bg-[#202020] h-screen flex flex-col">
       {/* Top section with CTA */}
-      <div className={`w-full flex-1 bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/bg-mask-group.png)] bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out will-change-transform will-change-opacity flex items-center pt-32 sm:pt-20 md:pt-0 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
-        <div className="flex flex-col lg:flex-row w-full max-w-[1344px] items-start gap-6 sm:gap-8 md:gap-12 lg:gap-40 mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className={`w-full flex-1 bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/bg-mask-group.png)] bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out will-change-transform will-change-opacity flex items-center pt-32 sm:pt-20 md:pt-0 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'} `}>
+        <div className="flex flex-col lg:flex-row w-full max-w-[1344px] items-start gap-6 sm:gap-8 md:gap-12 lg:gap-40 mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:pt-16 2xl:pt-0">
           <div className="relative w-fit mt-[-1.00px] font-heading font-normal text-[#202020] text-2xl sm:text-3xl md:text-4xl lg:text-6xl tracking-[0] leading-[28px] sm:leading-[32px] md:leading-[40px] lg:leading-[60px]">
             Need a tailored
             <br />

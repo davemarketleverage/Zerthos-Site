@@ -79,7 +79,7 @@ export const OverlapGroupWrapperSubsection = () => {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16 w-full">
           
           {/* Left Side - Title and Performance Card */}
-          <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 lg:max-w-[600px]">
+          <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 lg:max-w-[600px] xl:gap-4 2xl:gap-16">
             
             {/* Title */}
             <h2 className={`font-heading font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0] leading-[48px] sm:leading-[52px] md:leading-[56px] lg:leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>

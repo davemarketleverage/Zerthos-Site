@@ -74,7 +74,14 @@ export const ContactPage = () => {
       icon: <MapPin className="w-6 h-6" />,
       title: "Visit Us",
       details: ["801 South Pointe Drive, TH1", "Miami Beach, FL 33139"],
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      location: "HQ"
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Visit Us",
+      details: ["105 Bradford Rd, Suite 420", "Wexford, PA 15090"],
+      color: "from-indigo-500 to-purple-500",
     },
     {
       icon: <Phone className="w-6 h-6" />,
@@ -131,13 +138,24 @@ export const ContactPage = () => {
           </div>
 
           {/* Contact Info Cards */}
-          <div className={`grid md:grid-cols-3 gap-8 max-w-6xl mx-auto transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             {contactInfo.map((info, index) => (
               <div key={index} className="group relative bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl transition-all duration-300 hover:-translate-y-2">
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${info.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   {info.icon}
                 </div>
-                <h3 className="text-2xl font-heading font-semibold text-[#202020] mb-4">{info.title}</h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <h3 className="text-2xl font-heading font-semibold text-[#202020]">{info.title}</h3>
+                  {info.location && (
+                    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      info.location === "HQ" 
+                        ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white" 
+                        : "bg-gradient-to-r from-indigo-500 to-purple-500 text-white"
+                    }`}>
+                      {info.location}
+                    </span>
+                  )}
+                </div>
                 {info.details.map((detail, idx) => (
                   <p key={idx} className="text-[#565a67] text-lg mb-1">{detail}</p>
                 ))}
@@ -333,8 +351,13 @@ export const ContactPage = () => {
                   <p className="text-lg mb-6 opacity-90">
                     Schedule a personalized demo and see how Zerthos can transform your data infrastructure.
                   </p>
-                  <Button className="bg-white text-[#F09A07] hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold transition-all duration-300">
-                    Schedule Demo
+                  <Button 
+                    className="bg-white text-[#F09A07] hover:bg-gray-100 px-8 py-3 rounded-xl font-semibold transition-all duration-300"
+                    asChild
+                  >
+                    <a href="mailto:demo@zerthos.com?subject=Schedule Demo&body=Dear Zerthos Team,%0D%0A%0D%0AI am interested in scheduling a demo of Zerthos technology.%0D%0A%0D%0ACompany: [Your Company]%0D%0AUse Case: [Brief description of your needs]%0D%0APreferred Date/Time: [Your preferred demo time]%0D%0A%0D%0ABest regards,%0D%0A[Your Name]">
+                      Schedule Demo
+                    </a>
                   </Button>
                 </div>
               </div>
