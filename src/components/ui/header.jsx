@@ -25,7 +25,7 @@ export const Header = ({ isScrolled = false }) => {
   return (
     <>
       <div className={`w-full mx-auto px-12 md:px-8 sm:px-4 py-8 md:py-6 sm:py-4 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''}`} style={{ minHeight: '80px' }}>
-        <div className="relative h-10 cursor-pointer shrink-0" onClick={() => navigate('/')}>
+        <div className="relative h-12 cursor-pointer shrink-0" onClick={() => navigate('/')}>
           <img
             className="w-full h-full object-contain"
             alt="Zerthos Logo"
@@ -34,7 +34,7 @@ export const Header = ({ isScrolled = false }) => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-4 text-lg font-medium items-center">
+        <nav className="hidden lg:flex gap-4 text-lg font-medium items-center">
           <a 
             href="/" 
             className={`px-3 py-1 transition-colors duration-200 ${
@@ -86,6 +86,14 @@ export const Header = ({ isScrolled = false }) => {
             Careers
           </a>
           <a 
+            href="http://ec2-3-84-10-33.compute-1.amazonaws.com:3001/login" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#F09A07] text-white rounded-xl px-5 py-2 ml-2 font-semibold transition-colors duration-200 hover:bg-[#F09A07]/90"
+          >
+            Login
+          </a>
+          <a 
             href="/contact" 
             className={`border border-[#F09A07] rounded-xl px-5 py-2 ml-2 font-semibold transition-colors duration-200 ${
               isActive('contact') 
@@ -99,7 +107,7 @@ export const Header = ({ isScrolled = false }) => {
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
+          className="lg:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
@@ -109,7 +117,7 @@ export const Header = ({ isScrolled = false }) => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-black bg-opacity-50 z-[60] transition-all duration-300 md:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`fixed inset-0 bg-black bg-opacity-50 z-[60] transition-all duration-300 lg:hidden ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className={`absolute top-0 right-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-6 pt-20">
             <div className="flex justify-between items-center mb-8">
@@ -181,6 +189,15 @@ export const Header = ({ isScrolled = false }) => {
                 }`}
               >
                 Careers
+              </a>
+              <a
+                href="http://ec2-3-84-10-33.compute-1.amazonaws.com:3001/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-center py-3 px-4 rounded-xl font-semibold transition-colors duration-200 bg-[#F09A07] text-white hover:bg-[#F09A07]/90"
+              >
+                Login
               </a>
               <a
                 href="/contact"

@@ -38,7 +38,8 @@ import edtechImage from '../../assets/edtech-image.jpg';
 import biotechImage from '../../assets/biotech-image.jpg';
 import ecommerceImage from '../../assets/ecommerce-image.jpg';
 import cloudImage from '../../assets/cloud-image.jpg';
-import industriesFooter from '../../assets/industries-footer.png'
+import industriesFooter from '../../assets/industries-footer.png';
+import logoSvg from '../../assets/logo.svg';
 
 // Custom hook for lazy loading images
 const useLazyImage = (imageSrc) => {
@@ -395,15 +396,26 @@ export const IndustriesPage = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FFFCE5]">
         <div className="max-w-7xl mx-auto lg:h-[40vh] flex items-center">
-          <div className="grid lg:grid-cols-3 gap-12 items-center w-full">
-            {/* Left Content */}
-            <div className="space-y-6 lg:col-span-2">
+          <div className="grid lg:grid-cols-10 gap-12 items-center w-full">
+            {/* Left Content - 70% */}
+            <div className="lg:col-span-7 space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-[#333333] leading-tight font-heading">
                 Industries we serve
               </h1>
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl">
                 Built for Every Industry That Moves Data. From healthcare to defense, media to AI, TalonX delivers unmatched speed, adaptability, and precision, transforming how entire industries operate.
               </p>
+            </div>
+            
+            {/* Right Content - TalonX Logo - 30% */}
+            <div className="lg:col-span-3 flex justify-center lg:justify-end items-center">
+              <div className="relative w-40 h-20 lg:w-64 lg:h-32">
+                <img 
+                  className="w-full h-full object-contain" 
+                  alt="TalonX Logo" 
+                  src={logoSvg} 
+                />
+              </div>
             </div>
           </div>
         </div>

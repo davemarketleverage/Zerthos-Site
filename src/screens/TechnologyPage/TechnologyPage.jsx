@@ -5,6 +5,7 @@ import technologyHeroData from '../../assets/technology-hero-img.mp4';
 import technologyGoldenGlobe from '../../assets/tech-globe-graphic.svg';
 import technologyGradientGraphic from '../../assets/tech-gradient.png';
 import technologyFiberGraphic from '../../assets/tech-fiber.png';
+import logoSvg from '../../assets/logo-light.svg';
 
 export const TechnologyPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -198,9 +199,9 @@ export const TechnologyPage = () => {
         </div>
         
         <div className="relative max-w-7xl mx-auto">
-          <div className="grid gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8 lg:h-[388px] flex flex-col justify-center">
+          <div className="grid lg:grid-cols-10 gap-12 items-center">
+            {/* Left Content - 70% */}
+            <div className="lg:col-span-7 space-y-8 lg:h-[388px] flex flex-col justify-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-white leading-tight">
                 Redefining the
                 <br />
@@ -211,6 +212,16 @@ export const TechnologyPage = () => {
               </p>
             </div>
             
+            {/* Right Content - TalonX Logo - 30% */}
+            <div className="lg:col-span-3 flex justify-center lg:justify-end items-center">
+              <div className="relative w-40 h-20 lg:w-64 lg:h-32">
+                <img 
+                  className="w-full h-full object-contain" 
+                  alt="TalonX Logo" 
+                  src={logoSvg} 
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
