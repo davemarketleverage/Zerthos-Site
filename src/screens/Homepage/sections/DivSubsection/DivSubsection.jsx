@@ -3,10 +3,12 @@ import { useInView } from "react-intersection-observer";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Footer } from "../../../../components/ui/footer";
+import { useNavigate } from "react-router-dom";
 
 export const DivSubsection = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const navigate = useNavigate();
   React.useEffect(() => {
     if (inView) setHasAnimated(true);
   }, [inView]);
@@ -30,9 +32,11 @@ export const DivSubsection = () => {
                 support from our expert team.
               </p>
 
-              <Button className="px-4 sm:px-5 md:px-6 lg:px-9 py-2.5 sm:py-3 md:py-3.5 lg:py-4 h-auto rounded-lg sm:rounded-xl bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] hover:bg-[linear-gradient(90deg,rgba(229,108,21,0.9)_0%,rgba(238,85,34,0.9)_100%)] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95 hover:-translate-y-1">
+              <Button onClick={() =>{
+                navigate('/contact');
+              }} className="px-4 sm:px-5 md:px-6 lg:px-9 py-2.5 sm:py-3 md:py-3.5 lg:py-4 h-auto rounded-lg sm:rounded-xl bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] hover:bg-[linear-gradient(90deg,rgba(229,108,21,0.9)_0%,rgba(238,85,34,0.9)_100%)] transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg active:scale-95 hover:-translate-y-1">
                 <span className="font-semibold text-white text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out">
-                  Contact out team
+                  Contact our team
                 </span>
               </Button>
             </CardContent>
