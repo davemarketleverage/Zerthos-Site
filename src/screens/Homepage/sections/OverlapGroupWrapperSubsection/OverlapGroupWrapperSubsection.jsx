@@ -123,7 +123,7 @@ export const OverlapGroupWrapperSubsection = () => {
             </Card>
 
             {/* Bottom Text */}
-            <p className="opacity-60 font-normal text-white text-sm sm:text-base md:text-lg tracking-[0] leading-5 sm:leading-6 md:leading-7">
+            <p className="md:opacity-60 font-normal text-white text-sm sm:text-base md:text-lg tracking-[0] leading-5 sm:leading-6 md:leading-7">
               Based on tests with 10,000+ files including 5.6GB satellite TIFs
             </p>
           </div>

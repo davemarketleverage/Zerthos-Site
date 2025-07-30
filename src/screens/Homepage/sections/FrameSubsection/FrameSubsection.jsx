@@ -11,7 +11,7 @@ export const FrameSubsection = () => {
 
   return (
     <section 
-      className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0 xl:max-w-full"
+      className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0 xl:max-w-full lg:pt-16 2xl:pt-0"
       style={{ gap: window.innerWidth < 768 ? '1rem' : undefined }}
     >
       <div className="flex flex-col items-start gap-6 md:gap-4 sm:gap-3 w-full">
