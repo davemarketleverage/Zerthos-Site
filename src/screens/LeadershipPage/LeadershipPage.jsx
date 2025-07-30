@@ -5,6 +5,7 @@ import { Linkedin } from 'lucide-react';
 import leadershipHeroBuilding from '../../assets/lead-building.png';
 import christopherCochran from '../../assets/christopher-cochran.jpg';
 import markGrace from '../../assets/markgracephoto.png';
+import justinJohnson from '../../assets/justin.jpg';
 import leadAbstract from '../../assets/lead-abstract.png';
 
 export const LeadershipPage = () => {
@@ -73,26 +74,90 @@ export const LeadershipPage = () => {
       title: "President & CEO, Zerthos, Inc.",
       image: christopherCochran,
       linkedin: "https://www.linkedin.com/in/pghcochran/",
-      bio: `Christopher Cochran is the President and CEO of Zerthos, Inc., where he leads the vision and execution behind TalonX—a proprietary transfer protocol that is redefining global data movement. Engineered to deliver massive files in dramatically smaller sizes with no loss in quality and near-instant transfer speeds, TalonX sets a new benchmark for industries where speed, accuracy, and scale are mission-critical.
+      bio: `Christopher Cochran
+Chief Executive Officer &amp; Co-Founder, Zerthos
+Christopher Cochran is the Chief Executive Officer and Co-Founder of Zerthos, where he leads
+the company's mission to revolutionize data movement through TalonX—a proprietary
+compression and transfer protocol that enables near-instant, lossless delivery of large files. Under
+his leadership, Zerthos is setting new standards for speed, efficiency, and scalability across
+industries including healthcare, defense, enterprise, and media.
 
-With more than 30 years of leadership in enterprise technology, Chris has built a career at the intersection of innovation and impact. He also serves as CEO of BluChip Solutions, a nationally recognized IT consulting firm, and is a member of the Board of Directors at Coeptis Therapeutics, a public biotech company focused on addressing hard-to-treat diseases.
+With over 30 years of technology experience, Chris has built and scaled high-performing
+organizations at the intersection of innovation and execution. He previously served as CEO of
+BluChip Solutions, a global project solutions firm specializing in enterprise IT, cloud
+infrastructure, and cybersecurity. He currently serves on the Board of Directors for Coeptis, a
+public company focused on advancing innovative technologies, and as Board Director of the
+Christian Cochran Legacy Fund—a foundation dedicated to supporting underserved
+communities and young adult cancer survivors. The fund partners with organizations like Young
+Adult Survivors United (YASU) to provide emotional, social, and financial support to those
+impacted by cancer.
 
-Chris is a graduate of the University of Tennessee and a former Division I wrestler. His greatest calling, however, comes from being a husband, father, and friend. He is the author of What’s GOOD About TODAY?—a heartfelt reflection on purpose, gratitude, and kindness, inspired by the life and legacy of his late son Christian.`
+Chris earned a Bachelor of Science in Business and International Law from the University of
+Tennessee, where he was also a Division I wrestler. He is the author of What's GOOD About
+TODAY?, a book written after the loss of his oldest son Christian at age 22 due to terminal
+cancer. The book reflects his commitment to resilience, purpose, and leading with
+compassion—even in the face of life's greatest challenges.`
     },
     {
       name: "Mark A. Grace",
       title: "Chief Legal Officer and General Counsel",
       image: markGrace,
       linkedin: "https://www.linkedin.com/in/mark-grace-7477495/",
-      bio: `Mark Grace is Zerthos’ Chief Legal Officer and General Counsel. As a key member of the Zerthos executive leadership team, Mark oversees all legal matters impacting the company, including corporate governance, intellectual property, and litigation strategy. In addition to his role at Zerthos, Mark is the managing partner of Cohen & Grace, LLC, a Pittsburgh-based law firm providing legal services to businesses and individuals throughout Pennsylvania.
+      bio: `Mark Grace is Zerthos' Chief Legal Officer and General Counsel. As a key member of the Zerthos executive leadership team, Mark oversees all legal matters impacting the company, including corporate governance, intellectual property, and litigation strategy. In addition to his role at Zerthos, Mark is the managing partner of Cohen & Grace, LLC, a Pittsburgh-based law firm providing legal services to businesses and individuals throughout Pennsylvania.
 
 Mark is a seasoned trial lawyer with extensive experience litigating complex and general commercial disputes in both state and federal courts. His legal background is particularly well-suited to supporting Zerthos' innovative work in high-tech and IP-sensitive fields. He has served as lead trial counsel in jury and non-jury trials, preliminary injunction hearings, and both domestic and international arbitrations, and has argued cases at the appellate level in both federal and state courts.
 
-Mark’s areas of practice include Patent and Trademark Infringement, Misappropriation of Trade Secrets, Noncompete and Nonsolicitation Covenants, Unfair/Deceptive Trade Practices, False Advertising, Fraud, Business Transaction Disputes, Securities Litigation, Employment Law, Shareholder Disputes, and Breach of Fiduciary Duties.
+Mark's areas of practice include Patent and Trademark Infringement, Misappropriation of Trade Secrets, Noncompete and Nonsolicitation Covenants, Unfair/Deceptive Trade Practices, False Advertising, Fraud, Business Transaction Disputes, Securities Litigation, Employment Law, Shareholder Disputes, and Breach of Fiduciary Duties.
 
 Mark has practiced law since 1996. He earned his Bachelor of Science in Nuclear Engineering with Distinction and Honors from The Pennsylvania State University in 1983, followed by a Master of Science in Nuclear Engineering from Penn State. From 1984 to 1993, Mark worked as a senior Nuclear Engineer at Westinghouse and later Texas Utilities Electric Company. He earned his Juris Doctor with Honors from The George Washington University in 1996.
 
 Mark began his legal career at Winston & Strawn in Washington, D.C., representing nuclear electric utilities on matters of regulatory compliance, licensing, and federal enforcement. After returning to Pittsburgh, he joined Cohen & Grigsby in 1999 and became a partner in 2004. In 2008, he co-founded Cohen & Grace, LLC, where he continues to counsel emerging companies—like Zerthos—on legal strategies that safeguard innovation and accelerate growth.`
+    },
+    {
+      name: "Jonathan Johnson",
+      title: "Director of Systems Performance & Benchmarking, Zerthos",
+      image: "https://via.placeholder.com/400x400/cccccc/666666?text=Jonathan+Johnson",
+      linkedin: "#",
+      bio: `Jonathan Johnson is the Director of Systems Performance & Benchmarking at Zerthos, where he
+leads the architecture, optimization, and performance evaluation of the TalonX protocol. His
+expertise is instrumental in ensuring TalonX operates with industry-leading speed, reliability, and
+scalability across a wide range of demanding data environments.
+
+Jon began his career at REAL Software, a developer of cross-platform tools, where he advanced
+to become the company's lead Mac OS developer. He later contributed to large-scale digital
+infrastructure at Gratis Internet, helping deliver high-performance ad systems for some of the
+most widely used Facebook applications in the early days of social gaming and digital
+advertising.
+
+In 2009, Jon co-founded Core-apps, which became a dominant player in the trade show and
+conference tech space. Following the company's acquisition in 2019, he has remained focused on
+high-performance computing, open-source development, and next-generation data transfer
+technologies. At Zerthos, he brings decades of hands-on engineering experience and a results-
+driven mindset to help push the boundaries of what's possible in data movement.`
+    },
+    {
+      name: "Justin Johnson, MBA",
+      title: "Director of Program Operations, Zerthos",
+      image: justinJohnson,
+      linkedin: "#",
+      bio: `Justin Johnson serves as Director of Program Operations at Zerthos, where he leads the
+execution of complex technology initiatives and ensures operational alignment across product
+development, security, and cloud infrastructure. A seasoned technology executive with over two
+decades of experience, Justin brings a unique combination of strategic insight and hands-on
+expertise in cloud transformation and cybersecurity.
+
+Prior to joining Zerthos, Justin spearheaded enterprise-scale IT transformations across
+government, education, and private sectors. His accomplishments include consolidating over
+275,000 global Active Directory users across 177 forests, architecting zero-trust security
+environments, and migrating more than 150,000 Microsoft 365 accounts at Penn State
+University.
+
+His cross-industry work spans cloud resiliency, digital workplace modernization, and identity
+management across Azure, AWS, and GCC High platforms.
+
+Holding an MBA from the University of Kansas, Justin has been recognized for delivering
+award-winning solutions that balance innovation with compliance, risk mitigation, and
+operational excellence.`
     }
   ];
 
@@ -126,7 +191,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
               <img 
                 src={leadershipHeroBuilding} 
                 alt="Leadership building background" 
-                className="absolute right-0 bottom-0 lg:w-[60%] lg:h-3/4 object-cover rounded-2xl z-10 hidden lg:flex"
+                className="absolute right-0 bottom-0 lg:w-[60%] lg:h-3/4 object-cover rounded-2xl z-0 hidden lg:flex"
               />
       </section>
 
@@ -187,7 +252,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
                       <img 
                         src={member.image} 
                         alt={member.name} 
-                        className="w-full h-full object-cover grayscale"
+                        className={`w-full h-full object-cover grayscale ${member.name === "Justin Johnson, MBA" ? "object-top" : ""}`}
                       />
                     </div>
                     <a
@@ -251,10 +316,10 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
             </div>
           </div>
         </div>
-        <img 
+                      <img 
                 src={leadAbstract} 
                 alt="Leadership abstract background" 
-                className="absolute left-0 bottom-0 object-cover z-10 hidden lg:flex"
+                className="absolute left-0 bottom-0 object-cover z-0 hidden lg:flex"
               />
       </section>
 
