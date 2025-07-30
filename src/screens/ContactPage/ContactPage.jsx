@@ -64,7 +64,7 @@ export const ContactPage = () => {
         },
         to: [
           {
-            email: "krishan@thinkscoopinc.com",
+            email: "chris.cochran@zerthos.com",
             name: "Christopher Cochran"
           }
         ],
