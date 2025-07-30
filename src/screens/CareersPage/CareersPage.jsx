@@ -3,8 +3,14 @@ import { Button } from '../../components/ui/button';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
 import { ArrowUpRight, ChevronDown, ChevronUp, Mail } from 'lucide-react';
-import careersHeroGrid from '../../assets/careers-hero-grid.jpg';
+import careersHeroGrid from '../../assets/careers-hero-grid.svg';
 import careerPhoto from '../../assets/career-photo.jpeg';
+import careers1 from '../../assets/careers1.png';
+import careers2 from '../../assets/careers2.png';
+import careers3 from '../../assets/careers3.png';
+import careers4 from '../../assets/careers4.png';
+import careers5 from '../../assets/careers5.png';
+import careers6 from '../../assets/careers6.png';
 
 const jobs = [
   {
@@ -158,19 +164,19 @@ Best regards,
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Grid Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-50/20 to-transparent">
+        <div className="absolute inset-0 bg-[#FFF9EC] to-transparent">
           <img 
             src={careersHeroGrid} 
             alt="Careers hero grid background" 
-            className="absolute inset-0 w-full h-full object-cover opacity-20"
+            className="absolute inset-0 w-full h-full object-cover opacity-70"
           />
         </div>
         
-        <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#333333] leading-tight mb-8 font-heading pt-8">
+        <div className="relative max-w-7xl mx-auto ">
+          <h1 className="text-4xl md:text-5xl lg:text-[80px] font-normal text-[#333333] leading-tight mt-8 font-heading pt-8 xl:text-[80px]">
             Explore exciting opportunities
           </h1>
-          <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl text-[#333333] leading-relaxed max-w-3xl text-left font-inter">
             We believe in fostering a dynamic and collaborative work environment that empowers our team to create digital excellence.
           </p>
         </div>
@@ -179,7 +185,7 @@ Best regards,
       {/* Why Join Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#333333] mb-12 font-heading">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal text-[#333333] mb-12 font-heading">
             Why join Zerthos/TalonX?
           </h2>
           
@@ -204,18 +210,47 @@ Best regards,
         </div>
       </section>
 
+      {/* Career Highlights Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Collage Grid */}
+          <div className="grid grid-cols-3 grid-rows-3 gap-4 md:gap-6">
+            {[
+              { src: careers1, alt: "Team collaboration and innovation", className: "col-span-1 row-span-2" },
+              { src: careers2, alt: "Modern workspace environment", className: "col-span-1 row-span-1" },
+              { src: careers3, alt: "Professional development opportunities", className: "col-span-1 row-span-2" },
+              { src: careers4, alt: "Work-life balance culture", className: "col-span-1 row-span-1" },
+              { src: careers5, alt: "Team building activities", className: "col-span-1 row-span-2" },
+              { src: careers6, alt: "Cutting-edge technology workspace", className: "col-span-1 row-span-1" },
+            ].map((img, idx) => (
+              <div
+                key={idx}
+                className={`rounded-2xl overflow-hidden bg-gray-100 ${img.className} relative group`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonial Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
           <h3 className="text-lg font-normal text-[#333333] mb-8 font-heading">
             What our team says
           </h3>
           
-          <blockquote className="text-2xl md:text-3xl font-bold text-[#333333] leading-relaxed mb-8">
+          <blockquote className="text-2xl md:text-3xl lg:text-5xl font-normal text-[#333333] leading-relaxed mb-8">
             "Working at Zerthos has been a transformative experience. The collaborative atmosphere and challenging projects have fueled my growth."
           </blockquote>
           
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center space-x-4">
             <div className="w-16 h-16 rounded-lg overflow-hidden">
               <img 
                 src={careerPhoto} 
@@ -224,7 +259,7 @@ Best regards,
               />
             </div>
             <div className="text-left">
-              <p className="font-bold text-[#333333]">Harry Donald</p>
+              <p className="font-semibold text-[#333333]">Harry Donald</p>
               <p className="text-gray-600 text-sm">Business development executive</p>
             </div>
           </div>

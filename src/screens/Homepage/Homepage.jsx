@@ -667,15 +667,24 @@ export const Homepage = () => {
 
               {/* Middle Column - Stats Card */}
               <div className="flex-1 flex justify-center items-center h-full">
-                <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-center relative z-10 ${
+                <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
-                  <div className="text-[48px] font-heading font-bold leading-[48px] mb-1">4x</div>
-                  <div className="text-base font-normal mb-4">Faster data transmission</div>
-                  <div className="text-[40px] font-heading font-bold leading-[40px] mb-1">99.99%</div>
-                  <div className="text-base font-normal mb-4">Uptime guarantee</div>
-                  <div className="text-[40px] font-heading font-bold leading-[40px] mb-1">256-bit</div>
-                  <div className="text-base font-normal">Military-grade encryption</div>
+                  <div>
+
+                  <div className="text-[60px] font-heading font-bold leading-[48px] mb-1">4x</div>
+                  <div className="text-2xl font-inter font-normal mb-4">Faster data <br/>transmission</div>
+                  </div>
+                  <div>
+
+                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1">99.99%</div>
+                  <div className="text-2xl font-inter font-normal mb-4">Uptime guarantee</div>
+                  </div>
+                  <div>
+
+                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1">256-bit</div>
+                  <div className="text-2xl font-inter font-normal">Military-grade <br/> encryption</div>
+                  </div>
                 </div>
               </div>
 
@@ -709,15 +718,25 @@ export const Homepage = () => {
 
               {/* Middle Column - Stats Card */}
               <div className="flex-1 flex justify-center items-center h-full">
-                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[240px] h-full flex flex-col justify-center relative z-10 ${
+                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[240px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
+                  <div>
+
                   <div className="text-[32px] font-heading font-bold leading-[32px] mb-1">4x</div>
                   <div className="text-sm font-normal mb-3">Faster data transmission</div>
+                  </div>
+                  <div>
+
                   <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">99.99%</div>
                   <div className="text-sm font-normal mb-3">Uptime guarantee</div>
+                  </div>
+
+                  <div>
+
                   <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">256-bit</div>
                   <div className="text-sm font-normal">Military-grade encryption</div>
+                  </div>
                 </div>
               </div>
 
@@ -749,15 +768,26 @@ export const Homepage = () => {
 
               {/* Bottom Row - Stats Card */}
               <div className="flex-1 h-[calc(50vh-120px)] flex justify-center items-center">
-                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[280px] h-full flex flex-col justify-center relative z-10 ${
+                <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[280px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
+                  <div>
+
                   <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">4x</div>
                   <div className="text-sm font-normal mb-3">Faster data transmission</div>
+                  </div>
+
+                  <div>
+
                   <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">99.99%</div>
                   <div className="text-sm font-normal mb-3">Uptime guarantee</div>
+                  </div>
+
+                  <div>
+
                   <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">256-bit</div>
                   <div className="text-sm font-normal">Military-grade encryption</div>
+                  </div>
                 </div>
               </div>
             </div>
