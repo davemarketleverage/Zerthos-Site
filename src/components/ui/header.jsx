@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import logoDark from '../../assets/zerthos-dark.png';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = ({ isScrolled = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('');
+  const navigate = useNavigate();
 
   // Detect current page based on pathname
   useEffect(() => {
@@ -23,7 +25,7 @@ export const Header = ({ isScrolled = false }) => {
   return (
     <>
       <div className={`w-full mx-auto px-12 md:px-8 sm:px-4 py-8 md:py-6 sm:py-4 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''}`} style={{ minHeight: '80px' }}>
-        <div className="relative h-10">
+        <div className="relative h-10 cursor-pointer shrink-0" onClick={() => navigate('/')}>
           <img
             className="w-full h-full object-contain"
             alt="Zerthos Logo"

@@ -11,12 +11,12 @@ export const FrameSubsection = () => {
 
   return (
     <section 
-      className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0"
+      className="flex flex-col w-full max-w-[689px] md:max-w-[500px] sm:max-w-full items-start gap-12 md:gap-8 px-4 sm:px-6 md:px-0 pt-8 sm:pt-6 md:pt-0 xl:max-w-full"
       style={{ gap: window.innerWidth < 768 ? '1rem' : undefined }}
     >
       <div className="flex flex-col items-start gap-6 md:gap-4 sm:gap-3 w-full">
         <h1 
-          className="w-full xs:w-[60%] md:w-full mt-16 lg:mt-12 md:mt-8 font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] break-words"
+          className="w-full xs:w-[60%] md:w-full mt-16 lg:mt-12 md:mt-8 font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] break-words lg:text-[80px] xl:text-[80px]"
           style={{ 
             fontSize: window.innerWidth < 768 ? '35px' : undefined,
             lineHeight: window.innerWidth < 768 ? '35px' : undefined,
