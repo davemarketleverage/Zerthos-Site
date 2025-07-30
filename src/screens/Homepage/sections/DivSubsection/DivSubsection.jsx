@@ -23,7 +23,7 @@ export const DivSubsection = () => {
           </div>
 
           <Card className="flex-1 bg-transparent border-none shadow-none">
-            <CardContent className="flex flex-col items-start gap-4 sm:gap-5 md:gap-6 lg:gap-9 p-0">
+            <CardContent className="flex flex-col items-start gap-4 sm:gap-5 md:gap-6 lg:gap-9 p-0 pb-4">
               <p className="relative self-stretch mt-[-1.00px] font-sans font-normal text-[#202020] text-sm sm:text-base md:text-lg lg:text-2xl tracking-[0] leading-5 sm:leading-6 md:leading-7 lg:leading-9">
                 Our TalonX and [vault_encrypt] technologies adapt to your
                 specific needs with minimal code changes. Get enterprise-grade
