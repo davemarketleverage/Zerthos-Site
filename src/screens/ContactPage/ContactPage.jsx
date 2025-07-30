@@ -56,17 +56,62 @@ export const ContactPage = () => {
     
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const emailData = {
+        sender: {
+          name: "Christopher Cochran",
+          email: "chris.cochran@zerthos.com"
+        },
+        to: [
+          {
+            email: "krishan@thinkscoopinc.com",
+            name: "Christopher Cochran"
+          }
+        ],
+        subject: `New Contact Form Submission from ${form.name}`,
+        htmlContent: `
+          <html>
+            <head></head>
+            <body>
+              <h2>New Contact Form Submission</h2>
+              <p><strong>Name:</strong> ${form.name}</p>
+              <p><strong>Email:</strong> ${form.email}</p>
+              <p><strong>Company:</strong> ${form.company || 'Not provided'}</p>
+              <p><strong>Message:</strong></p>
+              <p>${form.message.replace(/\n/g, '<br>')}</p>
+            </body>
+          </html>
+        `
+      };
+
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': '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',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setForm({ name: "", email: "", company: "", message: "" });
+        setFocusedField("");
+        
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      // You might want to show an error message to the user here
+      alert('Failed to send message. Please try again later.');
+    } finally {
       setIsLoading(false);
-      setSubmitted(true);
-      setForm({ name: "", email: "", company: "", message: "" });
-      setFocusedField("");
-      
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 3000);
-    }, 2000);
+    }
   };
 
   const contactInfo = [
