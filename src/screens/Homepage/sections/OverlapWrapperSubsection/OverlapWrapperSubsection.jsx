@@ -218,15 +218,15 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
 
         {/* Desktop/Tablet View - Original Layout */}
         <div className="hidden md:block">
-          <div className="flex flex-col xl:flex-row xl:gap-8 md:px-4 lg:px-8">
+          <div className="flex flex-col xl:flex-row xl:gap-8 md:px-4 lg:px-8 ">
             {/* Features List - Top on tablet, left on desktop */}
-            <div className="flex flex-col justify-start xl:w-[600px] xl:flex-shrink-0" style={{ maxWidth: windowWidth < 1280 ? '100%' : 600 }}>
+            <div className="flex flex-col justify-start xl:w-[600px] xl:flex-shrink-0 tp:pt-10" style={{ maxWidth: windowWidth < 1280 ? '100%' : 600 }}>
               {/* Heading is now shared, not rendered here */}
               <div
                 className="w-full flex flex-col pr-2 custom-scrollbar overflow-y-auto xl:items-start md:items-center xl:items-start"
                 style={{
-                  height: windowWidth < 1280 ? 300 : 420, // smaller height for tablet
-                  gap: windowWidth < 1280 ? 24 : 48, // smaller gap for tablet
+                  height: windowWidth < 1024 ? 300 : windowWidth >= 1279 && windowWidth <= 1300 ? 280 : 420, // adjusted height for tp screens
+                  gap: windowWidth < 1024 ? 24 : windowWidth >= 1279 && windowWidth <= 1300 ? 10 : 48, // adjusted gap for tp screens
                   scrollSnapType: 'y mandatory',
                 }}
                 ref={scrollContainerRef}
@@ -245,18 +245,18 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
                     }}
                     ref={el => featureRefs.current[idx] = el}
                     style={{ 
-                      minHeight: windowWidth < 1024 ? 140 : 140, 
-                      maxHeight: windowWidth < 1024 ? 200 : 180 
+                      minHeight: windowWidth < 1024 ? 140 : windowWidth >= 1279 && windowWidth <= 1300 ? 120 : 140, 
+                      maxHeight: windowWidth < 1024 ? 200 : windowWidth >= 1279 && windowWidth <= 1300 ? 190 : 180 
                     }}
                   >
                     <CardContent className="p-0">
                       <div className="flex flex-col items-start md:items-center xl:items-start gap-2">
-                        <h3 className={`font-semibold text-2xl md:text-xl leading-9 md:leading-7 transition-all duration-300 md:text-center xl:text-left ${
+                        <h3 className={`font-semibold text-2xl md:text-xl leading-9 md:leading-7 transition-all duration-300 md:text-center xl:text-left tp:text-lg tp:leading-6 ${
                           activeFeature === idx ? "text-[#202020]" : "text-[#b0b0b0]"
                         }`}>
                           {feature.title}
                         </h3>
-                        <p className={`font-normal text-lg md:text-base leading-7 md:leading-6 transition-all duration-300 lg:max-w-[500px] md:max-w-full md:text-center xl:text-left ${
+                        <p className={`font-normal text-lg md:text-base leading-7 md:leading-6 transition-all duration-300 lg:max-w-[500px] md:max-w-full md:text-center xl:text-left tp:text-sm tp:leading-5 ${
                           activeFeature === idx ? "text-[#565a67]" : "text-[#d0d0d0]"
                         }`}>
                           {feature.description}
@@ -268,11 +268,11 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
               </div>
             </div>
             {/* Image - Bottom on tablet, right on desktop */}
-            <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : '0px' }}>
+            <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : windowWidth >= 1279 && windowWidth <= 1300 ? '0px' : '0px' }}>
               <LazyImage
                 src={features[displayedFeature]?.image}
                 alt={features[displayedFeature]?.title}
-                className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'}`}
+                className={`rounded-2xl h-[500px] w-[1000px] xl:h-[500px] xl:w-[800px] 2xl:h-[500px] 2xl:w-[1000px] md:h-[400px] md:w-[800px] object-cover shadow-lg md:mr-0 transition-opacity duration-300 ${imageVisible ? 'opacity-100' : 'opacity-0'} tp:h-[350px] tp:w-[600px]`}
               />
             </div>
           </div>

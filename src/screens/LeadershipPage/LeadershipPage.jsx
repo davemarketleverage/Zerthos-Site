@@ -290,7 +290,7 @@ operational excellence.`
 
       {/* Call to Action Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-[#E5F7FF] relative md:h-[50vh]">
-        <div className="max-w-7xl mx-auto h-full flex">
+        <div className="max-w-7xl mx-auto h-full flex relative z-10">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Content */}
             <div>
@@ -320,7 +320,7 @@ operational excellence.`
                       <img 
                 src={leadAbstract} 
                 alt="Leadership abstract background" 
-                className="absolute left-0 bottom-0 object-cover z-0 hidden lg:flex"
+                className="absolute left-0 bottom-[-50px] 2xl:bottom-0 object-cover z-0 hidden lg:flex opacity-80"
               />
       </section>
 

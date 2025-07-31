@@ -27,7 +27,7 @@ export const Header = ({ isScrolled = false }) => {
       <div className={`w-full mx-auto px-4 lg:px-6 xl:px-8 py-8 lg:py-6 md:py-4 sm:py-3 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''} min-h-20 tp:min-h-0  tp:px-4 tp:py-3` } >
         <div className="relative h-12 tp:h-8 cursor-pointer shrink-0" onClick={() => navigate('/')}>
           <img
-            className="w-full h-full object-contain"
+            className=" h-full object-contain"
             alt="Zerthos Logo"
             src={logoDark}
           />

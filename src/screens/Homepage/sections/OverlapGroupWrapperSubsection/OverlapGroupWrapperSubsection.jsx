@@ -75,33 +75,33 @@ export const OverlapGroupWrapperSubsection = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center mt-12 lg:mt-12 -mt-[20%]">
+      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex items-center mt-12 lg:mt-12 -mt-[20%] tp:mt-0">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 lg:gap-16 w-full">
           
           {/* Left Side - Title and Performance Card */}
           <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 lg:max-w-[600px] xl:gap-4 2xl:gap-16">
             
             {/* Title */}
-            <h2 className={`font-heading font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0] leading-[48px] sm:leading-[52px] md:leading-[56px] lg:leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+            <h2 className={`font-heading font-normal text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0] leading-[48px] sm:leading-[52px] md:leading-[56px] lg:leading-[60px] transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'} tp:text-5xl tp:leading-[50px]`}>
               Performance
               <br />
               snapshot
             </h2>
 
             {/* Performance Card */}
-            <Card className={`flex flex-col w-full sm:w-[400px] md:w-[500px] lg:w-[600px] items-start gap-4 sm:gap-5 md:gap-6 px-0 py-4 sm:py-5 md:py-6 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
+            <Card className={`flex flex-col w-full sm:w-[400px] md:w-[500px] lg:w-[600px] items-start gap-4 sm:gap-5 md:gap-6 px-0 py-4 sm:py-5 md:py-6 bg-[#ffffff1a] rounded-xl backdrop-blur-[6px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(6px)_brightness(100%)] border-none transition-all duration-[1200ms] ease-out will-change-transform will-change-opacity ${showPerformanceCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'} tp:w-[450px] tp:gap-2`}>
               {performanceMetrics.map((metric, index) => (
                 <React.Fragment key={index}>
                   <CardContent className="flex flex-col items-start justify-center gap-4 sm:gap-5 md:gap-6 px-4 sm:px-5 md:px-6 py-0 relative self-stretch w-full">
                     <div className="flex items-center justify-between relative self-stretch w-full">
-                      <div className="relative w-fit mt-[-1.00px] font-semibold text-white text-lg sm:text-xl md:text-2xl tracking-[0] leading-7 sm:leading-8 md:leading-9 whitespace-nowrap">
+                      <div className="relative w-fit mt-[-1.00px] font-semibold text-white text-lg sm:text-xl md:text-2xl tracking-[0] leading-7 sm:leading-8 md:leading-9 whitespace-nowrap tp:text-base tp:leading-5">
                         {metric.title}
                       </div>
-                      <div className="relative w-fit font-normal text-white text-base sm:text-lg tracking-[0] leading-6 sm:leading-7 whitespace-nowrap">
+                      <div className="relative w-fit font-normal text-white text-base sm:text-lg tracking-[0] leading-6 sm:leading-7 whitespace-nowrap tp:text-sm tp:leading-5">
                         {metric.value}
                       </div>
                     </div>
-                    <div className="relative w-full bg-white/10 rounded-[20px] h-2 sm:h-2.5 md:h-3 overflow-hidden">
+                    <div className="relative w-full bg-white/10 rounded-[20px] h-2 sm:h-2.5 md:h-3 overflow-hidden tp:h-1">
                       <div
                         className={`relative h-full rounded-[20px] ${metric.progressColor} shadow-lg`}
                         style={{
@@ -123,7 +123,7 @@ export const OverlapGroupWrapperSubsection = () => {
             </Card>
 
             {/* Bottom Text */}
-            <p className="md:opacity-60 font-normal text-white text-sm sm:text-base md:text-lg tracking-[0] leading-5 sm:leading-6 md:leading-7">
+            <p className="md:opacity-60 font-normal text-white text-sm sm:text-base md:text-lg tracking-[0] leading-5 sm:leading-6 md:leading-7 tp:text-sm tp:leading-5">
               Based on tests with 10,000+ files including 5.6GB satellite TIFs
             </p>
           </div>
