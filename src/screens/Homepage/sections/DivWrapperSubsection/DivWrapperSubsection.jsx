@@ -111,14 +111,14 @@ export const DivWrapperSubsection = () => {
           {features.map((feature, index) => (
             <React.Fragment key={index}>
               {/* Desktop layout */}
-              <div className="hidden md:flex items-center px-4 sm:px-6 py-3 relative z-10">
+              <div className="hidden md:flex items-center px-4 sm:px-6 py-3 xl:py-1 2xl:py-3 relative z-10">
                 <div className="flex flex-1 max-w-[400px] lg:max-w-[520px] items-center gap-3">
                   <img
                     className="w-6 h-6 md:w-7 md:h-7 flex-shrink-0"
                     alt={feature.title}
                     src={feature.icon}
                   />
-                  <div className="flex flex-col items-start gap-1 min-w-0">
+                  <div className="flex flex-col items-start gap-1 xl:gap-0 2xl:gap-1 min-w-0">
                     <h3 className="font-bold text-[#202020] text-xs sm:text-sm md:text-base leading-5 md:leading-6 break-words">
                       {feature.title}
                     </h3>

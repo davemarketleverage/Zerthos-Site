@@ -30,9 +30,15 @@ export const Footer = () => (
           {/* Contact information */}
           <div className="flex flex-col sm:flex-row items-start gap-4 lg:gap-9 relative w-full sm:w-auto">
             <div className="flex flex-col items-start gap-2 relative">
-              <h3 className="font-sans font-bold text-white text-sm lg:text-base leading-5 lg:leading-6">Zerthos Corporate HQ</h3>
+              <h3 className="font-sans font-bold text-white text-sm lg:text-base leading-5 lg:leading-6">Zerthos HQ</h3>
               <p className="opacity-70 font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px]">
                 801 South Pointe Drive,<br />TH1 Miami Beach,<br />FL 33139
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-2 relative">
+              <h3 className="font-sans font-bold text-white text-sm lg:text-base leading-5 lg:leading-6">Zerthos Office</h3>
+              <p className="opacity-70 font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px]">
+                105 Bradford Rd, Suite 420,<br />Wexford,<br />PA 15090
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 lg:gap-9">
