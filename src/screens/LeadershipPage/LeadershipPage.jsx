@@ -118,7 +118,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
       name: "Jonathan Johnson",
       title: "Director of Systems Performance & Benchmarking, Zerthos",
       image: jonathanJohnson,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/ecton/",
       bio: `Jonathan Johnson is the Director of Systems Performance & Benchmarking at Zerthos, where he
 leads the architecture, optimization, and performance evaluation of the TalonX protocol. His
 expertise is instrumental in ensuring TalonX operates with industry-leading speed, reliability, and
@@ -290,10 +290,10 @@ operational excellence.`
 
       {/* Call to Action Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-[#E5F7FF] relative md:h-[50vh]">
-        <div className="max-w-7xl mx-auto h-full flex relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto h-full flex relative z-10 2xl:items-center">
+          <div className="grid lg:grid-cols-2 gap-12 2xl:h-fit">
             {/* Left Content */}
-            <div>
+            <div className="2xl:h-fit">
               <h2 className="text-3xl md:text-[60px] font-heading font-light text-[#333333] mb-6 leading-none">
                 Interested in <br className="hidden md:block"/>joining the vision?
               </h2>
