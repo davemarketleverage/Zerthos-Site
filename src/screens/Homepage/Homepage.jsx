@@ -615,7 +615,7 @@ export const Homepage = () => {
 
         {/* About Section */}
         <section className="w-full h-screen bg-white flex items-center tp:pt-1">
-          <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center">
+          <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center 2xl:justify-center">
             <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-700 ease-in-out flex items-center justify-center hidden md:flex ${
               delayedBrainBg ? 'bg-[#F09A07]' : 'bg-transparent'
             }`} style={{ zIndex: 30 }}>
@@ -649,7 +649,7 @@ export const Homepage = () => {
         <section className="w-full h-screen bg-white flex items-center tp:pt-4">
           <div className="w-full flex items-center px-4 sm:px-6 md:px-8 lg:px-12">
             {/* Desktop Layout - 3 columns */}
-            <div className="hidden xl:flex w-full items-stretch h-[500px] tp:h-[400px] tp:gap-4">
+            <div className="hidden xl:flex w-full items-stretch h-[500px] tp:h-[400px] tp:gap-4 2xl:gap-16">
               {/* Left Column - Text Content with Grey Background */}
               <div className="flex-1 h-full ml-12">
                 <div className="bg-[#F8F8F8] rounded-[24px] px-9 py-16 flex flex-col justify-center items-start gap-12 h-full tp:gap-4">
@@ -667,7 +667,7 @@ export const Homepage = () => {
               </div>
 
               {/* Middle Column - Stats Card */}
-              <div className="flex-1 flex justify-center items-center h-full">
+              <div className={`${windowWidth >= 1536 ? '' : 'flex-1'} flex justify-center items-center h-full`}>
                 <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
@@ -801,7 +801,7 @@ export const Homepage = () => {
         <section className="w-full h-screen bg-white flex items-center tp:pt-4">
           <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             {/* Desktop Layout - Original design */}
-            <div className="hidden xl:flex w-full items-center">
+            <div className="hidden xl:flex w-full items-center 2xl:justify-center">
               {/* Left side - Title */}
               <div className="flex items-center gap-8">
                 <img
