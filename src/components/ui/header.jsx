@@ -86,7 +86,7 @@ export const Header = ({ isScrolled = false }) => {
             Careers
           </a>
           <a 
-            href="http://ec2-3-84-10-33.compute-1.amazonaws.com:3001/login" 
+            href="https://app.zerthos.com/" 
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#F09A07] text-white rounded-xl px-3 xl:px-5 py-2 ml-1 xl:ml-2 font-semibold transition-colors duration-200 hover:bg-[#F09A07]/90"
@@ -191,7 +191,7 @@ export const Header = ({ isScrolled = false }) => {
                 Careers
               </a>
               <a
-                href="http://ec2-3-84-10-33.compute-1.amazonaws.com:3001/login"
+                href="https://app.zerthos.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
