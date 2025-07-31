@@ -11,6 +11,7 @@ module.exports = {
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
+      'tp': {'min': '1279px', 'max': '1300px'},
       '2xl': '1536px',
     },
     extend: {

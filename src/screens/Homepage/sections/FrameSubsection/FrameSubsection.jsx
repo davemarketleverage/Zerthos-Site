@@ -16,7 +16,7 @@ export const FrameSubsection = () => {
     >
       <div className="flex flex-col items-start gap-6 md:gap-4 sm:gap-3 w-full">
         <h1 
-          className="w-full xs:w-[60%] md:w-full mt-16 lg:mt-12 md:mt-8 font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] break-words lg:text-[80px] xl:text-[80px]"
+          className="w-full xs:w-[60%] md:w-full mt-16 lg:mt-12 md:mt-8 font-heading font-light text-[#202020] text-[80px] xs:text-[50px] md:text-[60px] tracking-[0] leading-[80px] xs:leading-[60px] md:leading-[60px] xl:leading-[72px] break-words lg:text-[80px] xl:text-[80px]"
           style={{ 
             fontSize: window.innerWidth < 768 ? '35px' : undefined,
             lineHeight: window.innerWidth < 768 ? '35px' : undefined,

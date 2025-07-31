@@ -24,8 +24,8 @@ export const Header = ({ isScrolled = false }) => {
 
   return (
     <>
-      <div className={`w-full mx-auto px-4 lg:px-6 xl:px-8 py-8 lg:py-6 md:py-4 sm:py-3 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''}`} style={{ minHeight: '80px' }}>
-        <div className="relative h-12 cursor-pointer shrink-0" onClick={() => navigate('/')}>
+      <div className={`w-full mx-auto px-4 lg:px-6 xl:px-8 py-8 lg:py-6 md:py-4 sm:py-3 flex justify-between items-center fixed top-0 z-50 bg-white transition-all duration-300 ease-in-out ${isScrolled || mobileMenuOpen ? 'border-b border-gray-200 shadow-sm' : ''} min-h-20 tp:min-h-0  tp:px-4 tp:py-3` } >
+        <div className="relative h-12 tp:h-8 cursor-pointer shrink-0" onClick={() => navigate('/')}>
           <img
             className="w-full h-full object-contain"
             alt="Zerthos Logo"
@@ -34,7 +34,7 @@ export const Header = ({ isScrolled = false }) => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex gap-2 2xl:gap-4 text-base xl:text-lg font-medium items-center">
+        <nav className="hidden xl:flex gap-2 2xl:gap-4 text-base xl:text-lg font-medium items-center tp:text-sm">
           <a 
             href="/" 
             className={`px-2 xl:px-3 py-1 transition-colors duration-200 ${
