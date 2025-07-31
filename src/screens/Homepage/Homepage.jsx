@@ -576,7 +576,7 @@ export const Homepage = () => {
       >
         {/* Hero Section */}
         <section className="w-full h-screen bg-white flex items-end pt-20 sm:pt-16 md:pt-0 tp:pt-8">
-          <div className="w-full mx-auto pl-12 md:pl-8 sm:pl-4 pr-0 relative">
+          <div className={`w-full mx-auto pl-12 md:pl-8 sm:pl-4 pr-0 relative ${windowWidth > 1920 ? 'max-w-[1800px]' : ''}`} >
             <div className="relative w-full h-[720px] md:h-[600px] sm:h-[500px] lg:h-[720px] xl:h-[720px] 2xl:h-[800px]">
 
                 {/* Duplicate static yellow shape for hero section - hidden on mobile */}

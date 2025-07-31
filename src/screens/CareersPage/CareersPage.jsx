@@ -310,7 +310,7 @@ Best regards,
           <div className="grid md:grid-cols-3 gap-8 md:gap-12">
             {whyJoinReasons.map((reason, index) => (
               <div key={index} className="relative">
-                <h3 className="text-xl md:text-2xl font-bold text-[#333333] mb-4 font-heading">
+                <h3 className="text-xl md:text-2xl font-semibold text-[#333333] mb-4 font-inter">
                   {reason.title}
                 </h3>
                 <p className="text-lg text-[#333333] leading-relaxed">
@@ -389,7 +389,7 @@ Best regards,
             What our team says
           </h3>
           
-          <blockquote className="text-2xl md:text-3xl lg:text-5xl font-normal text-[#333333] leading-relaxed mb-8">
+          <blockquote className="text-2xl md:text-3xl lg:text-5xl font-normal text-[#333333] leading-relaxed mb-8 font-heading">
             "Working at Zerthos has been a transformative experience. The collaborative atmosphere and challenging projects have fueled my growth."
           </blockquote>
           

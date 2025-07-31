@@ -398,7 +398,7 @@ export const IndustriesPage = () => {
         <div className="max-w-7xl mx-auto lg:h-[40vh] flex items-center">
           <div className="grid lg:grid-cols-10 gap-12 items-center w-full">
             {/* Left Content - 70% */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-6 relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal text-[#333333] leading-tight font-heading">
                 Industries we serve
               </h1>
@@ -409,7 +409,7 @@ export const IndustriesPage = () => {
             
             {/* Right Content - TalonX Logo - 30% */}
             <div className="lg:col-span-3 flex justify-center lg:justify-end items-center">
-              <div className="relative w-40 h-20 lg:w-64 lg:h-32">
+              <div className="relative w-40 h-20 lg:w-64 lg:h-32 z-10">
                 <img 
                   className="w-full h-full object-contain" 
                   alt="TalonX Logo" 
