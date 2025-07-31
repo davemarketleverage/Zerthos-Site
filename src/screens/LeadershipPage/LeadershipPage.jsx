@@ -6,6 +6,7 @@ import leadershipHeroBuilding from '../../assets/lead-building.png';
 import christopherCochran from '../../assets/christopher-cochran.jpg';
 import markGrace from '../../assets/markgracephoto.png';
 import justinJohnson from '../../assets/justin.jpg';
+import jonathanJohnson from '../../assets/jonathan.jpg';
 import leadAbstract from '../../assets/lead-abstract.png';
 
 export const LeadershipPage = () => {
@@ -116,7 +117,7 @@ Mark began his legal career at Winston & Strawn in Washington, D.C., representin
     {
       name: "Jonathan Johnson",
       title: "Director of Systems Performance & Benchmarking, Zerthos",
-      image: "https://via.placeholder.com/400x400/cccccc/666666?text=Jonathan+Johnson",
+      image: jonathanJohnson,
       linkedin: "#",
       bio: `Jonathan Johnson is the Director of Systems Performance & Benchmarking at Zerthos, where he
 leads the architecture, optimization, and performance evaluation of the TalonX protocol. His
@@ -222,7 +223,7 @@ operational excellence.`
                 <div className="flex justify-start mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl md:text-2xl font-heading font-light text-[#333333] mb-4 font-semibold">
+                <h3 className="text-xl md:text-2xl font-heading  text-[#333333] mb-4 font-semibold">
                   {feature.title}
                 </h3>
                 <p className="text-[#333333] leading-relaxed">
@@ -289,7 +290,7 @@ operational excellence.`
 
       {/* Call to Action Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-20 bg-[#E5F7FF] relative md:h-[50vh]">
-        <div className="max-w-7xl mx-auto h-full flex">
+        <div className="max-w-7xl mx-auto h-full flex relative z-10">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Content */}
             <div>
@@ -319,7 +320,7 @@ operational excellence.`
                       <img 
                 src={leadAbstract} 
                 alt="Leadership abstract background" 
-                className="absolute left-0 bottom-0 object-cover z-0 hidden lg:flex"
+                className="absolute left-0 bottom-[-50px] 2xl:bottom-0 object-cover z-0 hidden lg:flex opacity-80"
               />
       </section>
 

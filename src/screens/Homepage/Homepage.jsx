@@ -115,7 +115,7 @@ export const Homepage = () => {
   }, [yellowBgAnimation.phase, currentSection]);
 
   const sections = [
-    { id: 'hero', name: 'Hero' },
+    { id: 'hero', name: 'Home' },
     { id: 'about', name: 'About' },
     { id: 'stats', name: 'Stats' },
     { id: 'partners', name: 'Partners' },
@@ -570,18 +570,19 @@ export const Homepage = () => {
         className="w-full h-full transition-transform duration-500 ease-in-out z-30"
         style={{ 
           transform: `translateY(-${currentSection * 100}vh)`,
-          height: `${sections.length * 100}vh`
+          height: `${sections.length * 100}vh`,
+          marginTop: windowWidth >= 1279 && windowWidth <= 1300 ? '2rem' : '0'
         }}
       >
         {/* Hero Section */}
-        <section className="w-full h-screen bg-white flex items-end pt-20 sm:pt-16 md:pt-0">
+        <section className="w-full h-screen bg-white flex items-end pt-20 sm:pt-16 md:pt-0 tp:pt-8">
           <div className="w-full mx-auto pl-12 md:pl-8 sm:pl-4 pr-0 relative">
             <div className="relative w-full h-[720px] md:h-[600px] sm:h-[500px] lg:h-[720px] xl:h-[720px] 2xl:h-[800px]">
 
                 {/* Duplicate static yellow shape for hero section - hidden on mobile */}
                 {currentSection === 0 && !isScrolling && (
                   <img
-                    className="absolute w-[720px] h-[720px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] xl:w-[720px] xl:h-[720px] right-0 bottom-0 z-0 hidden sm:hidden md:block"
+                    className="absolute w-[720px] h-[720px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] xl:w-[720px] xl:h-[720px] right-0 bottom-0 z-0 hidden sm:hidden md:block tp:w-[520px] tp:h-[520px] "
                     alt="Yellow Shape"
                     src="https://c.animaapp.com/mcovvnm5V0Fxtk/img/rectangle-6.svg"
                   />
@@ -602,8 +603,8 @@ export const Homepage = () => {
               </div>
 
               {/* Info Card - hidden on mobile, reduced size on tablet */}
-              <Card className={`absolute w-[348px] h-[220px] md:w-[240px] md:h-[160px] lg:w-[280px] lg:h-[180px] xl:w-[348px] xl:h-[220px] bottom-12 md:bottom-12 lg:bottom-12 xl:bottom-12 left-0 md:left-4 lg:left-4 xl:left-0 rounded-xl overflow-hidden bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/combined-shape.png)] bg-[100%_100%] border-none z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'}`}>
-                <div className="absolute w-[300px] md:w-[200px] lg:w-[240px] xl:w-[300px] top-[23px] md:top-[16px] lg:top-[20px] xl:top-[23px] left-6 md:left-4 lg:left-5 xl:left-6 font-normal text-white text-lg md:text-sm lg:text-base xl:text-lg leading-7 md:leading-5 lg:leading-6 xl:leading-7">
+              <Card className={`absolute w-[348px] h-[220px] md:w-[240px] md:h-[160px] lg:w-[280px] lg:h-[180px] xl:w-[348px] xl:h-[220px] bottom-12 md:bottom-12 lg:bottom-12 xl:bottom-12 left-0 md:left-4 lg:left-4 xl:left-0 rounded-xl overflow-hidden bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/combined-shape.png)] bg-[100%_100%] border-none z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'} tp:w-[300px] tp:h-[200px]`}>
+                <div className="absolute w-[300px] md:w-[200px] lg:w-[240px] xl:w-[300px] top-[23px] md:top-[16px] lg:top-[20px] xl:top-[23px] left-6 md:left-4 lg:left-5 xl:left-6 font-normal text-white text-lg md:text-sm lg:text-base xl:text-lg leading-7 md:leading-5 lg:leading-6 xl:leading-7 tp:text-base  tp:w-[250px] tp:h-[150px]">
                   Our proprietary TalonX protocol enables lightning-fast, secure, and
                   reliable delivery - leaving outdated systems behind.
                 </div>
@@ -613,7 +614,7 @@ export const Homepage = () => {
         </section>
 
         {/* About Section */}
-        <section className="w-full h-screen bg-white flex items-center">
+        <section className="w-full h-screen bg-white flex items-center tp:pt-1">
           <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center">
             <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-700 ease-in-out flex items-center justify-center hidden md:flex ${
               delayedBrainBg ? 'bg-[#F09A07]' : 'bg-transparent'
@@ -645,19 +646,19 @@ export const Homepage = () => {
         </section>
 
         {/* Watch Zerthos in Action Section */}
-        <section className="w-full h-screen bg-white flex items-center">
+        <section className="w-full h-screen bg-white flex items-center tp:pt-4">
           <div className="w-full flex items-center px-4 sm:px-6 md:px-8 lg:px-12">
             {/* Desktop Layout - 3 columns */}
-            <div className="hidden xl:flex w-full items-stretch h-[500px]">
+            <div className="hidden xl:flex w-full items-stretch h-[500px] tp:h-[400px] tp:gap-4">
               {/* Left Column - Text Content with Grey Background */}
               <div className="flex-1 h-full ml-12">
-                <div className="bg-[#F8F8F8] rounded-[24px] px-9 py-16 flex flex-col justify-center items-start gap-12 h-full">
-                  <h2 className="text-[#202020] text-[60px] font-heading font-normal leading-[60px]">
+                <div className="bg-[#F8F8F8] rounded-[24px] px-9 py-16 flex flex-col justify-center items-start gap-12 h-full tp:gap-4">
+                  <h2 className="text-[#202020] text-[60px] font-heading font-normal leading-[60px] tp:text-5xl">
                     Watch<br/>
                     Zerthos<br/>
                     in action
                   </h2>
-                  <p className="text-[#565B68] text-2xl font-normal leading-9">
+                  <p className="text-[#565B68] text-2xl font-normal leading-9 tp:text-lg tp:leading-7">
                     Watch our technology<br/>
                     demo to see how Zerthos transform data transmission with unmatched speed and<br/>
                     security.
@@ -672,18 +673,18 @@ export const Homepage = () => {
                 }`}>
                   <div>
 
-                  <div className="text-[60px] font-heading font-bold leading-[48px] mb-1">4x</div>
-                  <div className="text-2xl font-inter font-normal mb-4">Faster data <br/>transmission</div>
+                  <div className="text-[60px] font-heading font-bold leading-[48px] mb-1 tp:text-5xl tp:leading-[50px]">4x</div>
+                  <div className="text-2xl font-inter font-normal mb-4 tp:text-lg tp:leading-7">Faster data <br/>transmission</div>
                   </div>
                   <div>
 
-                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1">99.99%</div>
-                  <div className="text-2xl font-inter font-normal mb-4">Uptime guarantee</div>
+                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1 tp:text-5xl tp:leading-[50px]">99.99%</div>
+                  <div className="text-2xl font-inter font-normal mb-4 tp:text-lg tp:leading-7">Uptime guarantee</div>
                   </div>
                   <div>
 
-                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1">256-bit</div>
-                  <div className="text-2xl font-inter font-normal">Military-grade <br/> encryption</div>
+                  <div className="text-[60px] font-heading font-bold leading-[40px] mb-1 tp:text-5xl tp:leading-[50px]">256-bit</div>
+                  <div className="text-2xl font-inter font-normal tp:text-lg tp:leading-7">Military-grade <br/> encryption</div>
                   </div>
                 </div>
               </div>
@@ -797,7 +798,7 @@ export const Homepage = () => {
 
 
         {/* Partners Section */}
-        <section className="w-full h-screen bg-white flex items-center">
+        <section className="w-full h-screen bg-white flex items-center tp:pt-4">
           <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             {/* Desktop Layout - Original design */}
             <div className="hidden xl:flex w-full items-center">
@@ -1084,21 +1085,21 @@ export const Homepage = () => {
         </section>
 
         {/* What Makes Zerthos Section */}
-        <section className="w-full h-screen bg-white flex items-center justify-center">
+        <section className="w-full h-screen bg-white flex items-center justify-center tp:pt-4">
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 text-center">
             {/* Heading removed, handled by shared heading */}
           </div>
         </section>
 
         {/* Features Section */}
-        <section className="w-full h-screen bg-white flex items-center">
+        <section className="w-full h-screen bg-white flex items-center tp:pt-4">
           <div className="w-full mx-auto px-12">
             <OverlapWrapperSubsection animate={currentSection === 5} activeFeature={activeFeature} setActiveFeature={setActiveFeature} setFeaturesListHovered={setFeaturesListHovered} windowWidth={windowWidth} />
           </div>
         </section>
 
         {/* Performance Section */}
-        <section className="w-full h-screen bg-[#010101] flex items-center">
+        <section className="w-full h-screen bg-[#010101] flex items-center tp:pt-4">
           <div className="w-full mx-auto">
             <OverlapGroupWrapperSubsection />
           </div>
@@ -1112,7 +1113,7 @@ export const Homepage = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="w-full h-screen bg-[#202020] flex items-center">
+        <section className="w-full h-screen bg-[#202020] flex items-center tp:pt-1">
           <div className="w-full mx-auto">
             <DivSubsection />
           </div>

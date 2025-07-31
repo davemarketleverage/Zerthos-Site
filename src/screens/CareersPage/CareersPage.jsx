@@ -291,7 +291,7 @@ Best regards,
         </div>
         
         <div className="relative max-w-7xl mx-auto ">
-          <h1 className="text-4xl md:text-5xl lg:text-[80px] font-normal text-[#333333] leading-tight mt-8 font-heading pt-8 xl:text-[80px]">
+          <h1 className="text-4xl md:text-5xl lg:text-[80px] font-light text-[#333333] leading-tight mt-8 font-heading pt-8 xl:text-[80px]">
             Explore exciting opportunities
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl text-[#333333] leading-relaxed max-w-3xl text-left font-inter">

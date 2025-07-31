@@ -78,12 +78,12 @@ export const DivWrapperSubsection = () => {
   }, [inView]);
 
   return (
-    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 mt-16">
+    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 mt-16 tp:mt-2 tp:pt-2">
       <Card className={`relative border border-solid border-[#cccccc] rounded-xl sm:rounded-2xl transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-300 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
         <CardContent className="p-0">
 
           {/* Column headers - Responsive layout */}
-          <div className="hidden md:flex justify-between px-4 sm:px-6 pt-4 pb-3 relative z-10">
+          <div className="hidden md:flex justify-between px-4 sm:px-6 pt-4 pb-3 relative z-10 tp:pt-1 tp:pb-1">
             <div className="flex-1 max-w-[400px] lg:max-w-[520px]"></div>
             <div className="flex flex-1 gap-4 md:gap-6 lg:gap-[40px]">
               <div className="flex-1 bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] font-bold text-transparent text-base md:text-lg lg:text-xl tracking-[0] leading-6 md:leading-7 text-right">
@@ -111,7 +111,7 @@ export const DivWrapperSubsection = () => {
           {features.map((feature, index) => (
             <React.Fragment key={index}>
               {/* Desktop layout */}
-              <div className="hidden md:flex items-center px-4 sm:px-6 py-3 xl:py-1 2xl:py-3 relative z-10">
+              <div className="hidden md:flex items-center px-4 sm:px-6 py-3 xl:py-1 2xl:py-3 relative z-10 tp:py-2">
                 <div className="flex flex-1 max-w-[400px] lg:max-w-[520px] items-center gap-3">
                   <img
                     className="w-6 h-6 md:w-7 md:h-7 flex-shrink-0"
@@ -122,7 +122,7 @@ export const DivWrapperSubsection = () => {
                     <h3 className="font-bold text-[#202020] text-xs sm:text-sm md:text-base leading-5 md:leading-6 break-words">
                       {feature.title}
                     </h3>
-                    <p className="text-[10px] sm:text-xs text-[#565a67] leading-4 sm:leading-5 font-normal">
+                    <p className="text-[10px] sm:text-xs text-[#565a67] leading-4 sm:leading-5 font-normal tp:hidden">
                       {feature.description}
                     </p>
                   </div>
