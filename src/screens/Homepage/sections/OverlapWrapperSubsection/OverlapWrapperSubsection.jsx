@@ -218,7 +218,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
 
         {/* Desktop/Tablet View - Original Layout */}
         <div className="hidden md:block">
-          <div className="flex flex-col xl:flex-row xl:gap-8 md:px-4 lg:px-8 ">
+          <div className="flex flex-col xl:flex-row xl:gap-8 md:px-4 lg:px-8  2xl:justify-center">
             {/* Features List - Top on tablet, left on desktop */}
             <div className="flex flex-col justify-start xl:w-[600px] xl:flex-shrink-0 tp:pt-10" style={{ maxWidth: windowWidth < 1280 ? '100%' : 600 }}>
               {/* Heading is now shared, not rendered here */}
@@ -268,7 +268,7 @@ export const OverlapWrapperSubsection = ({ animate, activeFeature, setActiveFeat
               </div>
             </div>
             {/* Image - Bottom on tablet, right on desktop */}
-            <div className="flex items-center xl:justify-start md:justify-center md:flex xl:flex-1" style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : windowWidth >= 1279 && windowWidth <= 1300 ? '0px' : '0px' }}>
+            <div className={`flex items-center ${windowWidth >= 1280 ? 'xl:justify-start' : 'md:justify-center'} ${windowWidth >= 768 ? 'md:flex' : ''} ${windowWidth >= 1280 && windowWidth < 1536 ? 'xl:flex-1' : ''} ${windowWidth >= 1536 ? 'h-fit' : ''}`} style={{ marginTop: windowWidth >= 768 && windowWidth < 1280 ? '48px' : windowWidth >= 1279 && windowWidth <= 1300 ? '0px' : '0px' }}>
               <LazyImage
                 src={features[displayedFeature]?.image}
                 alt={features[displayedFeature]?.title}
