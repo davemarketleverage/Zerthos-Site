@@ -167,7 +167,7 @@ export const TechnologyPage = () => {
   ];
 
   const cardsPerView = 4;
-  const maxIndex = Math.max(0, industryCards.length - cardsPerView);
+  const maxIndex = Math.max(0, industryCards.length - cardsPerView -1);
 
   const nextCards = () => {
     setCurrentCardIndex(prev => Math.min(prev + 1, maxIndex));
@@ -266,6 +266,9 @@ export const TechnologyPage = () => {
           <div className="relative">
             {/* Golden Arc */}
             <div className="relative h-full mb-12 lg:pt-12">
+              <div className='h-full w-full absolute'>
+
+              </div>
               <img src={technologyFiberGraphic} alt="Fiber graphic" className="w-full h-full object-cover hidden md:block" />
               
               {/* Feature Boxes positioned around the arc */}
