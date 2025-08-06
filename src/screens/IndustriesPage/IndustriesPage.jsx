@@ -21,6 +21,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
+import { SEO } from '../../components/ui/seo';
 import industriesHeroWave from '../../assets/industries-hero-wave.jpg';
 import healthcareImage from '../../assets/healthcare-image.jpg';
 import gamingImage from '../../assets/gaming-image.jpg';
@@ -113,6 +114,25 @@ const LazyImage = ({ src, alt, className, fallbackClassName = "bg-gray-200" }) =
 };
 
 export const IndustriesPage = () => {
+  // SEO for industries page
+  const industriesSEO = {
+    title: "Industry Solutions - Zerthos Technology Services",
+    description: "Discover how Zerthos transforms industries with cutting-edge technology solutions. From healthcare to finance, gaming to aerospace - we deliver innovative solutions across all sectors.",
+    keywords: "industry solutions, healthcare technology, financial services, gaming technology, energy solutions, government technology, media technology, AI solutions, manufacturing technology, aerospace technology, logistics technology, insurance technology, legal technology, edtech, biotech, ecommerce technology, cloud solutions",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Industry Technology Solutions",
+      "description": "Comprehensive technology solutions for various industries including healthcare, finance, gaming, energy, government, media, AI, manufacturing, aerospace, logistics, insurance, legal, education, biotech, and ecommerce.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Zerthos"
+      },
+      "serviceType": "Technology Solutions",
+      "areaServed": "Worldwide"
+    }
+  };
+
   const [activeIndustry, setActiveIndustry] = useState('Healthcare');
   const [activeAdditionalIndustry, setActiveAdditionalIndustry] = useState('Aerospace & Aviation');
   const [activeEmergingSector, setActiveEmergingSector] = useState('Education Technology (EdTech)');
@@ -390,8 +410,10 @@ export const IndustriesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
+      <SEO {...industriesSEO} />
+      <div className="min-h-screen bg-white">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FFFCE5]">
@@ -685,5 +707,6 @@ export const IndustriesPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 }; 

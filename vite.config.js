@@ -16,4 +16,27 @@ export default defineConfig(({ mode }) => ({
       plugins: [tailwind()],
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['@radix-ui/react-navigation-menu', '@radix-ui/react-progress', '@radix-ui/react-separator', '@radix-ui/react-slot'],
+        },
+      },
+    },
+    // Optimize for SEO
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+      },
+    },
+  },
+  // SEO optimizations
+  define: {
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_DEVTOOLS__: false,
+  },
 }));

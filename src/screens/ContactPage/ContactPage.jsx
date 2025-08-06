@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/button';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
+import { SEO } from '../../components/ui/seo';
+import { seoConfigs } from '../../lib/seo-configs';
 import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle, Loader2 } from 'lucide-react';
 
 export const ContactPage = () => {
@@ -158,9 +160,11 @@ export const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white relative overflow-x-hidden">
-      {/* Sticky Header */}
-      <Header isScrolled={true} />
+    <>
+      <SEO {...seoConfigs.contact} />
+      <div className="min-h-screen bg-white relative overflow-x-hidden">
+        {/* Sticky Header */}
+        <Header isScrolled={true} />
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center pt-40 pb-16 w-full bg-gradient-to-br from-[#FFF700] via-[#FFF] to-[#FFF7E0] relative">
@@ -435,5 +439,6 @@ export const ContactPage = () => {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }; 

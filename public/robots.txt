@@ -1,5 +1,20 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Allow important pages
+Allow: /industries/
+Allow: /technology/
+Allow: /leadership/
+Allow: /careers/
+Allow: /contact/
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://zerthos.com/sitemap.xml 

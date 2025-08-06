@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="/@vite/client"></script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
@@ -12,10 +22,9 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <style>
-      /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Anek+Devanagari:wght@300;400;600;700;800&display=swap"); */
 
       @import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wdth,wght@112.5,300..800&display=swap");
-      
+      /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Anek+Devanagari:wght@300;400;600;700;800&display=swap"); */
       @keyframes yellowToSquare {
         0% {
           width: 720px;
@@ -228,7 +237,6 @@
           border-radius: 24px;
         }
       }
-      
       @keyframes yellowToCircle {
         0% {
           width: 432px;
@@ -441,7 +449,6 @@
           border-radius: 0;
         }
       }
-      
       @keyframes yellowToStats {
         0% {
           width: 432px;
@@ -554,7 +561,6 @@
           border-radius: 24px;
         }
       }
-      
       @keyframes yellowToSquareFromStats {
         0% {
           width: 320px;
@@ -667,19 +673,15 @@
           border-radius: 24px;
         }
       }
-
       .yellow-to-square {
         animation: yellowToSquare 400ms ease-in-out forwards;
       }
-      
       .yellow-to-circle {
         animation: yellowToCircle 400ms ease-in-out forwards;
       }
-      
       .yellow-to-stats {
         animation: yellowToStats 400ms ease-in-out forwards;
       }
-      
       @keyframes yellowMergeToStats {
         0% {
           width: 432px;
@@ -726,11 +728,9 @@
           opacity: 0.4;
         }
       }
-      
-                    .yellow-merge-to-stats {
+      .yellow-merge-to-stats {
         animation: yellowMergeToStats 300ms ease-out forwards;
       }
-      
       @keyframes yellowMergeToStatsFromPartners {
         0% {
           width: 8px;
@@ -854,11 +854,9 @@
           opacity: 0.4;
         }
       }
-      
       .yellow-merge-to-stats-from-partners {
         animation: yellowMergeToStatsFromPartners 400ms ease-out forwards;
       }
-      
       @keyframes yellowMergeToCircle {
         0% {
           width: 432px;
@@ -982,11 +980,9 @@
           opacity: 0;
         }
       }
-      
       .yellow-merge-to-circle {
         animation: yellowMergeToCircle 300ms ease-out forwards;
       }
-      
       @keyframes yellowToPartners {
         0% {
           width: 320px;
@@ -1099,7 +1095,6 @@
           border-radius: 4px;
         }
       }
-      
       @keyframes yellowToStatsFromPartners {
         0% {
           width: 8px;
@@ -1212,15 +1207,12 @@
           border-radius: 24px;
         }
       }
-
       .yellow-to-square-from-stats {
         animation: yellowToSquareFromStats 400ms ease-in-out forwards;
       }
-      
       .yellow-to-partners {
         animation: yellowToPartners 400ms ease-in-out forwards;
       }
-      
       .yellow-to-stats-from-partners {
         animation: yellowToStatsFromPartners 400ms ease-in-out forwards;
       }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
+import { SEO } from '../../components/ui/seo';
+import { seoConfigs } from '../../lib/seo-configs';
 import { Linkedin } from 'lucide-react';
 import leadershipHeroBuilding from '../../assets/lead-building.png';
 import christopherCochran from '../../assets/christopher-cochran.jpg';
@@ -163,8 +165,10 @@ operational excellence.`
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
+      <SEO {...seoConfigs.leadership} />
+      <div className="min-h-screen bg-white">
+        <Header />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#E5F7FF] md:h-[612px]">
@@ -326,5 +330,6 @@ operational excellence.`
 
       <Footer />
     </div>
+    </>
   );
 }; 

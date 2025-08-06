@@ -1,11 +1,15 @@
 import React from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
+import { SEO } from '../../components/ui/seo';
+import { seoConfigs } from '../../lib/seo-configs';
 
 export const LegalTermsPage = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
+      <SEO {...seoConfigs.legalTerms} />
+      <div className="min-h-screen bg-white">
+        <Header />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
@@ -142,5 +146,6 @@ export const LegalTermsPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 }; 

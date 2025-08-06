@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Header } from "../../components/ui/header";
 import MaskedVideoHero from "../../components/ui/masked-video-hero";
+import { SEO } from "../../components/ui/seo";
 
 import { DivSubsection } from "./sections/DivSubsection";
 import { DivWrapperSubsection } from "./sections/DivWrapperSubsection";
@@ -16,6 +17,25 @@ import newShape from '../../assets/newShape.png';
 import imgPng from "../../assets/img_png.png";
 
 export const Homepage = () => {
+  // SEO for homepage
+  const homepageSEO = {
+    title: "Zerthos - Modern Technology Solutions & Digital Transformation",
+    description: "Leading provider of innovative technology solutions, digital transformation, and cutting-edge software development services. Transform your business with Zerthos.",
+    keywords: "Zerthos, technology solutions, digital transformation, software development, innovation, tech company, AI, machine learning, cloud computing",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Zerthos",
+      "url": "https://zerthos.com",
+      "description": "Leading provider of innovative technology solutions and digital transformation services.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://zerthos.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  };
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -551,16 +571,18 @@ export const Homepage = () => {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-white" data-model-id="84:741" style={{ isolation: 'isolate' }}>
-      {/* Loading Bar for Section Transitions */}
-      <LoadingBar 
-        color="linear-gradient(90deg, #FFD700 0%, #F09A07 50%, #FF6B35 100%)" 
-        ref={loadingBarRef} 
-        height={4}
-        shadow={true}
-        transitionTime={300}
-        className="md:h-3 sm:h-2"
-      />
+    <>
+      <SEO {...homepageSEO} />
+      <div className="relative w-full h-screen overflow-hidden bg-white" data-model-id="84:741" style={{ isolation: 'isolate' }}>
+        {/* Loading Bar for Section Transitions */}
+        <LoadingBar 
+          color="linear-gradient(90deg, #FFD700 0%, #F09A07 50%, #FF6B35 100%)" 
+          ref={loadingBarRef} 
+          height={4}
+          shadow={true}
+          transitionTime={300}
+          className="md:h-3 sm:h-2"
+        />
       
       {/* Sticky Header */}
       <Header isScrolled={isScrolled} />
@@ -1286,5 +1308,6 @@ export const Homepage = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../../components/ui/header';
 import { Footer } from '../../components/ui/footer';
+import { SEO } from '../../components/ui/seo';
+import { seoConfigs } from '../../lib/seo-configs';
 import technologyHeroData from '../../assets/technology-hero-img.mp4';
 import technologyGoldenGlobe from '../../assets/tech-globe-graphic.svg';
 import technologyGradientGraphic from '../../assets/tech-gradient.png';
@@ -179,8 +181,10 @@ export const TechnologyPage = () => {
 
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
+      <SEO {...seoConfigs.technology} />
+      <div className="min-h-screen bg-white">
+        <Header />
       
       {/* Hero Section - Dark with Data Visualization */}
       <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
@@ -509,5 +513,6 @@ export const TechnologyPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 }; 
