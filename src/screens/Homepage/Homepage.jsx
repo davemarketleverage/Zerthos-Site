@@ -620,8 +620,8 @@ export const Homepage = () => {
               </div>
 
               {/* Mobile Video Hero - shown only on mobile */}
-              <div className="absolute bottom-0 right-0 z-[1] sm:block md:hidden -mr-4 -mb-4">
-                <MaskedVideoHero className="w-[400px] h-[400px]" />
+              <div className="absolute bottom-0 right-0 z-[1] sm:block md:hidden sm:-mr-4 sm:-mb-4">
+                <MaskedVideoHero className="w-[100vw] sm:w-[400px] h-[400px]" />
               </div>
 
               {/* Info Card - hidden on mobile, reduced size on tablet */}
@@ -637,7 +637,7 @@ export const Homepage = () => {
 
         {/* About Section */}
         <section className="w-full h-screen bg-white flex items-center tp:pt-1">
-          <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center 2xl:justify-center">
+          <div className="w-full mx-auto px-12 flex flex-col md:flex-row gap-16 items-center 2xl:justify-center mt-9">
             <div className={`relative w-full md:w-[432px] h-[460px] rounded-3xl transition-all duration-700 ease-in-out flex items-center justify-center hidden md:flex ${
               delayedBrainBg ? 'bg-[#F09A07]' : 'bg-transparent'
             }`} style={{ zIndex: 30 }}>
@@ -655,10 +655,10 @@ export const Homepage = () => {
             </div>
 
             <div className="flex flex-col gap-8 max-w-[850px] md:max-w-[850px] sm:max-w-full text-center md:text-left xs-mt-12">
-              <h2 className="font-heading font-normal text-[#202020] text-6xl xs:text-5xl md:text-6xl sm:text-4xl leading-[60px] md:leading-[60px] sm:leading-[48px]">
+              <h2 className="font-heading font-normal text-[#202020] text-4xl  leading-8 md:text-6xl sm:text-4xl md:leading-[60px] sm:leading-[48px]">
                 By reimagining how information moves across networks
               </h2>
-              <p className="font-normal text-[#565a67] text-2xl xs:text-xl md:text-2xl sm:text-lg leading-9 md:leading-9 sm:leading-7">
+              <p className="font-normal text-[#565a67] text-xl xs:text-xl md:text-2xl sm:text-lg leading-7 md:leading-9 sm:leading-7">
                 We enable organizations to harness the full potential of their data
                 infrastructure with performance that exceeds industry standards by
                 orders of magnitude.
@@ -1251,7 +1251,7 @@ export const Homepage = () => {
       <div
         className={`fixed z-30 pointer-events-none transition-all duration-400 ease-in-out
           ${currentSection === 4 ? 'top-1/2 left-0 w-full flex justify-center items-center translate-y-[-50%]' : ''}
-          ${currentSection === 5 ? 'top-28 left-0 w-full flex justify-start items-start pt-8 sm:pt-6 md:pt-8 lg:pt-12 pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8 md:hidden' : ''}
+          ${currentSection === 5 ? 'top-28 left-0 w-full flex justify-start items-start pt-2 sm:pt-6 md:pt-8 lg:pt-12 pl-0 xs:pl-4 sm:pl-6 md:pl-8 lg:pl-12 ml-4 md:ml-8 md:hidden' : ''}
         `}
         style={{
           transitionProperty: 'all',
@@ -1259,7 +1259,7 @@ export const Homepage = () => {
       >
         <h2
           className={`transition-all duration-400 ease-in-out font-heading font-normal
-            ${currentSection === 4 ? 'md:text-[60px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] leading-[80px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
+            ${currentSection === 4 ? 'md:text-[60px] text-[40px] leading-[40px] xs:text-[40px] xs:p-4 sm:text-[40px] xs:leading-[40px] md:leading-[60px] sm:leading-[40px] text-center' : ''}
             ${currentSection === 5 ? 'text-[32px] sm:text-[20px] md:text-[30px] lg:text-[36px] xl:text-[40px] xl:ml-0 leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight sm:text-left md:text-left lg:text-left xl:text-left' : ''}
             text-[#202020] pointer-events-auto`
           }

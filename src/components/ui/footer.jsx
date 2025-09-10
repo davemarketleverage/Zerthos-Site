@@ -16,19 +16,19 @@ const legalLinks = [
 ];
 
 export const Footer = () => (
-  <footer className="w-full bg-[#202020] flex flex-col items-center justify-center py-8 lg:py-12 px-4 sm:px-6 lg:px-8 mt-auto relative z-10">
-    <div className="flex flex-col w-full max-w-[1344px] items-start gap-6 lg:gap-9 mx-auto px-0 py-0">
+  <footer className="w-full bg-[#202020] flex flex-col items-center justify-center py-6 pb-16 sm:pb-8 sm:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 mt-auto relative z-10 ">
+    <div className="flex flex-col w-full max-w-[1344px] items-start gap-2 sm:gap-6 lg:gap-9 mx-auto px-0 py-0">
       {/* Main content section */}
-      <div className="items-start relative self-stretch w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-8">
+      <div className="items-start relative self-stretch w-full flex flex-col lg:flex-row justify-between gap-3 sm:gap-6 lg:gap-8">
         {/* Left section - Logo and Contact */}
-        <div className="flex flex-col sm:flex-row items-start gap-6 lg:gap-24 relative w-full lg:w-auto">
+        <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 lg:gap-24 relative w-full lg:w-auto">
           {/* Logo */}
           <div className="relative w-28 h-14 lg:w-32 lg:h-16">
             <img className="w-full h-full object-contain" alt="Zerthos Logo" src={logoSvg} />
           </div>
 
           {/* Contact information */}
-          <div className="flex flex-col sm:flex-row items-start gap-4 lg:gap-9 relative w-full sm:w-auto">
+          <div className="flex flex-row justify-between sm:justify-start items-start gap-4 lg:gap-9 relative w-full sm:w-auto">
             <div className="flex flex-col items-start gap-2 relative">
               <h3 className="font-sans font-bold text-white text-sm lg:text-base leading-5 lg:leading-6">Zerthos HQ</h3>
               <p className="opacity-70 font-sans font-normal text-white text-xs lg:text-sm leading-5 lg:leading-[22px]">
@@ -41,15 +41,19 @@ export const Footer = () => (
                 105 Bradford Rd, Suite 420,<br />Wexford,<br />PA 15090
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 lg:gap-9">
+            <div className="flex-col sm:flex-row gap-2 lg:gap-9 hidden sm:flex">
               <a href="mailto:hello@zerthos.com" className="font-sans font-normal text-white text-sm lg:text-base leading-5 lg:leading-6 underline hover:opacity-80 transition-opacity">hello@zerthos.com</a>
               <a href="tel:(877)-60-Zerthos" className="font-sans font-normal text-white text-sm lg:text-base leading-5 lg:leading-6 underline hover:opacity-80 transition-opacity">(877)-60-Zerthos</a>
             </div>
           </div>
+          <div className="flex-col sm:flex-row gap-2 lg:gap-9 flex sm:hidden">
+              <a href="mailto:hello@zerthos.com" className="font-sans font-normal text-white text-sm lg:text-base leading-5 lg:leading-6 underline hover:opacity-80 transition-opacity">hello@zerthos.com</a>
+              <a href="tel:(877)-60-Zerthos" className="font-sans font-normal text-white text-sm lg:text-base leading-5 lg:leading-6 underline hover:opacity-80 transition-opacity">(877)-60-Zerthos</a>
+            </div>
         </div>
 
         {/* Right section - Legal links */}
-        <div className="flex flex-col sm:flex-row items-start gap-4 lg:gap-9 relative w-full lg:w-auto">
+        <div className="flex flex-row items-start gap-4 lg:gap-9 relative w-full lg:w-auto justify-between sm:justify-start">
           {legalLinks.map((link, index) => (
             <a 
               key={`legal-${index}`} 
