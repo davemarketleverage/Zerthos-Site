@@ -78,7 +78,7 @@ export const DivWrapperSubsection = () => {
   }, [inView]);
 
   return (
-    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 mt-16 tp:mt-2 tp:pt-2">
+    <section ref={ref} className="relative w-full max-w-[1000px] mx-auto py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12 sm:mt-16 tp:mt-2 tp:pt-2 mt-8">
       <Card className={`relative border border-solid border-[#cccccc] rounded-xl sm:rounded-2xl transition-all duration-1000 ease-out will-change-transform will-change-opacity delay-300 ${hasAnimated ? 'translate-y-0 opacity-100 visible' : 'translate-y-12 opacity-0 invisible'}`}>
         <CardContent className="p-0">
 
@@ -96,7 +96,7 @@ export const DivWrapperSubsection = () => {
           </div>
 
           {/* Mobile header */}
-          <div className="md:hidden px-4 pt-4 pb-3">
+          <div className="md:hidden px-4 pt-2 pb-1">
             <div className="flex justify-between items-center">
               <div className="bg-[linear-gradient(90deg,rgba(229,108,21,1)_0%,rgba(238,85,34,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] font-bold text-transparent text-base tracking-[0] leading-6 pl-8">
                 TalonX
@@ -150,7 +150,7 @@ export const DivWrapperSubsection = () => {
                       <h3 className="font-bold text-[#202020] text-xs sm:text-sm leading-5 break-words">
                         {feature.title}
                       </h3>
-                      <p className="text-[10px] sm:text-xs text-[#565a67] leading-4 font-normal">
+                      <p className="text-[10px] sm:text-xs text-[#565a67] leading-4 font-normal hidden sm:block">
                         {feature.description}
                       </p>
                     </div>
