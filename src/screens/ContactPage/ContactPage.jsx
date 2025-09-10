@@ -220,7 +220,7 @@ export const ContactPage = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Form */}
             <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-              <div className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-100">
+              <div className="bg-white rounded-3xl shadow-2xl sm:p-10 border border-gray-100 p-6">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#F09A07] to-[#FF6B35] flex items-center justify-center">
                     <MessageCircle className="w-6 h-6 text-white" />
