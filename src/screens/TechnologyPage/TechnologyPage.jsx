@@ -212,7 +212,7 @@ export const TechnologyPage = () => {
                 movement of data
               </h1>
               <p className="text-lg md:text-xl text-white leading-relaxed max-w-5xl">
-                At Zerthos, we've engineered something extraordinary — a proprietary protocol that transforms how data moves, scales, and performs. TalonX is our breakthrough in intelligent data transport: enabling near-instant, lossless delivery across any network, system, or device, no matter the size or format.
+                At Zerthos&trade;, we've engineered something extraordinary — a proprietary protocol that transforms how data moves, scales, and performs. The TalonX&trade; protocol is our breakthrough in intelligent data transport: enabling near-instant, lossless delivery across any network, system, or device, no matter the size or format.
               </p>
             </div>
             

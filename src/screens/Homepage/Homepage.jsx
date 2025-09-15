@@ -627,8 +627,8 @@ export const Homepage = () => {
               {/* Info Card - hidden on mobile, reduced size on tablet */}
               <Card className={`absolute w-[348px] h-[220px] md:w-[240px] md:h-[160px] lg:w-[280px] lg:h-[180px] xl:w-[348px] xl:h-[220px] bottom-12 md:bottom-12 lg:bottom-12 xl:bottom-12 left-0 md:left-4 lg:left-4 xl:left-0 rounded-xl overflow-hidden bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/combined-shape.png)] bg-[100%_100%] border-none z-[999] transition-all duration-700 ease-out will-change-transform will-change-opacity hidden sm:hidden md:block ${showHeroCard ? 'translate-y-0 opacity-100 visible' : 'translate-y-16 opacity-0 invisible'} tp:w-[300px] tp:h-[200px]`}>
                 <div className="absolute w-[300px] md:w-[200px] lg:w-[240px] xl:w-[300px] top-[23px] md:top-[16px] lg:top-[20px] xl:top-[23px] left-6 md:left-4 lg:left-5 xl:left-6 font-normal text-white text-lg md:text-sm lg:text-base xl:text-lg leading-7 md:leading-5 lg:leading-6 xl:leading-7 tp:text-base  tp:w-[250px] tp:h-[150px]">
-                  Our proprietary TalonX protocol enables lightning-fast, secure, and
-                  reliable delivery - leaving outdated systems behind.
+                  Our proprietary TalonX&trade; protocol enables lightning-fast, secure, and
+                  reliable delivery - leaving outdated systems behind. <br />  <span className="italic">[Patent Pending]</span>
                 </div>
               </Card>
             </div>
