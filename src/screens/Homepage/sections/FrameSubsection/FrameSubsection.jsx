@@ -31,10 +31,11 @@ export const FrameSubsection = () => {
 
         <p className="w-[90%] font-normal text-[#202020] text-2xl md:text-xl sm:text-[14px] tracking-[0] leading-6 md:leading-5 sm:leading-[14px]">
           <span className="leading-9 md:leading-7 sm:leading-6">At </span>
-          <span className="font-bold italic leading-9 md:leading-7 sm:leading-6">Zerthos</span>
+          <span className="font-bold leading-9 md:leading-7 sm:leading-6 italic">Zerthos&trade;</span>
           <span className="leading-9 md:leading-7 sm:leading-6">
-            , we&apos;re redefining how data moves.
-          </span>
+            , What the World Couldn't Move,</span>
+            <br />
+            <span className="font-bold leading-9 md:leading-7 sm:leading-6 italic">WE JUST DID</span>
         </p>
       </div>
 

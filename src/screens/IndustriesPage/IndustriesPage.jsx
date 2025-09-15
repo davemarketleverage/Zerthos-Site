@@ -425,7 +425,7 @@ export const IndustriesPage = () => {
                 Industries we serve
               </h1>
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl">
-                Built for Every Industry That Moves Data. From healthcare to defense, media to AI, TalonX delivers unmatched speed, adaptability, and precision, transforming how entire industries operate.
+                Built for Every Industry That Moves Data. From healthcare to defense, media to AI, the TalonX&trade; protocol delivers unmatched speed, adaptability, and precision, transforming how entire industries operate.
               </p>
             </div>
             

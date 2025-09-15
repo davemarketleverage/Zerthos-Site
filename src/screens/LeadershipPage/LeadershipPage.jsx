@@ -187,7 +187,7 @@ operational excellence.`
                 Our leadership
               </h1>
               <p className="text-lg md:text-xl text-[#333333] leading-relaxed max-w-2xl z-20">
-                At Zerthos, leadership means invention. Behind TalonX is a team of bold thinkers and engineers redefining how the world moves data.
+                At Zerthos&trade;, leadership means invention. Behind the TalonX&trade; protocol is a team of bold thinkers and engineers redefining how the world moves data.
               </p>
             </div>
             
