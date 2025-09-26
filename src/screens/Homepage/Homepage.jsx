@@ -15,6 +15,7 @@ import { OverlapWrapperSubsection } from "./sections/OverlapWrapperSubsection/Ov
 import brainImage from "../../assets/section2-brain.png";
 import newShape from '../../assets/newShape.png';
 import imgPng from "../../assets/img_png.png";
+import demoVideo from "../../assets/demo.mp4";
 
 export const Homepage = () => {
   // SEO for homepage
@@ -52,6 +53,7 @@ export const Homepage = () => {
   const [delayedBrainBg, setDelayedBrainBg] = useState(false);
   const [delayedStatsBg, setDelayedStatsBg] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   
   // Immediate scroll blocking using ref to prevent multiple rapid scrolls
   const scrollBlockedRef = useRef(false);
@@ -63,6 +65,11 @@ export const Homepage = () => {
   
   // Loading bar ref for section transitions
   const loadingBarRef = useRef(null);
+  
+  // Video refs for demo videos
+  const desktopVideoRef = useRef(null);
+  const tabletVideoRef = useRef(null);
+  
 
   // Log initial component state
   useEffect(() => {
@@ -78,6 +85,7 @@ export const Homepage = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
 
   // Initialize yellow background state based on current section
   useEffect(() => {
@@ -147,6 +155,15 @@ export const Homepage = () => {
   ];
 
   const featuresCount = 4; // keep in sync with OverlapWrapperSubsection
+
+  // Handle video play/pause events
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+  };
+
+  const handleVideoPause = () => {
+    setIsVideoPlaying(false);
+  };
 
   const scrollToSection = (sectionIndex) => {
     if (isScrolling || sectionIndex < 0 || sectionIndex >= sections.length) return;
@@ -673,7 +690,9 @@ export const Homepage = () => {
             {/* Desktop Layout - 3 columns */}
             <div className="hidden xl:flex w-full items-stretch h-[500px] tp:h-[400px] tp:gap-4 2xl:gap-16">
               {/* Left Column - Text Content with Grey Background */}
-              <div className="flex-1 h-full ml-12">
+              <div className={`h-full ml-12 transition-all duration-700 ease-in-out overflow-hidden ${
+                isVideoPlaying ? 'w-0 opacity-0' : 'flex-1 opacity-100'
+              }`}>
                 <div className="bg-[#F8F8F8] rounded-[24px] px-9 py-16 flex flex-col justify-center items-start gap-12 h-full tp:gap-4">
                   <h2 className="text-[#202020] text-[60px] font-heading font-normal leading-[60px] tp:text-5xl">
                     Watch<br/>
@@ -689,7 +708,9 @@ export const Homepage = () => {
               </div>
 
               {/* Middle Column - Stats Card */}
-              <div className={`${windowWidth >= 1536 ? '' : 'flex-1'} flex justify-center items-center h-full`}>
+              <div className={`h-full flex justify-center items-center transition-all duration-700 ease-in-out overflow-hidden ${
+                isVideoPlaying ? 'w-0 opacity-0' : `${windowWidth >= 1536 ? '' : 'flex-1'} opacity-100`
+              }`}>
                 <div className={`rounded-[24px] p-6 text-[#202020] w-full max-w-[320px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
@@ -712,11 +733,25 @@ export const Homepage = () => {
               </div>
 
               {/* Right Column - Video Demo (Custom Flex, Full Edge) */}
-              <div className="flex items-center h-full" style={{flex: '1.75 1 0%'}}>
-                <div className="w-full h-full bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/mask-group.png)] bg-cover bg-center rounded-l-[24px] relative flex items-center justify-center">
-                  <Button className="w-[70px] h-[70px] bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <PlayIcon className="w-[20px] h-[20px] text-[#F09A07] ml-1" />
-                  </Button>
+              <div className={`flex items-center h-full transition-all duration-700 ease-in-out ${
+                isVideoPlaying ? 'flex-1 justify-center' : 'flex-[1.75_1_0%]'
+              }`}>
+                <div className={`w-full h-full relative flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${
+                  isVideoPlaying ? 'rounded-[24px]' : 'rounded-l-[24px]'
+                }`}>
+                  <video 
+                    ref={desktopVideoRef}
+                    className="w-full h-full object-contain"
+                    controls
+                    loop
+                    playsInline
+                    preload="metadata"
+                    onPlay={handleVideoPlay}
+                    onPause={handleVideoPause}
+                  >
+                    <source src={demoVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
@@ -724,7 +759,9 @@ export const Homepage = () => {
             {/* Tablet Layout - 3 columns with reduced sizes */}
             <div className="hidden md:flex xl:hidden w-full items-stretch h-[400px] gap-4">
               {/* Left Column - Text Content with Grey Background */}
-              <div className="flex-1 h-full">
+              <div className={`h-full transition-all duration-700 ease-in-out overflow-hidden ${
+                isVideoPlaying ? 'w-0 opacity-0' : 'flex-1 opacity-100'
+              }`}>
                 <div className="bg-[#F8F8F8] rounded-[20px] px-6 py-12 flex flex-col justify-center items-start gap-8 h-full">
                   <h2 className="text-[#202020] text-[40px] font-heading font-normal leading-[40px]">
                     Watch<br/>
@@ -740,7 +777,9 @@ export const Homepage = () => {
               </div>
 
               {/* Middle Column - Stats Card */}
-              <div className="flex-1 flex justify-center items-center h-full">
+              <div className={`h-full flex justify-center items-center transition-all duration-700 ease-in-out overflow-hidden ${
+                isVideoPlaying ? 'w-0 opacity-0' : 'flex-1 opacity-100'
+              }`}>
                 <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[240px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
@@ -764,52 +803,79 @@ export const Homepage = () => {
               </div>
 
               {/* Right Column - Video Demo (Custom Flex, Full Edge) */}
-              <div className="flex items-center h-full" style={{flex: '1.75 1 0%'}}>
-                <div className="w-full h-full bg-[url(https://c.animaapp.com/mcovvnm5V0Fxtk/img/mask-group.png)] bg-cover bg-center rounded-[20px] relative flex items-center justify-center">
-                  <Button className="w-[60px] h-[60px] bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <PlayIcon className="w-[18px] h-[18px] text-[#F09A07] ml-1" />
-                  </Button>
+              <div className={`flex items-center h-full transition-all duration-700 ease-in-out ${
+                isVideoPlaying ? 'flex-1 justify-center' : 'flex-[1.75_1_0%]'
+              }`}>
+                <div className={`w-full h-full relative flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${
+                  isVideoPlaying ? 'rounded-[20px]' : 'rounded-[20px]'
+                }`}>
+                  <video 
+                    ref={tabletVideoRef}
+                    className="w-full h-full object-contain"
+                    controls
+                    loop
+                    playsInline
+                    preload="metadata"
+                    onPlay={handleVideoPlay}
+                    onPause={handleVideoPause}
+                  >
+                    <source src={demoVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
 
-            {/* Mobile Layout - 2 columns vertical, hide video */}
-            <div className="flex md:hidden w-full flex-col gap-6 h-full justify-center">
+            {/* Mobile Layout - 3 rows vertical with video */}
+            <div className="flex md:hidden w-full flex-col gap-4 h-full justify-center">
               {/* Top Row - Text Content with Grey Background */}
-              <div className="flex-1 h-[calc(50vh-120px)]">
-                <div className="bg-[#F8F8F8] rounded-[20px] px-6 py-8 flex flex-col justify-center items-start gap-6 h-full">
-                  <h2 className="text-[#202020] text-[32px] font-heading font-normal leading-[32px]">
+              <div className="h-[calc(33vh-80px)]">
+                <div className="bg-[#F8F8F8] rounded-[20px] px-6 py-6 flex flex-col justify-center items-start gap-4 h-full">
+                  <h2 className="text-[#202020] text-[28px] font-heading font-normal leading-[28px]">
                     Watch<br/>
                     Zerthos<br/>
                     in action
                   </h2>
-                  <p className="text-[#565B68] text-base font-normal leading-6">
+                  <p className="text-[#565B68] text-sm font-normal leading-5">
                     Watch our technology demo to see how Zerthos transform data transmission with unmatched speed and security.
                   </p>
                 </div>
               </div>
 
+              {/* Middle Row - Video Demo */}
+              <div className="h-[calc(33vh-80px)]">
+                <div className="w-full h-full rounded-[20px] relative flex items-center justify-center overflow-hidden">
+                  <video 
+                    className="w-full h-full object-contain"
+                    controls
+                    loop
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={demoVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+
               {/* Bottom Row - Stats Card */}
-              <div className="flex-1 h-[calc(50vh-120px)] flex justify-center items-center">
+              <div className="h-[calc(33vh-80px)] flex justify-center items-center">
                 <div className={`rounded-[20px] p-4 text-[#202020] w-full max-w-[280px] h-full flex flex-col justify-evenly relative z-10 ${
                   delayedStatsBg ? 'bg-[#F09A07]' : 'bg-transparent'
                 }`}>
                   <div>
-
-                  <div className="text-[28px] font-heading font-bold leading-[28px] mb-1">4x</div>
-                  <div className="text-sm font-normal mb-3">Faster data transmission</div>
+                  <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">4x</div>
+                  <div className="text-xs font-normal mb-2">Faster data transmission</div>
                   </div>
 
                   <div>
-
-                  <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">99.99%</div>
-                  <div className="text-sm font-normal mb-3">Uptime guarantee</div>
+                  <div className="text-[20px] font-heading font-bold leading-[20px] mb-1">99.99%</div>
+                  <div className="text-xs font-normal mb-2">Uptime guarantee</div>
                   </div>
 
                   <div>
-
-                  <div className="text-[24px] font-heading font-bold leading-[24px] mb-1">256-bit</div>
-                  <div className="text-sm font-normal">Military-grade encryption</div>
+                  <div className="text-[20px] font-heading font-bold leading-[20px] mb-1">256-bit</div>
+                  <div className="text-xs font-normal">Military-grade encryption</div>
                   </div>
                 </div>
               </div>
