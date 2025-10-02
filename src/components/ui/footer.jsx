@@ -4,9 +4,10 @@ import { Separator } from "./separator";
 import { Instagram, Twitter, Facebook } from "lucide-react";
 
 const socialLinks = [
-  { name: "Instagram", href: "https://www.instagram.com/zerthos.talonx", icon: Instagram },
-  { name: "X", href: "https://x.com/Zerthos_TalonX", icon: Twitter },
-  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61576774251222", icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/zerthosx/?next=%2F", icon: Instagram },
+  { name: "X", href: "https://x.com/ZerthosX", icon: Twitter },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61579662629810", icon: Facebook },
+  { name: "Linkedin", href: "https://www.linkedin.com/company/zerthos/?viewAsMember=true", icon: Linkedin },
 ];
 
 const legalLinks = [
