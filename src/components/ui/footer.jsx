@@ -1,7 +1,7 @@
 import React from "react";
 import logoSvg from "../../assets/logo-light.svg";
 import { Separator } from "./separator";
-import { Instagram, Twitter, Facebook } from "lucide-react";
+import { Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
 
 const socialLinks = [
   { name: "Instagram", href: "https://www.instagram.com/zerthosx/?next=%2F", icon: Instagram },
